@@ -9,9 +9,9 @@ class Direction(Enum):
     """
     Direction of order/trade/position.
     """
-    LONG = " many "
-    SHORT = " air "
-    NET = " net "
+    LONG = "long"
+    SHORT = "short"
+    NET = "NET"
 
 
 class Offset(Enum):
@@ -19,47 +19,47 @@ class Offset(Enum):
     Offset of order/trade.
     """
     NONE = ""
-    OPEN = " open "
-    CLOSE = " level "
-    CLOSETODAY = " flat now "
-    CLOSEYESTERDAY = " ping yesterday "
+    OPEN = "open"
+    CLOSE = "close"
+    CLOSETODAY = "close today"
+    CLOSEYESTERDAY = "close yesterday"
 
 
 class Status(Enum):
     """
     Order status.
     """
-    SUBMITTING = " submitting "
-    NOTTRADED = " unsold "
-    PARTTRADED = " part of the transaction "
-    ALLTRADED = " all transactions "
-    CANCELLED = " revoked "
-    REJECTED = " single refused "
+    SUBMITTING = "submitting"
+    NOTTRADED = "active"
+    PARTTRADED = "partially filled"
+    ALLTRADED = "filled"
+    CANCELLED = "canceled"
+    REJECTED = "rejected"
 
 
 class Product(Enum):
     """
     Product class.
     """
-    EQUITY = " stock "
-    FUTURES = " futures "
-    OPTION = " options "
-    INDEX = " index "
-    FOREX = " exchange "
-    SPOT = " stock "
+    EQUITY = "stock"
+    FUTURES = "futures"
+    OPTION = "options"
+    INDEX = "index"
+    FOREX = "exchange"
+    SPOT = "stock"
     ETF = "ETF"
-    BOND = " bond "
-    WARRANT = " warrants "
-    SPREAD = " spread "
-    FUND = " fund "
+    BOND = "bond"
+    WARRANT = "warrants"
+    SPREAD = "spread"
+    FUND = "fund"
 
 
 class OrderType(Enum):
     """
     Order type.
     """
-    LIMIT = " limit "
-    MARKET = " market price "
+    LIMIT = "limit"
+    MARKET = "market"
     STOP = "STOP"
     FAK = "FAK"
     FOK = "FOK"
@@ -69,8 +69,8 @@ class OptionType(Enum):
     """
     Option type.
     """
-    CALL = " call option "
-    PUT = " put option "
+    CALL = "call option"
+    PUT = "put option"
 
 
 class Exchange(Enum):

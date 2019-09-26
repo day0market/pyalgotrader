@@ -191,7 +191,7 @@ error_map = {
     60074: " the amount of change is larger than a single daily ",
     60075: " not allowed to change a single embedded single ",
     60112: " under the single largest positions than to get started ",
-    60121: " kaiping wrong way ",
+    60121: " offset wrong way ",
     60122: " lack of trust open positions ",
     60123: " closing the transaction fails ",
     60131: " local commission found ",

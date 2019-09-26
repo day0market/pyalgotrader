@@ -312,7 +312,7 @@ class BaseMonitor(QtWidgets.QTableWidget):
         Save table data into a csv file
         """
         path, _ = QtWidgets.QFileDialog.getSaveFileName(
-            self, " save data ", "", "CSV(*.csv)")
+            self, "save data", "", "CSV(*.csv)")
 
         if not path:
             return
@@ -349,20 +349,20 @@ class TickMonitor(BaseMonitor):
     sorting = True
 
     headers = {
-        "symbol": {"display": " code ", "cell": BaseCell, "update": False},
-        "exchange": {"display": " exchange ", "cell": EnumCell, "update": False},
-        "name": {"display": " name ", "cell": BaseCell, "update": True},
-        "last_price": {"display": " latest price ", "cell": BaseCell, "update": True},
-        "volume": {"display": " volume ", "cell": BaseCell, "update": True},
-        "open_price": {"display": " opening price ", "cell": BaseCell, "update": True},
-        "high_price": {"display": " highest price ", "cell": BaseCell, "update": True},
-        "low_price": {"display": " lowest ", "cell": BaseCell, "update": True},
-        "bid_price_1": {"display": " buy 1 price ", "cell": BidCell, "update": True},
-        "bid_volume_1": {"display": " buy 1 the amount ", "cell": BidCell, "update": True},
-        "ask_price_1": {"display": " sell 1 price ", "cell": AskCell, "update": True},
-        "ask_volume_1": {"display": " sell 1 the amount ", "cell": AskCell, "update": True},
-        "datetime": {"display": " time ", "cell": TimeCell, "update": True},
-        "gateway_name": {"display": " interface ", "cell": BaseCell, "update": False},
+        "symbol": {"display": "symbol", "cell": BaseCell, "update": False},
+        "exchange": {"display": "exchange ", "cell": EnumCell, "update": False},
+        "name": {"display": "name ", "cell": BaseCell, "update": True},
+        "last_price": {"display": "last", "cell": BaseCell, "update": True},
+        "volume": {"display": "volume", "cell": BaseCell, "update": True},
+        "open_price": {"display": "open", "cell": BaseCell, "update": True},
+        "high_price": {"display": "high ", "cell": BaseCell, "update": True},
+        "low_price": {"display": "low", "cell": BaseCell, "update": True},
+        "bid_price_1": {"display": "bid", "cell": BidCell, "update": True},
+        "bid_volume_1": {"display": "bid size", "cell": BidCell, "update": True},
+        "ask_price_1": {"display": "ask", "cell": AskCell, "update": True},
+        "ask_volume_1": {"display": "ask size", "cell": AskCell, "update": True},
+        "datetime": {"display": "time", "cell": TimeCell, "update": True},
+        "gateway_name": {"display": "gateway ", "cell": BaseCell, "update": False},
     }
 
 
@@ -376,9 +376,9 @@ class LogMonitor(BaseMonitor):
     sorting = False
 
     headers = {
-        "time": {"display": " time ", "cell": TimeCell, "update": False},
-        "msg": {"display": " information ", "cell": MsgCell, "update": False},
-        "gateway_name": {"display": " interface ", "cell": BaseCell, "update": False},
+        "time": {"display": "time", "cell": TimeCell, "update": False},
+        "msg": {"display": "message", "cell": MsgCell, "update": False},
+        "gateway_name": {"display": "gateway", "cell": BaseCell, "update": False},
     }
 
 
@@ -392,16 +392,16 @@ class TradeMonitor(BaseMonitor):
     sorting = True
 
     headers = {
-        "tradeid": {"display": " turnover number  ", "cell": BaseCell, "update": False},
-        "orderid": {"display": " no. commission ", "cell": BaseCell, "update": False},
-        "symbol": {"display": " code ", "cell": BaseCell, "update": False},
-        "exchange": {"display": " exchange ", "cell": EnumCell, "update": False},
-        "direction": {"display": " direction ", "cell": DirectionCell, "update": False},
-        "offset": {"display": " kaiping ", "cell": EnumCell, "update": False},
-        "price": {"display": " price ", "cell": BaseCell, "update": False},
-        "volume": {"display": " quantity ", "cell": BaseCell, "update": False},
-        "time": {"display": " time ", "cell": BaseCell, "update": False},
-        "gateway_name": {"display": " interface ", "cell": BaseCell, "update": False},
+        "tradeid": {"display": "turnover number  ", "cell": BaseCell, "update": False},
+        "orderid": {"display": "no. commission ", "cell": BaseCell, "update": False},
+        "symbol": {"display": "code ", "cell": BaseCell, "update": False},
+        "exchange": {"display": "exchange ", "cell": EnumCell, "update": False},
+        "direction": {"display": "direction ", "cell": DirectionCell, "update": False},
+        "offset": {"display": "offset ", "cell": EnumCell, "update": False},
+        "price": {"display": "price ", "cell": BaseCell, "update": False},
+        "volume": {"display": "quantity ", "cell": BaseCell, "update": False},
+        "time": {"display": "time ", "cell": BaseCell, "update": False},
+        "gateway_name": {"display": "interface ", "cell": BaseCell, "update": False},
     }
 
 
@@ -415,18 +415,18 @@ class OrderMonitor(BaseMonitor):
     sorting = True
 
     headers = {
-        "orderid": {"display": " no. commission ", "cell": BaseCell, "update": False},
-        "symbol": {"display": " code ", "cell": BaseCell, "update": False},
-        "exchange": {"display": " exchange ", "cell": EnumCell, "update": False},
-        "type": {"display": " types of ", "cell": EnumCell, "update": False},
-        "direction": {"display": " direction ", "cell": DirectionCell, "update": False},
-        "offset": {"display": " kaiping ", "cell": EnumCell, "update": False},
-        "price": {"display": " price ", "cell": BaseCell, "update": False},
-        "volume": {"display": " the total number ", "cell": BaseCell, "update": True},
-        "traded": {"display": " deal done ", "cell": BaseCell, "update": True},
-        "status": {"display": " status ", "cell": EnumCell, "update": True},
-        "time": {"display": " time ", "cell": BaseCell, "update": True},
-        "gateway_name": {"display": " interface ", "cell": BaseCell, "update": False},
+        "orderid": {"display": "no. commission ", "cell": BaseCell, "update": False},
+        "symbol": {"display": "code ", "cell": BaseCell, "update": False},
+        "exchange": {"display": "exchange ", "cell": EnumCell, "update": False},
+        "type": {"display": "types of ", "cell": EnumCell, "update": False},
+        "direction": {"display": "direction ", "cell": DirectionCell, "update": False},
+        "offset": {"display": "offset ", "cell": EnumCell, "update": False},
+        "price": {"display": "price ", "cell": BaseCell, "update": False},
+        "volume": {"display": "the total number ", "cell": BaseCell, "update": True},
+        "traded": {"display": "deal done ", "cell": BaseCell, "update": True},
+        "status": {"display": "status ", "cell": EnumCell, "update": True},
+        "time": {"display": "time ", "cell": BaseCell, "update": True},
+        "gateway_name": {"display": "interface ", "cell": BaseCell, "update": False},
     }
 
     def init_ui(self):
@@ -457,15 +457,15 @@ class PositionMonitor(BaseMonitor):
     sorting = True
 
     headers = {
-        "symbol": {"display": " code ", "cell": BaseCell, "update": False},
-        "exchange": {"display": " exchange ", "cell": EnumCell, "update": False},
-        "direction": {"display": " direction ", "cell": DirectionCell, "update": False},
-        "volume": {"display": " quantity ", "cell": BaseCell, "update": True},
-        "yd_volume": {"display": " yesterday warehouse ", "cell": BaseCell, "update": True},
-        "frozen": {"display": " freeze ", "cell": BaseCell, "update": True},
-        "price": {"display": " average price ", "cell": BaseCell, "update": False},
-        "pnl": {"display": " profit and loss ", "cell": PnlCell, "update": True},
-        "gateway_name": {"display": " interface ", "cell": BaseCell, "update": False},
+        "symbol": {"display": "code ", "cell": BaseCell, "update": False},
+        "exchange": {"display": "exchange ", "cell": EnumCell, "update": False},
+        "direction": {"display": "direction ", "cell": DirectionCell, "update": False},
+        "volume": {"display": "quantity ", "cell": BaseCell, "update": True},
+        "yd_volume": {"display": "yesterday warehouse ", "cell": BaseCell, "update": True},
+        "frozen": {"display": "freeze ", "cell": BaseCell, "update": True},
+        "price": {"display": "average price ", "cell": BaseCell, "update": False},
+        "pnl": {"display": "profit and loss ", "cell": PnlCell, "update": True},
+        "gateway_name": {"display": "interface ", "cell": BaseCell, "update": False},
     }
 
 
@@ -479,11 +479,11 @@ class AccountMonitor(BaseMonitor):
     sorting = True
 
     headers = {
-        "accountid": {"display": " account number ", "cell": BaseCell, "update": False},
-        "balance": {"display": " balance ", "cell": BaseCell, "update": True},
-        "frozen": {"display": " freeze ", "cell": BaseCell, "update": True},
-        "available": {"display": " available ", "cell": BaseCell, "update": True},
-        "gateway_name": {"display": " interface ", "cell": BaseCell, "update": False},
+        "accountid": {"display": "account number ", "cell": BaseCell, "update": False},
+        "balance": {"display": "balance ", "cell": BaseCell, "update": True},
+        "frozen": {"display": "freeze ", "cell": BaseCell, "update": True},
+        "available": {"display": "available ", "cell": BaseCell, "update": True},
+        "gateway_name": {"display": "interface ", "cell": BaseCell, "update": False},
     }
 
 
@@ -633,7 +633,7 @@ class TradingWidget(QtWidgets.QWidget):
         form1.addRow(" code ", self.symbol_line)
         form1.addRow(" name ", self.name_line)
         form1.addRow(" direction ", self.direction_combo)
-        form1.addRow(" kaiping ", self.offset_combo)
+        form1.addRow(" offset ", self.offset_combo)
         form1.addRow(" types of ", self.order_type_combo)
         form1.addRow(" price ", self.price_line)
         form1.addRow(" quantity ", self.volume_line)
@@ -894,15 +894,15 @@ class ContractManager(QtWidgets.QWidget):
     """
 
     headers = {
-        "vt_symbol": " native code ",
-        "symbol": " code ",
-        "exchange": " exchange ",
-        "name": " name ",
-        "product": " contract classification ",
-        "size": " contract multiplier ",
-        "pricetick": " price beat ",
-        "min_volume": " the minimum amount of commission ",
-        "gateway_name": " trading interface ",
+        "vt_symbol": "native code",
+        "symbol": "code",
+        "exchange": "exchange",
+        "name": "name",
+        "product": "contract classification",
+        "size": "contract multiplier",
+        "pricetick": "min price tick",
+        "min_volume": "the minimum amount of commission",
+        "gateway_name": "trading interface",
     }
 
     def __init__(self, main_engine, event_engine):

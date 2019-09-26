@@ -58,7 +58,7 @@ def run_child():
     main_engine.write_log("CTA all initialization strategy ")
 
     cta_engine.start_all_strategies()
-    main_engine.write_log("CTA policy start all ")
+    main_engine.write_log("CTA strategy start all ")
 
     while True:
         sleep(1)

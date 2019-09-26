@@ -84,7 +84,7 @@ class BacktesterManager(QtWidgets.QWidget):
         self.pricetick_line = QtWidgets.QLineEdit("0.2")
         self.capital_line = QtWidgets.QLineEdit("1000000")
 
-        backtesting_button = QtWidgets.QPushButton(" start backtesting ")
+        backtesting_button = QtWidgets.QPushButton("start backtest")
         backtesting_button.clicked.connect(self.start_backtesting)
 
         optimization_button = QtWidgets.QPushButton(" parameter optimization ")
@@ -109,7 +109,7 @@ class BacktesterManager(QtWidgets.QWidget):
         self.daily_button.clicked.connect(self.show_daily_results)
         self.daily_button.setEnabled(False)
 
-        self.candle_button = QtWidgets.QPushButton("K line chart ")
+        self.candle_button = QtWidgets.QPushButton("Candlestick chart")
         self.candle_button.clicked.connect(self.show_candle_chart)
         self.candle_button.setEnabled(False)
 
@@ -126,16 +126,16 @@ class BacktesterManager(QtWidgets.QWidget):
             button.setFixedHeight(button.sizeHint().height() * 2)
 
         form = QtWidgets.QFormLayout()
-        form.addRow(" trading straregy ", self.class_combo)
-        form.addRow(" native code ", self.symbol_line)
-        form.addRow("K line cycle ", self.interval_combo)
-        form.addRow(" start date ", self.start_date_edit)
-        form.addRow(" end date ", self.end_date_edit)
-        form.addRow(" fee rate ", self.rate_line)
-        form.addRow(" trading slippage ", self.slippage_line)
-        form.addRow(" contract multiplier ", self.size_line)
-        form.addRow(" price beat ", self.pricetick_line)
-        form.addRow(" backtesting funds ", self.capital_line)
+        form.addRow("strategy", self.class_combo)
+        form.addRow("symbol", self.symbol_line)
+        form.addRow("K line cycle", self.interval_combo)
+        form.addRow("start date", self.start_date_edit)
+        form.addRow("end date", self.end_date_edit)
+        form.addRow("fee", self.rate_line)
+        form.addRow("slippage", self.slippage_line)
+        form.addRow("contract multiplier", self.size_line)
+        form.addRow("min price tick", self.pricetick_line)
+        form.addRow("capital", self.capital_line)
 
         left_vbox = QtWidgets.QVBoxLayout()
         left_vbox.addLayout(form)
@@ -865,7 +865,7 @@ class BacktestingTradeMonitor(BaseMonitor):
         "symbol": {"display": " code ", "cell": BaseCell, "update": False},
         "exchange": {"display": " exchange ", "cell": EnumCell, "update": False},
         "direction": {"display": " direction ", "cell": DirectionCell, "update": False},
-        "offset": {"display": " kaiping ", "cell": EnumCell, "update": False},
+        "offset": {"display": " offset ", "cell": EnumCell, "update": False},
         "price": {"display": " price ", "cell": BaseCell, "update": False},
         "volume": {"display": " quantity ", "cell": BaseCell, "update": False},
         "datetime": {"display": " time ", "cell": BaseCell, "update": False},
@@ -884,7 +884,7 @@ class BacktestingOrderMonitor(BaseMonitor):
         "exchange": {"display": " exchange ", "cell": EnumCell, "update": False},
         "type": {"display": " types of ", "cell": EnumCell, "update": False},
         "direction": {"display": " direction ", "cell": DirectionCell, "update": False},
-        "offset": {"display": " kaiping ", "cell": EnumCell, "update": False},
+        "offset": {"display": " offset ", "cell": EnumCell, "update": False},
         "price": {"display": " price ", "cell": BaseCell, "update": False},
         "volume": {"display": " the total number ", "cell": BaseCell, "update": False},
         "traded": {"display": " deal done ", "cell": BaseCell, "update": False},
