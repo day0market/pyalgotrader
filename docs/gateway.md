@@ -1,21 +1,21 @@
-# Trading Interface
+#  trading interface 
 
-## How to Connect
+##  how to connect 
 
-FromgatewayFolder on the introduction of the interface program，byadd_gateway()Function mobilize，The final show to the graphical user interfaceVN Traderin。
+ from gateway folder on the introduction of the interface program ， by add_gateway() function mobilize ， the final show to the graphical user interface VN Trader in . 
 
-In the menu bar"system"->"connectionCTP”Button will pop up as account configuration window，Enter the account number、Passwords and other information that is relevant connection interface，And immediately carry out inquiries: Such as query account information、Queries positions、Information inquiry commission、Query transaction information。
+ in the menu bar " system "->" connection CTP” button will pop up as account configuration window ， enter the account number ,  passwords and other information that is relevant connection interface ， and immediately carry out inquiries :  such as query account information ,  queries positions ,  information inquiry commission ,  query transaction information . 
 
 ![](https://vnpy-community.oss-cn-shanghai.aliyuncs.com/forum_experience/yazhang/gateway/login.png)
 
 &nbsp;
 
-### Load interface needs with
+###  load interface needs with 
 
-Example charging interface in the root directory"tests\trader"Folderrun.pyFile。
-- FromgatewayThe introduction of file folders interface class，Such asfrom vnpy.gateway.ctp import CtpGateway;
-- And by creating an event engine objectadd_gateway()Add function interface program;
-- Creating graphical objectsmain_window，WithVN TraderInterface show up。
+ example charging interface in the root directory "tests\trader" folder run.py file . 
+-  from gateway the introduction of file folders interface class ， such as from vnpy.gateway.ctp import CtpGateway;
+-  and by creating an event engine object add_gateway() add function interface program ;
+-  creating graphical objects main_window， with VN Trader interface show up . 
 
 
 ```
@@ -34,34 +34,34 @@ def main():
 &nbsp;
 
 
-### Configuration and connection
+###  configuration and connection 
 
-turn oncmdwindow，Use the command“Python run.py"To enterVN TraderUser interface。Click on the top left of the menu bar"system"->"connectionCTP”Button configuration window will pop account，Enter the account number、Passwords and other information that is relevant connection interface。
+ turn on cmd window ， use the command “Python run.py" to enter VN Trader user interface .  click on the top left of the menu bar " system "->" connection CTP” button configuration window will pop account ， enter the account number ,  passwords and other information that is relevant connection interface . 
 
-Process connection interface is first initialized account information，Then callconnet()Function to connect the port and market trading port。
-- Trading port：Query user information（As account funds、Positions、Commissioned record、Transaction Record）、Queries can be traded contract information、Hanging cancellation operation；
-- Quotes port：Subscribe to receive stock market information push、Receiving a user-related information（Such as account money to upgrade、Position Update、Push commission、Push deal）Update callback push。
+ process connection interface is first initialized account information ， then call connet() function to connect the port and market trading port . 
+-  trading port ： query user information （ as account funds ,  positions ,  commissioned record ,  transaction record ）,  queries can be traded contract information ,  hanging cancellation operation ；
+-  quotes port ： subscribe to receive stock market information push ,  receiving a user-related information （ such as account money to upgrade ,  position update ,  push commission ,  push deal ） update callback push . 
 
 
 &nbsp;
 
 
-### modifyjsonProfiles
+###  modify json profiles 
 
-Related stored in interface configurationjsonFile，In FigureCUnder disk user directory.vntraderFolder。
+ related stored in interface configuration json file ， in figure C under disk user directory .vntrader folder . 
 
 ![](https://vnpy-community.oss-cn-shanghai.aliyuncs.com/forum_experience/yazhang/gateway/.vntrader.png)
 
-So you want to modify the interface configuration file，I.e., the user interface may be a graphicalVN TraderIn the modification，Can also directly in.vntradermodifyjsonfile。
-In addition tojsonProfile separate fromvnpyBenefit is：Avoid each upgrade must be reconfiguredjsonfile。
+ so you want to modify the interface configuration file ， i.e., the user interface may be a graphical VN Trader in the modification ， can also directly in .vntrader modify json file . 
+ in addition to json profile separate from vnpy benefit is ： avoid each upgrade must be reconfigured json file . 
 
 
 &nbsp;
 
 
-### View tradable contracts
+###  view tradable contracts 
 
-Interface login first，Then click on the menu bar"help"->"Query contract”Button blank“Query contract”window。Click on“Inquire”Button will display the query results，Figure。
+ interface login first ， then click on the menu bar " help "->" query contract ” button blank “ query contract ” window .  click on “ inquire ” button will display the query results ， figure . 
 
 ![](https://vnpy-community.oss-cn-shanghai.aliyuncs.com/forum_experience/yazhang/gateway/query_contract.png)
 
@@ -69,43 +69,43 @@ Interface login first，Then click on the menu bar"help"->"Query contract”Butt
 
 &nbsp;
 
-## Interface Category
+##  interface category 
 
-| interface     |                    Types of                    |
+|  interface      |                     types of                     |
 | -------- | :----------------------------------------: |
-| CTP      |                    futures                    |
-| MINI     |                    futures                    |
-| FEMAS    |                    futures                    |
-| XTP      | Domestic stock、index、fund、Bond、Options、Margin |
-| OES      |                  Domestic stock                  |
-| TORA     |                  Domestic stock                  |
-| IB       |            External disk stock、futures、Options            |
-| TAP      |               External disk futures、Options               |
-| FUTU     |            Domestic stock、Hong Kong stocks、US stocks            |
-| TIGER    |            Domestic stock、Hong Kong stocks、US stocks            |
-| ALPACA   |                    US stocks                    |
-| BITFINEX |                  Digital Currency                  |
-| BITMEX   |                  Digital Currency                  |
-| BINANCE  |                  Digital Currency                  |
-| OKEX     |                  Digital Currency                  |
-| OKEXF    |                  Digital Currency                  |
-| HUOBI    |                  Digital Currency                  |
-| HBDM     |                  Digital Currency                  |
-| ONETOKEN |                  Digital Currency                  |
-| RPC      |                  RPCservice                   |
+| CTP      |                     futures                     |
+| MINI     |                     futures                     |
+| FEMAS    |                     futures                     |
+| XTP      |  domestic stock ,  index ,  fund ,  bond ,  options ,  margin  |
+| OES      |                   domestic stock                   |
+| TORA     |                   domestic stock                   |
+| IB       |             external disk stock ,  futures ,  options             |
+| TAP      |                external disk futures ,  options                |
+| FUTU     |             domestic stock ,  hong kong stocks ,  us stocks             |
+| TIGER    |             domestic stock ,  hong kong stocks ,  us stocks             |
+| ALPACA   |                     us stocks                     |
+| BITFINEX |                   digital currency                   |
+| BITMEX   |                   digital currency                   |
+| BINANCE  |                   digital currency                   |
+| OKEX     |                   digital currency                   |
+| OKEXF    |                   digital currency                   |
+| HUOBI    |                   digital currency                   |
+| HBDM     |                   digital currency                   |
+| ONETOKEN |                   digital currency                   |
+| RPC      |                  RPC service                    |
 
 
 
 &nbsp;
 
 
-## Detailed Interface
+##  detailed interface 
 
 ### CTP
 
-#### How to Load
+####  how to load 
 
-run.pyDocument provides the interface load sample：Start withgatewayOn callctpGatewayclass；Thenadd_gateway()Function to themain_engineon。
+run.py document provides the interface load sample ： start with gateway on call ctpGateway class ； then add_gateway() function to the main_engine on . 
 ```
 from vnpy.gateway.ctp import CtpGateway
 main_engine.add_gateway(CtpGateway)
@@ -113,32 +113,32 @@ main_engine.add_gateway(CtpGateway)
 
 &nbsp;
 
-#### Related Fields
+####  related fields 
 
-- username：username
-- password：password：
-- Broker No.：brokerid
-- Transaction Server Address：td_address
-- Quotes server address：md_address
-- product name：product_info
-- Authorized coding：auth_code
+-  username ：username
+-  password ：password：
+-  broker no. ：brokerid
+-  transaction server address ：td_address
+-  quotes server address ：md_address
+-  product name ：product_info
+-  authorized coding ：auth_code
   
 &nbsp;
 
-#### Account acquisition
+####  account acquisition 
 
-- Simulation account：FromSimNowGet on the site。Simply enter the phone number and the SMS verification can be。（SMS verification sometimes can only receive normal working hours on weekdays）SimNowThe user name6Pure digital bits，Broker No.9999，And provide2Environmental simulation test suite for intraday trading and after-hours。
+-  simulation account ： from SimNow get on the site .  simply enter the phone number and the sms verification can be . （ sms verification sometimes can only receive normal working hours on weekdays ）SimNow the user name 6 pure digital bits ， broker no. 9999， and provide 2 environmental simulation test suite for intraday trading and after-hours . 
   
-- Firm account：In the futures company account，Can be opened by contacting customer manager。A user named Pure Digital，Brokers also a number4Pure digital bits。（Each futures broker's numbers are different）Other，A firm offer trading accounts can be opened emulation function，Also you need to contact customer manager。
+-  firm account ： in the futures company account ， can be opened by contacting customer manager .  a user named pure digital ， brokers also a number 4 pure digital bits . （ each futures broker's numbers are different ） other ， a firm offer trading accounts can be opened emulation function ， also you need to contact customer manager . 
 
 
 &nbsp;
 
 ### MINI
 
-#### How to Load
+####  how to load 
 
-Start withgatewayOn callMiniGatewayclass；Thenadd_gateway()Function to themain_engineon。
+ start with gateway on call MiniGateway class ； then add_gateway() function to the main_engine on . 
 ```
 from vnpy.gateway.mini import MiniGateway
 main_engine.add_gateway(MiniGateway)
@@ -146,30 +146,30 @@ main_engine.add_gateway(MiniGateway)
 
 &nbsp;
 
-#### Related Fields
+####  related fields 
 
-- username：username
-- password：password：
-- Broker No.：brokerid
-- Transaction Server Address：td_address
-- Quotes server address：md_address
-- product name：product_info
-- Authorized coding：auth_code
+-  username ：username
+-  password ：password：
+-  broker no. ：brokerid
+-  transaction server address ：td_address
+-  quotes server address ：md_address
+-  product name ：product_info
+-  authorized coding ：auth_code
   
 &nbsp;
 
-#### Account acquisition
+####  account acquisition 
 
-In the futures company account，Can be opened by contacting customer manager。A user named Pure Digital，Brokers also a number4Pure digital bits。（Each futures broker's numbers are different）Other，A firm offer trading accounts can be opened emulation function，Also you need to contact customer manager。
+ in the futures company account ， can be opened by contacting customer manager .  a user named pure digital ， brokers also a number 4 pure digital bits . （ each futures broker's numbers are different ） other ， a firm offer trading accounts can be opened emulation function ， also you need to contact customer manager . 
 
 
 &nbsp;
 
-### Pegasus（FEMAS）
+###  pegasus （FEMAS）
 
-#### How to Load
+####  how to load 
 
-Start withgatewayOn callFemasGatewayclass；Thenadd_gateway()Function to themain_engineon。
+ start with gateway on call FemasGateway class ； then add_gateway() function to the main_engine on . 
 ```
 from vnpy.gateway.femas import FemasGateway
 main_engine.add_gateway(FemasGateway)
@@ -177,32 +177,32 @@ main_engine.add_gateway(FemasGateway)
 
 &nbsp;
 
-#### Related Fields
+####  related fields 
 
-- username：username
-- password：password：
-- Broker No.：brokerid
-- Transaction Server Address：td_address
-- Quotes server address：md_address
-- product name：product_info
-- Authorized coding：auth_code
+-  username ：username
+-  password ：password：
+-  broker no. ：brokerid
+-  transaction server address ：td_address
+-  quotes server address ：md_address
+-  product name ：product_info
+-  authorized coding ：auth_code
   
 &nbsp;
 
-#### Account acquisition
+####  account acquisition 
 
-In the futures company account，Can be opened by contacting customer manager。A user named Pure Digital，Brokers also a number4Pure digital bits。（Each futures broker's numbers are different）Other，A firm offer trading accounts can be opened emulation function，Also you need to contact customer manager。
+ in the futures company account ， can be opened by contacting customer manager .  a user named pure digital ， brokers also a number 4 pure digital bits . （ each futures broker's numbers are different ） other ， a firm offer trading accounts can be opened emulation function ， also you need to contact customer manager . 
 
 
 &nbsp;
 
 
 
-### Counter in Thailand(XTP)
+###  counter in thailand (XTP)
 
-#### How to Load
+####  how to load 
 
-Start withgatewayOn callXtpGatewayclass；Thenadd_gateway()Function to themain_engineon。
+ start with gateway on call XtpGateway class ； then add_gateway() function to the main_engine on . 
 ```
 from vnpy.gateway.xtp import XtpGateway
 main_engine.add_gateway(XtpGateway)
@@ -211,37 +211,37 @@ main_engine.add_gateway(XtpGateway)
 &nbsp;
 
 
-#### Related Fields
+####  related fields 
 
-- account number：
-- password：
-- client number": 1
-- Quotes address：
-- Quotes port": 0
-- Trading Address：
-- Trading port": 0
-- Quotes agreement: ["TCP", "UDP"]
-- Authorization code：
-
-&nbsp;
-
-
-#### Account acquisition
-
-Test account please contact the Thai Securities and application。
-
-#### Other features
-
-XTPIt is the first to provide the margin of speed counter。
+-  account number ：
+-  password ：
+-  client number ": 1
+-  quotes address ：
+-  quotes port ": 0
+-  trading address ：
+-  trading port ": 0
+-  quotes agreement : ["TCP", "UDP"]
+-  authorization code ：
 
 &nbsp;
 
 
-### Wide Rui counter(OES)
+####  account acquisition 
 
-#### How to Load
+ test account please contact the thai securities and application . 
 
-Start withgatewayOn callOesGatewayclass；Thenadd_gateway()Function to themain_engineon。
+####  other features 
+
+XTP it is the first to provide the margin of speed counter . 
+
+&nbsp;
+
+
+###  wide rui counter (OES)
+
+####  how to load 
+
+ start with gateway on call OesGateway class ； then add_gateway() function to the main_engine on . 
 ```
 from vnpy.gateway.oes import OesGateway
 main_engine.add_gateway(OesGateway)
@@ -250,38 +250,38 @@ main_engine.add_gateway(OesGateway)
 &nbsp;
 
 
-#### Related Fields
+####  related fields 
 
-- username：username
-- password：password
-- Hard disk serial number：hdd_serial
-- Trading commission Server：td_ord_server
-- Transaction server returns：td_rpt_server
-- Trading query server：td_qry_server
-- Quotes push server：md_tcp_server
-- Quotes query server：md_qry_server
-
-&nbsp;
-
-
-#### Account acquisition
-
-Wide test account please contact Core Technology Application
-
-&nbsp;
-
-#### Other features
-
-Rui counter offer wide networkUDPLow-latency multicast quotes and real-time transaction information push。
+-  username ：username
+-  password ：password
+-  hard disk serial number ：hdd_serial
+-  trading commission server ：td_ord_server
+-  transaction server returns ：td_rpt_server
+-  trading query server ：td_qry_server
+-  quotes push server ：md_tcp_server
+-  quotes query server ：md_qry_server
 
 &nbsp;
 
 
-### 华鑫奇 point(TORA)
+####  account acquisition 
 
-#### How to Load
+ wide test account please contact core technology application 
 
-Start withgatewayOn callToraGatewayclass；Thenadd_gateway()Function to themain_engineon。
+&nbsp;
+
+####  other features 
+
+ rui counter offer wide network UDP low-latency multicast quotes and real-time transaction information push . 
+
+&nbsp;
+
+
+###  华鑫奇 point (TORA)
+
+####  how to load 
+
+ start with gateway on call ToraGateway class ； then add_gateway() function to the main_engine on . 
 ```
 from vnpy.gateway.tota import ToraGateway
 main_engine.add_gateway(OesGateway)
@@ -289,27 +289,27 @@ main_engine.add_gateway(OesGateway)
 
 &nbsp;
 
-#### Related Fields
+####  related fields 
 
-- account number: username
-- password: password
-- Transaction Server: td_address
-- Quotes server: md_address
-
-&nbsp;
-
-#### Account acquisition
-
-Test account please contact Huaxin Securities application
-
+-  account number : username
+-  password : password
+-  transaction server : td_address
+-  quotes server : md_address
 
 &nbsp;
 
-### Interactive Brokers(IB)
+####  account acquisition 
 
-#### How to Load
+ test account please contact huaxin securities application 
 
-Start withgatewayOn callIbGatewayclass；Thenadd_gateway()Function to themain_engineon。
+
+&nbsp;
+
+###  interactive brokers (IB)
+
+####  how to load 
+
+ start with gateway on call IbGateway class ； then add_gateway() function to the main_engine on . 
 ```
 from vnpy.gateway.ib import IbGateway
 main_engine.add_gateway(IbGateway)
@@ -318,36 +318,36 @@ main_engine.add_gateway(IbGateway)
 &nbsp;
 
 
-#### Related Fields
+####  related fields 
 
-- TWSaddress：127.0.0.1
-- TWSport：7497
-- client number：1
+- TWS address ：127.0.0.1
+- TWS port ：7497
+-  client number ：1
 
 
 &nbsp;
 
 
-#### Account acquisition
+####  account acquisition 
 
-Available at Interactive Brokers account and deposit afterAPIAccess rights。It has a firm offer to open an account before they can apply for mock trading account。
-
-&nbsp;
-
-#### Other features
-
-Tradable varieties almost global coverage of stock、Options、Options；Relatively low fees。
-
-noteIBContract interface code more special，Go to the official website of the sector inquiry Product inquiry，VN TraderUse Interactive Brokers is a unique identifier for each contract at a certain exchangeConIdAs Contract Code，Rather thanSymbolorLocalName。
+ available at interactive brokers account and deposit after API access rights .  it has a firm offer to open an account before they can apply for mock trading account . 
 
 &nbsp;
 
+####  other features 
 
-### Yi Sheng external disk(TAP)
+ tradable varieties almost global coverage of stock ,  options ,  options ； relatively low fees . 
 
-#### How to Load
+ note IB contract interface code more special ， go to the official website of the sector inquiry product inquiry ，VN Trader use interactive brokers is a unique identifier for each contract at a certain exchange ConId as contract code ， rather than Symbol or LocalName. 
 
-Start withgatewayOn callTapGatewayclass；Thenadd_gateway()Function to themain_engineon。
+&nbsp;
+
+
+###  yi sheng external disk (TAP)
+
+####  how to load 
+
+ start with gateway on call TapGateway class ； then add_gateway() function to the main_engine on . 
 ```
 from vnpy.gateway.tap import TapGateway
 main_engine.add_gateway(TapGateway)
@@ -356,31 +356,31 @@ main_engine.add_gateway(TapGateway)
 &nbsp;
 
 
-#### Related Fields
+####  related fields 
 
-- Authorization code：auth code
-- Quotes account：quote username
-- Quotes password：quote password
-- Quotes address：123.15.58.21
-- Quotes port：7171
-
-
-
-&nbsp;
+-  authorization code ：auth code
+-  quotes account ：quote username
+-  quotes password ：quote password
+-  quotes address ：123.15.58.21
+-  quotes port ：7171
 
 
-#### Account acquisition
-
-inTAPAfter the deposit to open an account and getAPIAccess rights。
 
 &nbsp;
 
 
-### Fu passers securities(FUTU)
+####  account acquisition 
 
-#### How to Load
+ in TAP after the deposit to open an account and get API access rights . 
 
-Start withgatewayOn callFutuGatewayclass；Thenadd_gateway()Function to themain_engineon。
+&nbsp;
+
+
+###  fu passers securities (FUTU)
+
+####  how to load 
+
+ start with gateway on call FutuGateway class ； then add_gateway() function to the main_engine on . 
 ```
 from vnpy.gateway.futu import FutuGateway
 main_engine.add_gateway(FutuGateway)
@@ -389,35 +389,35 @@ main_engine.add_gateway(FutuGateway)
 &nbsp;
 
 
-#### Related Fields
+####  related fields 
 
-- address：127.0.0.1
-- password：
-- port：11111
-- market：HK or US
-- surroundings：TrdEnv.REAL or TrdEnv.SIMULATE
-
-
-&nbsp;
-
-
-#### Account acquisition
-
-Rich in transit securities account and can get back into goldAPIAccess rights。It has a firm offer to open an account before they can apply for mock trading account。
-
-
-
-
+-  address ：127.0.0.1
+-  password ：
+-  port ：11111
+-  market ：HK  or  US
+-  surroundings ：TrdEnv.REAL  or  TrdEnv.SIMULATE
 
 
 &nbsp;
 
-### Tiger Securities(TIGER)
+
+####  account acquisition 
+
+ rich in transit securities account and can get back into gold API access rights .  it has a firm offer to open an account before they can apply for mock trading account . 
 
 
-#### How to Load
 
-Start withgatewayOn callTigerGatewayclass；Thenadd_gateway()Function to themain_engineon。
+
+
+
+&nbsp;
+
+###  tiger securities (TIGER)
+
+
+####  how to load 
+
+ start with gateway on call TigerGateway class ； then add_gateway() function to the main_engine on . 
 ```
 from vnpy.gateway.tiger import TigerGateway
 main_engine.add_gateway(TigerGateway)
@@ -426,21 +426,21 @@ main_engine.add_gateway(TigerGateway)
 &nbsp;
 
 
-#### Related Fields
+####  related fields 
 
-- userID：tiger_id
-- Global Account：account
-- Standard account：standard_account
-- Hi钥：private_key
+-  user ID：tiger_id
+-  global account ：account
+-  standard account ：standard_account
+-  hi钥 ：private_key
 
 
 
 &nbsp;
 
 
-#### Account acquisition
+####  account acquisition 
 
-Tiger securities account and can get back into goldAPIAccess rights。It has a firm offer to open an account before they can apply for mock trading account。
+ tiger securities account and can get back into gold API access rights .  it has a firm offer to open an account before they can apply for mock trading account . 
 
 
 &nbsp;
@@ -448,8 +448,8 @@ Tiger securities account and can get back into goldAPIAccess rights。It has a f
 
 ### ALPACA
 
-#### How to Load
-Start withgatewayOn callAlpacaGatewayclass；Thenadd_gateway()Function to themain_engineon。
+####  how to load 
+ start with gateway on call AlpacaGateway class ； then add_gateway() function to the main_engine on . 
 ```
 from vnpy.gateway.alpaca import AlpacaGateway
 main_engine.add_gateway(AlpacaGateway)
@@ -457,23 +457,23 @@ main_engine.add_gateway(AlpacaGateway)
 
 &nbsp;
 
-#### Related Fields
+####  related fields 
 - KEY ID: key
 - Secret Key: secret
-- Sessions: 10
-- server:["REAL", "PAPER"]
-#### Account acquisition
-inOKEXOfficial CAPE households and can get back into goldAPIAccess rights。
-#### Other features
+-  sessions : 10
+-  server :["REAL", "PAPER"]
+####  account acquisition 
+ in OKEX official cape households and can get back into gold API access rights . 
+####  other features 
 
 &nbsp;
 
 
 ### BITMEX
 
-#### How to Load
+####  how to load 
 
-Start withgatewayOn callBitmexGatewayclass；Thenadd_gateway()Function to themain_engineon。
+ start with gateway on call BitmexGateway class ； then add_gateway() function to the main_engine on . 
 ```
 from vnpy.gateway.bitmex import BitmexGateway
 main_engine.add_gateway(BitmexGateway)
@@ -482,34 +482,34 @@ main_engine.add_gateway(BitmexGateway)
 &nbsp;
 
 
-#### Related Fields
+####  related fields 
 
-- userID：ID
-- password：Secret
-- Sessions：3
-- server：REAL or TESTNET
-- Proxy Address：
-- Proxy Port：
-
-
-
-&nbsp;
-
-
-#### Account acquisition
-
-inBITMEXOfficial CAPE households and can get back into goldAPIAccess rights。
+-  user ID：ID
+-  password ：Secret
+-  sessions ：3
+-  server ：REAL  or  TESTNET
+-  proxy address ：
+-  proxy port ：
 
 
 
 &nbsp;
 
-### OKEXStock（OKEX）
+
+####  account acquisition 
+
+ in BITMEX official cape households and can get back into gold API access rights . 
 
 
-#### How to Load
 
-Start withgatewayOn callOkexGatewayclass；Thenadd_gateway()Function to themain_engineon。
+&nbsp;
+
+### OKEX stock （OKEX）
+
+
+####  how to load 
+
+ start with gateway on call OkexGateway class ； then add_gateway() function to the main_engine on . 
 ```
 from vnpy.gateway.okex import OkexGateway
 main_engine.add_gateway(OkexGateway)
@@ -518,35 +518,35 @@ main_engine.add_gateway(OkexGateway)
 &nbsp;
 
 
-#### Related Fields
+####  related fields 
 
-- APIHi钥：API Key
-- Cryptographic key：Secret Key
-- Sessions：3
-- password：passphrase
-- Proxy Address：
-- Proxy Port：
-
-
-
-&nbsp;
-
-
-#### Account acquisition
-
-inOKEXOfficial CAPE households and can get back into goldAPIAccess rights。
+- API hi钥 ：API Key
+-  cryptographic key ：Secret Key
+-  sessions ：3
+-  password ：passphrase
+-  proxy address ：
+-  proxy port ：
 
 
 
 &nbsp;
 
 
-### OKEXfutures（OKEXF）
+####  account acquisition 
+
+ in OKEX official cape households and can get back into gold API access rights . 
 
 
-#### How to Load
 
-Start withgatewayOn callOkexfGatewayclass；Thenadd_gateway()Function to themain_engineon。
+&nbsp;
+
+
+### OKEX futures （OKEXF）
+
+
+####  how to load 
+
+ start with gateway on call OkexfGateway class ； then add_gateway() function to the main_engine on . 
 ```
 from vnpy.gateway.okexf import OkexfGateway
 main_engine.add_gateway(OkexfGateway)
@@ -555,33 +555,33 @@ main_engine.add_gateway(OkexfGateway)
 &nbsp;
 
 
-#### Related Fields
+####  related fields 
 
-- APIHi钥：API Key
-- Cryptographic key：Secret Key
-- Sessions：3
-- password：passphrase
-- lever：Leverage
-- Proxy Address：
-- Proxy Port：
+- API hi钥 ：API Key
+-  cryptographic key ：Secret Key
+-  sessions ：3
+-  password ：passphrase
+-  lever ：Leverage
+-  proxy address ：
+-  proxy port ：
 
-
-
-&nbsp;
-
-
-#### Account acquisition
-
-inOKEXOfficial CAPE households and can get back into goldAPIAccess rights。
 
 
 &nbsp;
 
-### Fire currency(HUOBI)
 
-#### How to Load
+####  account acquisition 
 
-Start withgatewayOn callHuobiGatewayclass；Thenadd_gateway()Function to themain_engineon。
+ in OKEX official cape households and can get back into gold API access rights . 
+
+
+&nbsp;
+
+###  fire currency (HUOBI)
+
+####  how to load 
+
+ start with gateway on call HuobiGateway class ； then add_gateway() function to the main_engine on . 
 ```
 from vnpy.gateway.huobi import HuobiGateway
 main_engine.add_gateway(HuobiGateway)
@@ -590,33 +590,33 @@ main_engine.add_gateway(HuobiGateway)
 &nbsp;
 
 
-#### Related Fields
+####  related fields 
 
-- APIHi钥：API Key
-- Cryptographic key：Secret Key
-- Sessions：3
-- Proxy Address：
-- Proxy Port：
+- API hi钥 ：API Key
+-  cryptographic key ：Secret Key
+-  sessions ：3
+-  proxy address ：
+-  proxy port ：
 
 
 
 &nbsp;
 
 
-#### Account acquisition
+####  account acquisition 
 
-Fire official CAPE households in the currency and gold can get back into theAPIAccess rights。
+ fire official cape households in the currency and gold can get back into the API access rights . 
 
 
 &nbsp;
 
 
 
-### Fire currency contracts(HBDM)
+###  fire currency contracts (HBDM)
 
-#### How to Load
+####  how to load 
 
-Start withgatewayOn callHbdmGatewayclass；Thenadd_gateway()Function to themain_engineon。
+ start with gateway on call HbdmGateway class ； then add_gateway() function to the main_engine on . 
 ```
 from vnpy.gateway.hbdm import HbdmGateway
 main_engine.add_gateway(HbdmGateway)
@@ -625,31 +625,31 @@ main_engine.add_gateway(HbdmGateway)
 &nbsp;
 
 
-#### Related Fields
+####  related fields 
 
-- APIHi钥：API Key
-- Cryptographic key：Secret Key
-- Sessions：3
-- Proxy Address：
-- Proxy Port：
+- API hi钥 ：API Key
+-  cryptographic key ：Secret Key
+-  sessions ：3
+-  proxy address ：
+-  proxy port ：
 
 
 
 &nbsp;
 
 
-#### Account acquisition
+####  account acquisition 
 
-Fire official CAPE households in the currency and gold can get back into theAPIAccess rights。
+ fire official cape households in the currency and gold can get back into the API access rights . 
 
 
 &nbsp;
 
 ### BITFINEX
 
-#### How to Load
+####  how to load 
 
-Start withgatewayOn callBitFinexGatewayclass；Thenadd_gateway()Function to themain_engineon。
+ start with gateway on call BitFinexGateway class ； then add_gateway() function to the main_engine on . 
 ```
 from vnpy.gateway.bitfinex import BitfinexGateway
 main_engine.add_gateway(BitfinexGateway)
@@ -658,22 +658,22 @@ main_engine.add_gateway(BitfinexGateway)
 &nbsp;
 
 
-#### Related Fields
+####  related fields 
 
-- userID：ID
-- password：Secret
-- Sessions：3
-- Proxy Address：
-- Proxy Port：
+-  user ID：ID
+-  password ：Secret
+-  sessions ：3
+-  proxy address ：
+-  proxy port ：
 
 
 
 &nbsp;
 
 
-#### Account acquisition
+####  account acquisition 
 
-inBITFINEXOfficial CAPE households and can get back into goldAPIAccess rights。
+ in BITFINEX official cape households and can get back into gold API access rights . 
 
 
 
@@ -682,9 +682,9 @@ inBITFINEXOfficial CAPE households and can get back into goldAPIAccess rights。
 
 ### ONETOKEN
 
-#### How to Load
+####  how to load 
 
-Start withgatewayOn callOnetokenGatewayclass；Thenadd_gateway()Function to themain_engineon。
+ start with gateway on call OnetokenGateway class ； then add_gateway() function to the main_engine on . 
 ```
 from vnpy.gateway.onetoken import OnetokenGateway
 main_engine.add_gateway(OnetokenGateway)
@@ -693,24 +693,24 @@ main_engine.add_gateway(OnetokenGateway)
 &nbsp;
 
 
-#### Related Fields
+####  related fields 
 
-- KeyHi钥：OT Key
-- Cryptographic key：OT Secret
-- Sessions：3
-- Exchange：["BINANCE", "BITMEX", "OKEX", "OKEF", "HUOBIP", "HUOBIF"]
-- account number：
-- Proxy Address：
-- Proxy Port：
+- Key hi钥 ：OT Key
+-  cryptographic key ：OT Secret
+-  sessions ：3
+-  exchange ：["BINANCE", "BITMEX", "OKEX", "OKEF", "HUOBIP", "HUOBIF"]
+-  account number ：
+-  proxy address ：
+-  proxy port ：
 
 
 
 &nbsp;
 
 
-#### Account acquisition
+####  account acquisition 
 
-inOnetokenOfficial CAPE households and can get back into goldAPIAccess rights。
+ in Onetoken official cape households and can get back into gold API access rights . 
 
 
 
@@ -720,9 +720,9 @@ inOnetokenOfficial CAPE households and can get back into goldAPIAccess rights。
 
 ### BINANCE
 
-#### How to Load
+####  how to load 
 
-Start withgatewayOn callBinanceGatewayclass；Thenadd_gateway()Function to themain_engineon。
+ start with gateway on call BinanceGateway class ； then add_gateway() function to the main_engine on . 
 ```
 from vnpy.gateway.binance import BinanceGateway
 main_engine.add_gateway(BinanceGateway)
@@ -731,45 +731,45 @@ main_engine.add_gateway(BinanceGateway)
 &nbsp;
 
 
-#### Related Fields
+####  related fields 
 
-- KeyHi钥
+- Key hi钥 
 - secret
-- session_number(Sessions)：3
+- session_number( sessions )：3
 - proxy_host
 - proxy_port
 
 &nbsp;
 
 
-#### Account acquisition
+####  account acquisition 
 
-inBINANCEOfficial CAPE households and can get back into goldAPIAccess rights。
+ in BINANCE official cape households and can get back into gold API access rights . 
 
 &nbsp;
 
 
 ### RPC
 
-#### How to Load
+####  how to load 
 
-RPCLoad it comes to service and client
-- Server：runvntraderWhen loadingrpc_serviceModule
+RPC load it comes to service and client 
+-  server ： run vntrader when loading rpc_service module 
     ```
     from vnpy.app.rpc_service import RpcService
     ```
-    start upvntraderRear，First connect external trade transactions such asCTP，Then click on the menu bar"Features"->"RPCservice"，Click on"start up"
-- Client：runvntraderWhen loadingRpcGateway
+     start up vntrader rear ， first connect external trade transactions such as CTP， then click on the menu bar " features "->"RPC service "， click on " start up "
+-  client ： run vntrader when loading RpcGateway
     ```
     from vnpy.gateway.rpc import RpcGateway
     ```
-    start upvntraderRear，connectionrpcInterface to。
+     start up vntrader rear ， connection rpc interface to . 
 
-#### Related Fields
-Service and client，Use the default parameters can be completed
+####  related fields 
+ service and client ， use the default parameters can be completed 
 
-#### Account acquisition
-userpcNo additional application account，Account requires only an external interface
+####  account acquisition 
+ use rpc no additional application account ， account requires only an external interface 
 
-#### Other features
-rpcSupport the same external interface data distribution in the local multi-process，For example, in the server connectedctpinterface，Subscribedrb1910Rear，The client will automatically subscribe to multiple processes subscription data from the server distribution# Trading Interface
+####  other features 
+rpc support the same external interface data distribution in the local multi-process ， for example, in the server connected ctp interface ， subscribed rb1910 rear ， the client will automatically subscribe to multiple processes subscription data from the server distribution #  trading interface 

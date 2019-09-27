@@ -1,21 +1,21 @@
-# Quotes record
-Quotes module for recording a collection of real-time quotes：
-- After the connection interface and start recording module Quotes；
-- By local agreement(vt_symbol)Add record mission；
-- Background will automatically call marketAPIInterfacesuscribe()Function to automatically subscribe Quotes；
-- Market informationdatabase_managerModulesave_bar_data()function/save_tick_data()Function loaded into the database。
+#  quotes record 
+ quotes module for recording a collection of real-time quotes ：
+-  after the connection interface and start recording module quotes ；
+-  by local agreement (vt_symbol) add record mission ；
+-  background will automatically call market API interface suscribe() function to automatically subscribe quotes ；
+-  market information database_manager module save_bar_data() function /save_tick_data() function loaded into the database . 
   
-note：CurrentlyvnpySupported databaseSQLite/ MySQL/ PostgreSQL/ MongoDB。ItsVnTraderThe menu bar“Configuration”enter“Global Configuration”Interface to select database(The default isSQLite), Or in the user directory.vntrader/vt_setting.jsonConfiguration inside directly。If the userMongoDB，The recorded data is directly loaded into the marketMongoDBin。
+ note ： currently vnpy supported database SQLite/ MySQL/ PostgreSQL/ MongoDB.  its VnTrader the menu bar “ configuration ” enter “ global configuration ” interface to select database ( the default is SQLite),  or in the user directory .vntrader/vt_setting.json configuration inside directly .  if the user MongoDB， the recorded data is directly loaded into the market MongoDB in . 
 
 &nbsp;
 
 
 
-## Load Startup
-enterVN TraderRear，First landing Interface，The connectionCTP；Then click on the menu bar“Features”->"Quotes record“Rear，Quotes window will pop record，Figure。
+##  load startup 
+ enter VN Trader rear ， first landing interface ， the connection CTP； then click on the menu bar “ features ”->" quotes record “ rear ， quotes window will pop record ， figure . 
 ![](https://vnpy-community.oss-cn-shanghai.aliyuncs.com/forum_experience/yazhang/data_recoder/datarecoder.png)
 
-Quote status of the startup module for recordingTrue，Startswhilecycle，You can add tasks to achieve real-time quotes record。
+ quote status of the startup module for recording True， starts while cycle ， you can add tasks to achieve real-time quotes record . 
 ```
     def start(self):
         """"""
@@ -40,32 +40,32 @@ Quote status of the startup module for recordingTrue，Startswhilecycle，You ca
 
 &nbsp;
 
-## Start a collection
+##  start a collection 
 
-- in“Native code”Select the input required to subscribe Quotes，Such asrb1905.SHFE；
-- Then click back“KLine record”or“Tickrecording”Medium manner“Add to”Options，It will record a specific task to breeddata_recorder_setting.jsonon，And to show“KLine list of records”or“TickRecord List”in，Figure。
-- byqueue.put()versusqueue.get()Asynchronous complete collection of market information task。
+-  in “ native code ” select the input required to subscribe quotes ， such as rb1905.SHFE；
+-  then click back “K line record ” or “Tick recording ” medium manner “ add to ” options ， it will record a specific task to breed data_recorder_setting.json on ， and to show “K line list of records ” or “Tick record list ” in ， figure . 
+-  by queue.put() versus queue.get() asynchronous complete collection of market information task . 
 
 ![](https://vnpy-community.oss-cn-shanghai.aliyuncs.com/forum_experience/yazhang/data_recoder/start.png)
 
 &nbsp;
 
-Here are the specific principles of ticker：If there is no historical record of the contract，Users need to add quotes Task，The connectionCTPAfter recording the interfacerb1905.SHFEoftickdata，Then calladd_tick_recording()Function performs the following work：
-1) Createtick_recordingsdictionary；
-2) Call interfacesuscribe()Functions subscription prices；
-3) Save thetick_recordingsDictionary tojsonOn the File；
-4) Push market recorded events。
+ here are the specific principles of ticker ： if there is no historical record of the contract ， users need to add quotes task ， the connection CTP after recording the interface rb1905.SHFE of tick data ， then call add_tick_recording() function performs the following work ：
+1)  create tick_recordings dictionary ；
+2)  call interface suscribe() functions subscription prices ；
+3)  save the tick_recordings dictionary to json on the file ；
+4)  push market recorded events . 
 
 ```
     def add_tick_recording(self, vt_symbol: str):
         """"""
         if vt_symbol in self.tick_recordings:
-            self.write_log(f"already atTickRecord list：{vt_symbol}")
+            self.write_log(f" already at Tick record list ：{vt_symbol}")
             return
 
         contract = self.main_engine.get_contract(vt_symbol)
         if not contract:
-            self.write_log(f"Can not find contract：{vt_symbol}")
+            self.write_log(f" can not find contract ：{vt_symbol}")
             return
 
         self.tick_recordings[vt_symbol] = {}
@@ -78,14 +78,14 @@ Here are the specific principles of ticker：If there is no historical record of
         self.save_setting()
         self.put_event()
 
-        self.write_log(f"Add toTickRecord success：{vt_symbol}")
+        self.write_log(f" add to Tick record success ：{vt_symbol}")
 ```
 
-Below foradd_tick_recording()Function inside the subroutine call extended：
+ below for add_tick_recording() function inside the subroutine call extended ：
 
-### Subscribe Quotes
+###  subscribe quotes 
 
-transfermain_engineofsuscribe()Function to subscribe Quotes，Fill in the information required for thesymbol、exchange、gateway_name
+ transfer main_engine of suscribe() function to subscribe quotes ， fill in the information required for the symbol, exchange, gateway_name
 ```
     def subscribe(self, contract: ContractData):
         """"""
@@ -98,10 +98,10 @@ transfermain_engineofsuscribe()Function to subscribe Quotes，Fill in the inform
 
 &nbsp;
 
-### Save the subscription information tojsonfile
+###  save the subscription information to json file 
 
-- The maintick_recordingsorbar_recordingsbysave_json()Save function toC:\Users\Administrator\\.vntraderWithin the folderdata_recorder_setting.jsonon。
-- ThatjsonFile is used to store the task Quotes record，When the market starts each module，Will callload_setting()Function to gettick_recordingswithbar_recordingsdictionary，And then began the task of recording。
+-  the main tick_recordings or bar_recordings by save_json() save function to C:\Users\Administrator\\.vntrader within the folder data_recorder_setting.json on . 
+-  that json file is used to store the task quotes record ， when the market starts each module ， will call load_setting() function to get tick_recordings with bar_recordings dictionary ， and then began the task of recording . 
 ```
 setting_filename = "data_recorder_setting.json"
     def save_setting(self):
@@ -121,11 +121,11 @@ setting_filename = "data_recorder_setting.json"
 
 &nbsp;
 
-### Push market recorded events
+###  push market recorded events 
 
-- Create a list of records Quotestick_symbolswithbar_symbols，And cachedataDictionary；
-- createevnteObjects，Its type isEVENT_RECORDER_UPDATE, Content isdatadictionary；
-- transferevent_engineofput()Push functioneventevent。
+-  create a list of records quotes tick_symbols with bar_symbols， and cache data dictionary ；
+-  create evnte objects ， its type is EVENT_RECORDER_UPDATE,  content is data dictionary ；
+-  transfer event_engine of put() push function event event . 
 
 ```
     def put_event(self):
@@ -150,11 +150,11 @@ setting_filename = "data_recorder_setting.json"
 
 &nbsp;
 
-### Quotes event registration record
+###  quotes event registration record 
 
-register_event()Functions are registered2Kind of events：EVENT_CONTRACT、EVENT_TICK
-- EVENT_CONTRACTevent，Call isprocess_contract_event()function: Fromtick_recordingswithbar_recordingsThe dictionary acquisition contract breeds require subscription；Then usesubscribe()Function to subscribe Quotes。
-- EVENT_TICKevent，Call isprocess_tick_event()function：Fromtick_recordingswithbar_recordingsThe dictionary acquisition contract breeds require subscription；Then userecord_tick()withrecord_bar()function，The market pushed to record taskqueueQueue waiting to be executed。
+register_event() functions are registered 2 kind of events ：EVENT_CONTRACT, EVENT_TICK
+- EVENT_CONTRACT event ， call is process_contract_event() function :  from tick_recordings with bar_recordings the dictionary acquisition contract breeds require subscription ； then use subscribe() function to subscribe quotes . 
+- EVENT_TICK event ， call is process_tick_event() function ： from tick_recordings with bar_recordings the dictionary acquisition contract breeds require subscription ； then use record_tick() with record_bar() function ， the market pushed to record task queue queue waiting to be executed . 
 
 ```
     def register_event(self):
@@ -204,9 +204,9 @@ register_event()Functions are registered2Kind of events：EVENT_CONTRACT、EVENT
 
 &nbsp;
 
-### Quotes task execution record
+###  quotes task execution record 
 
-inwhileLoop，FromqueueReads the task queue，transfersave_tick_data()orsave_bar_data()Function to record data，And loaded into the database。
+ in while loop ， from queue reads the task queue ， transfer save_tick_data() or save_bar_data() function to record data ， and loaded into the database . 
 ```
     def run(self):
         """"""
@@ -229,37 +229,37 @@ inwhileLoop，FromqueueReads the task queue，transfersave_tick_data()orsave_bar
 
 
 
-## The removable recording
+##  the removable recording 
 
-The removable recording operation：Enter the local code requires the removal variety of contract，Such asrb1905.SHFE。The native code must“TickRecord List” or“KLine list of records”in。To removeTickrecording，Just”Tickrecording“Click on the column”Remove“Button。
+ the removable recording operation ： enter the local code requires the removal variety of contract ， such as rb1905.SHFE.  the native code must “Tick record list ”  or “K line list of records ” in .  to remove Tick recording ， just ”Tick recording “ click on the column ” remove “ button . 
 
-Code below shows how it works：
+ code below shows how it works ：
 
-- Fromtick_recordingsDictionary removedvt_symbol
-- transfersave_setting()Save functionjsonProfiles
-- The latest pushtick_recordingsDictionary to continue to record prices，The original contract to remove species no longer record。
+-  from tick_recordings dictionary removed vt_symbol
+-  transfer save_setting() save function json profiles 
+-  the latest push tick_recordings dictionary to continue to record prices ， the original contract to remove species no longer record . 
 ```
     def remove_tick_recording(self, vt_symbol: str):
         """"""
         if vt_symbol not in self.tick_recordings:
-            self.write_log(f"OutTickRecord list：{vt_symbol}")
+            self.write_log(f" out Tick record list ：{vt_symbol}")
             return
 
         self.tick_recordings.pop(vt_symbol)
         self.save_setting()
         self.put_event()
 
-        self.write_log(f"RemoveTickRecord success：{vt_symbol}")
+        self.write_log(f" remove Tick record success ：{vt_symbol}")
 ```
 
 &nbsp;
 
-## Stop recording
+##  stop recording 
 
-Stop recording operation：Only need to manually close the window to stop recording module market prices recorded。
+ stop recording operation ： only need to manually close the window to stop recording module market prices recorded . 
 
-- Record market status changedFalse, stopwhilecycle；
-- transferjoin()Turn off the function thread。
+-  record market status changed False,  stop while cycle ；
+-  transfer join() turn off the function thread . 
 
 ```
     def close(self):

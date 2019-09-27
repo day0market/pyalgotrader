@@ -1,23 +1,23 @@
-# CTABacktesting module
-CTABacktesting module is based onPyQt5withpyqtgraphGraphical back-tested tool。start upVN TraderRear，In the menu bar“Features-> CTABacktesting”To enter the graphical interface backtesting，As shown below。CTABacktesting module mainly realizes3Function：Download historical market data、Strategy Backtesting、Parameter optimization、KLine chart point of sale display。
+# CTA backtesting module 
+CTA backtesting module is based on PyQt5 with pyqtgraph graphical back-tested tool .  start up VN Trader rear ， in the menu bar “ features -> CTA backtesting ” to enter the graphical interface backtesting ， as shown below . CTA backtesting module mainly realizes 3 function ： download historical market data ,  strategy backtesting ,  parameter optimization , K line chart point of sale display . 
 
 ![](https://vnpy-community.oss-cn-shanghai.aliyuncs.com/forum_experience/yazhang/cta_backtester/cta_backtester.png)
 
 &nbsp;
 
-## Load Startup
-Backtesting into the graphical interface“CTABacktesting”Rear，Initial work will be completed soon：Backtesting engine initialization、initializationRQDataClient。
+##  load startup 
+ backtesting into the graphical interface “CTA backtesting ” rear ， initial work will be completed soon ： backtesting engine initialization ,  initialization RQData client . 
 
 ```
     def init_engine(self):
         """"""
-        self.write_log("initializationCTABacktesting engine")
+        self.write_log(" initialization CTA backtesting engine ")
 
         self.backtesting_engine = BacktestingEngine()
         # Redirect log from backtesting engine outside.
         self.backtesting_engine.output = self.write_log
 
-        self.write_log("Policy file loaded")
+        self.write_log(" policy file loaded ")
 
         self.init_rqdata()
 
@@ -27,18 +27,18 @@ Backtesting into the graphical interface“CTABacktesting”Rear，Initial work 
         """
         result = rqdata_client.init()
         if result:
-            self.write_log("RQDataSuccessful initialization data interface")
+            self.write_log("RQData successful initialization data interface ")
 ```
 
 &nbsp;
 
 
-## Download Data
-Before starting strategy backtesting，We must ensure that there is sufficient historical data in the database。ThereforevnpyIt provides a historical data download function keys。
+##  download data 
+ before starting strategy backtesting ， we must ensure that there is sufficient historical data in the database .  therefore vnpy it provides a historical data download function keys . 
 
 ### RQData
-RQDataProvide domestic stock、ETF、Historical data of futures and options。
-Its main function is to download data based onRQDataofget_price()Function to achieve。
+RQData provide domestic stock , ETF,  historical data of futures and options . 
+ its main function is to download data based on RQData of get_price() function to achieve . 
 ```
 get_price(
     order_book_ids, start_date='2013-01-04', end_date='2014-01-04',
@@ -48,13 +48,13 @@ get_price(
 ```
 
 
-Before use to ensure thatRQDataInitialized，Then fill in the following4Field information：
-- Native code：Variety contract format+Exchange，Such asIF88.CFFEX、rb88.SHFE；Then at the bottom byRqdataClientofto_rq_symbol()Function into line withRQDataformat，correspondRQDatainget_price()Functionorder_book_idsField。
-- KLine cycle：You can fill1m、1h、d、w，correspondget_price()FunctionfrequencyField。
-- start date：The formatyy/mm/dd，Such as2017/4/21，correspondget_price()Functionstart_dateField。（Click the window on the right arrow button to change the Date Size）
-- End Date：The formatyy/mm/dd，Such as2019/4/22，correspondget_price()Functionend_dateField。（Click the window on the right arrow button to change the Date Size）
+ before use to ensure that RQData initialized ， then fill in the following 4 field information ：
+-  native code ： variety contract format + exchange ， such as IF88.CFFEX, rb88.SHFE； then at the bottom by RqdataClient of to_rq_symbol() function into line with RQData format ， correspond RQData in get_price() function order_book_ids field . 
+- K line cycle ： you can fill 1m, 1h, d, w， correspond get_price() function frequency field . 
+-  start date ： the format yy/mm/dd， such as 2017/4/21， correspond get_price() function start_date field . （ click the window on the right arrow button to change the date size ）
+-  end date ： the format yy/mm/dd， such as 2019/4/22， correspond get_price() function end_date field . （ click the window on the right arrow button to change the date size ）
   
-After filling out the information fields，Click below“Download Data”Button to start the download，Download the success shown in Fig.。
+ after filling out the information fields ， click below “ download data ” button to start the download ， download the success shown in fig. . 
 
 
 ![](https://vnpy-community.oss-cn-shanghai.aliyuncs.com/forum_experience/yazhang/cta_backtester/data_loader.png)
@@ -63,8 +63,8 @@ After filling out the information fields，Click below“Download Data”Button 
 
 ### IB
 
-Interactive Brokers offers external disk stock、futures、Historical data option。
-Before downloading must be connectedIBinterface，Because of its function is mainly based on download dataIbGatewayclassquery_history()Function to achieve。
+ interactive brokers offers external disk stock ,  futures ,  historical data option . 
+ before downloading must be connected IB interface ， because of its function is mainly based on download data IbGateway class query_history() function to achieve . 
 
 ```
     def query_history(self, req: HistoryRequest):
@@ -121,8 +121,8 @@ Before downloading must be connectedIBinterface，Because of its function is mai
 
 ### BITMEX
 
-BITMEXCurrency Exchange provides digital historical data。
-Due to differences in the simulation environment and market environment is big firm，Therefore you need to log in with a firm accountBIMEXInterface to download real market data，Its main function is to download data based onBitmexGatewayclassquery_history()Function to achieve。
+BITMEX currency exchange provides digital historical data . 
+ due to differences in the simulation environment and market environment is big firm ， therefore you need to log in with a firm account BIMEX interface to download real market data ， its main function is to download data based on BitmexGateway class query_history() function to achieve . 
 
 ```
     def query_history(self, req: HistoryRequest):
@@ -156,13 +156,13 @@ Due to differences in the simulation environment and market environment is big f
 
             # Break if request failed with other status code
             if resp.status_code // 100 != 2:
-                msg = f"Failure to obtain historical data，status code：{resp.status_code}，information：{resp.text}"
+                msg = f" failure to obtain historical data ， status code ：{resp.status_code}， information ：{resp.text}"
                 self.gateway.write_log(msg)
                 break
             else:
                 data = resp.json()
                 if not data:
-                    msg = f"Obtain historical data is empty，Starting time：{start_time}，Quantity：{count}"
+                    msg = f" obtain historical data is empty ， starting time ：{start_time}， quantity ：{count}"
                     break
 
                 for d in data:
@@ -184,7 +184,7 @@ Due to differences in the simulation environment and market environment is big f
 
                 begin = data[0]["timestamp"]
                 end = data[-1]["timestamp"]
-                msg = f"Get historical success，{req.symbol} - {req.interval.value}，{begin} - {end}"
+                msg = f" get historical success ，{req.symbol} - {req.interval.value}，{begin} - {end}"
                 self.gateway.write_log(msg)
 
                 # Break if total data count less than 750 (latest date collected)
@@ -199,11 +199,11 @@ Due to differences in the simulation environment and market environment is big f
 
 &nbsp;
 
-## Strategy Backtesting
-After downloading historical data，Configure the following fields：Trading straregy、Fee rate、Trading Slippage、Contract Multiplier、Price beat、Backtesting funds。
-These fields correspond to majorBacktesterEngineCategoryrun_backtestingfunction。
+##  strategy backtesting 
+ after downloading historical data ， configure the following fields ： trading straregy ,  fee rate ,  trading slippage ,  contract multiplier ,  price beat ,  backtesting funds . 
+ these fields correspond to major BacktesterEngine category run_backtesting function . 
 
-If the historical data already exists in the database，Without re-downloading，Import data directly from the local database back the measured。note，vt_symbolThe item code format.In the form of exchange of，Such asIF1908.CFFEX，Import will automatically be divided into two types and exchanges
+ if the historical data already exists in the database ， without re-downloading ， import data directly from the local database back the measured .  note ，vt_symbol the item code format . in the form of exchange of ， such as IF1908.CFFEX， import will automatically be divided into two types and exchanges 
 
 ```
 def run_backtesting(
@@ -214,61 +214,61 @@ def run_backtesting(
 ```
 
 
-Click below“Start backtesting”Button to start backtesting：
-First, the parameters window will pop up as shown in FIG.，For adjusting the policy parameters。This setting corresponds to therun_backtesting()Functionsettingdictionary。
+ click below “ start backtesting ” button to start backtesting ：
+ first, the parameters window will pop up as shown in fig. ， for adjusting the policy parameters .  this setting corresponds to the run_backtesting() function setting dictionary . 
 
 ![](https://vnpy-community.oss-cn-shanghai.aliyuncs.com/forum_experience/yazhang/cta_backtester/parameter_setting.png)
 
 
 
-Click on“confirm”Button starts running back to test，At the same time the log information interface will output，Figure。
+ click on “ confirm ” button starts running back to test ， at the same time the log information interface will output ， figure . 
 
 ![](https://vnpy-community.oss-cn-shanghai.aliyuncs.com/forum_experience/yazhang/cta_backtester/backtesting_log.png)
 
-Statistics chart will show back-tested after completion。
+ statistics chart will show back-tested after completion . 
 
 &nbsp;
 
-### Statistical data
-Relevant statistical value after the completion of back-tested for display, As end funds、The total rate of return、Sharpe Ratio、Earnings ratio retracement。
+###  statistical data 
+ relevant statistical value after the completion of back-tested for display ,  as end funds ,  the total rate of return ,  sharpe ratio ,  earnings ratio retracement . 
 
 ![](https://vnpy-community.oss-cn-shanghai.aliyuncs.com/forum_experience/yazhang/cta_backtester/show_result.png)
 
 &nbsp;
 
-### graph analysis
-The following four figures respectively represent net account、Net retracement、Daily profit and loss、Profit and loss distribution。
+###  graph analysis 
+ the following four figures respectively represent net account ,  net retracement ,  daily profit and loss ,  profit and loss distribution . 
 
 ![](https://vnpy-community.oss-cn-shanghai.aliyuncs.com/forum_experience/yazhang/cta_backtester/show_result_chat.png)
 
 
 &nbsp;
-### Kline graph
-KLine is based on FIG.PyQtGraphdeveloping，The entire block consists of the following five components：
+### K line graph 
+K line is based on fig. PyQtGraph developing ， the entire block consists of the following five components ：
 
-- BarManager：KLine sequence data management tools
-- ChartItem：Basic graphics classes，After inheriting implementation may drawKline、Volume、Technical indicators
-- DatetimeAxis：AgainstKCustom designed stamp coordinate axis
-- ChartCursor：Cross cursor control，Data for displaying details of a particular location
-- ChartWidget：It contains all of the above section，Plotted as a function to provide a single assembly inlet
+- BarManager：K line sequence data management tools 
+- ChartItem： basic graphics classes ， after inheriting implementation may draw K line ,  volume ,  technical indicators 
+- DatetimeAxis： against K custom designed stamp coordinate axis 
+- ChartCursor： cross cursor control ， data for displaying details of a particular location 
+- ChartWidget： contains all of the above section ， plotted as a function to provide a single assembly inlet 
   
-After completion of backtesting，Click on“KLine chart”Button to display historyKLine market data（default1minute），And identifies specific points of sale，As shown below。
+ after completion of backtesting ， click on “K line chart ” button to display history K line market data （ default 1 minute ）， and identifies specific points of sale ， as shown below . 
 
 ![](https://vnpy-community.oss-cn-shanghai.aliyuncs.com/forum_experience/yazhang/cta_backtester/bar_chart.png)
 
 
 &nbsp;
 
-## Parameter optimization
-vnpyprovide2Parameter optimization kinds of solutions：Exhaustive algorithm、Genetic Algorithms
+##  parameter optimization 
+vnpy provide 2 parameter optimization kinds of solutions ： exhaustive algorithm ,  genetic algorithms 
 
 
 &nbsp;
 
-### Exhaustive algorithm
+###  exhaustive algorithm 
 
-Exhaustive algorithm principle：
-- Enter the name of the parameters to be optimized、Optimization interval、The optimum step，And the optimization target。
+ exhaustive algorithm principle ：
+-  enter the name of the parameters to be optimized ,  optimization interval ,  the optimum step ， and the optimization target . 
 ```
     def add_parameter(
         self, name: str, start: float, end: float = None, step: float = None
@@ -279,11 +279,11 @@ Exhaustive algorithm principle：
             return
 
         if start >= end:
-            print("Parameter optimization must be less than the starting point of the end point")
+            print(" parameter optimization must be less than the starting point of the end point ")
             return
 
         if step <= 0:
-            print("Parameter optimization step must be greater than0")
+            print(" parameter optimization step must be greater than 0")
             return
 
         value = start
@@ -303,7 +303,7 @@ Exhaustive algorithm principle：
 &nbsp;
 
 
-- Global parameter combination is formed, Data structure[{key: value, key: value}, {key: value, key: value}]。
+-  global parameter combination is formed ,  data structure [{key: value, key: value}, {key: value, key: value}]. 
 ```
     def generate_setting(self):
         """"""
@@ -321,7 +321,7 @@ Exhaustive algorithm principle：
 &nbsp;
 
 
-- Through each combination of the parameters in the global：Ergodic process that is running a strategy backtesting，Optimization of the target value and returns；Then sort the target value，Output optimization results。
+-  through each combination of the parameters in the global ： ergodic process that is running a strategy backtesting ， optimization of the target value and returns ； then sort the target value ， output optimization results . 
 ```
     def run_optimization(self, optimization_setting: OptimizationSetting, output=True):
         """"""
@@ -330,11 +330,11 @@ Exhaustive algorithm principle：
         target_name = optimization_setting.target_name
 
         if not settings:
-            self.output("Optimization of parameter combinations is empty，Please check")
+            self.output(" optimization of parameter combinations is empty ， please check ")
             return
 
         if not target_name:
-            self.output("Optimization target is not set，Please check")
+            self.output(" optimization target is not set ， please check ")
             return
 
         # Use multiprocessing pool for running backtesting with different setting
@@ -368,7 +368,7 @@ Exhaustive algorithm principle：
 
         if output:
             for value in result_values:
-                msg = f"parameter：{value[0]}, aims：{value[1]}"
+                msg = f" parameter ：{value[0]},  aims ：{value[1]}"
                 self.output(msg)
 
         return result_values
@@ -377,35 +377,35 @@ Exhaustive algorithm principle：
 
 
 
-note：can usemultiprocessingLibrary to create multiple processes to achieve parallel optimization。E.g：If the user's computer is2nuclear，The original optimization time1/2；If the computer is10nuclear，The original optimization time1/10。
+ note ： can use multiprocessing library to create multiple processes to achieve parallel optimization .  e.g ： if the user's computer is 2 nuclear ， the original optimization time 1/2； if the computer is 10 nuclear ， the original optimization time 1/10. 
 
 &nbsp;
 
 
-Exhaustive arithmetic operations：
+ exhaustive arithmetic operations ：
 
-- Click on“Parameter optimization”Push button，Will pop up“Optimization parameters”window，Used to set the optimization goal（Such as to maximize the Sharpe ratio、Maximize revenue ratio retracement）And set the parameters to be optimized and optimization interval，Figure。
+-  click on “ parameter optimization ” push button ， will pop up “ optimization parameters ” window ， used to set the optimization goal （ such as to maximize the sharpe ratio ,  maximize revenue ratio retracement ） and set the parameters to be optimized and optimization interval ， figure . 
   
 ![](https://vnpy-community.oss-cn-shanghai.aliyuncs.com/forum_experience/yazhang/cta_backtester/optimize_setting.png)
 
-- After setting the parameters to be optimized，Click on“Optimization parameters”The bottom of the window“confirm”Button to start the callCPUMulti-process multi-core parallel optimization，At the same time log output related information。
+-  after setting the parameters to be optimized ， click on “ optimization parameters ” the bottom of the window “ confirm ” button to start the call CPU multi-process multi-core parallel optimization ， at the same time log output related information . 
   
 ![](https://vnpy-community.oss-cn-shanghai.aliyuncs.com/forum_experience/yazhang/cta_backtester/optimize_log.png)
 
-- Click on“Optimization Results”Button to see the optimization result，FIG combination of parameters is based on a target value（Sharpe Ratio）They are arranged in descending order from。
+-  click on “ optimization results ” button to see the optimization result ， fig combination of parameters is based on a target value （ sharpe ratio ） they are arranged in descending order from . 
   
 ![](https://vnpy-community.oss-cn-shanghai.aliyuncs.com/forum_experience/yazhang/cta_backtester/optimize_result.png)
 
 
 &nbsp;
 
-### Genetic Algorithms
+###  genetic algorithms 
 
-Genetic algorithm principle：
+ genetic algorithm principle ：
 
-- Enter the name of the parameters to be optimized、Optimization interval、The optimum step，And the optimization target；
+-  enter the name of the parameters to be optimized ,  optimization interval ,  the optimum step ， and the optimization target ；
 
-- Global parameter combination is formed，The combined data structure is embedded within the list of tuples，which is\[[(key, value), (key, value)] , [(key, value), (key,value)]]，Parameter combinations the global data structure exhaustive algorithm different。The purpose of this is conducive to cross swap between parameters and mutation。
+-  global parameter combination is formed ， the combined data structure is embedded within the list of tuples ， which is \[[(key, value), (key, value)] , [(key, value), (key,value)]]， parameter combinations the global data structure exhaustive algorithm different .  the purpose of this is conducive to cross swap between parameters and mutation . 
 ```
     def generate_setting_ga(self):
         """""" 
@@ -420,7 +420,7 @@ Genetic algorithm principle：
 &nbsp;
 
 
-- Forming individual：transferrandom()Acquisition parameters from the global random function parameter combination。
+-  forming individual ： transfer random() acquisition parameters from the global random function parameter combination . 
 ```
         def generate_parameter():
             """"""
@@ -430,7 +430,7 @@ Genetic algorithm principle：
 &nbsp;
 
 
-- Definition of individual variation rules: Ie mutation，The old individual was completely replaced by a new individual。
+-  definition of individual variation rules :  ie mutation ， the old individual was completely replaced by a new individual . 
 ```
         def mutate_individual(individual, indpb):
             """"""
@@ -445,7 +445,7 @@ Genetic algorithm principle：
 &nbsp;
 
 
-- Defined evaluation function：The reference is to the individual，which is[(key, value), (key, value)]In the form of parameter combinations，Thendict()Converted tosettingdictionary，And then run back to test，Output target value optimization，The Sharpe ratio、Earnings ratio retracement。(note，Decorator@lru_cacheRole is to cache the results，To avoid double counting the same input face，Genetic algorithms greatly reduce the running time)
+-  defined evaluation function ： the reference is to the individual ， which is [(key, value), (key, value)] in the form of parameter combinations ， then dict() converted to setting dictionary ， and then run back to test ， output target value optimization ， the sharpe ratio ,  earnings ratio retracement . ( note ， decorator @lru_cache role is to cache the results ， to avoid double counting the same input face ， genetic algorithms greatly reduce the running time )
 ```
 @lru_cache(maxsize=1000000)
 def _ga_optimize(parameter_values: tuple):
@@ -477,14 +477,14 @@ def ga_optimize(parameter_values: list):
 
 &nbsp;
 
-- Genetic algorithms run：transferdeapLibrary algorithm engine to run on Genetic Algorithms，The specific process is as follows。
-1）Define the direction of optimization，Such as to maximize the Sharpe ratio；
-2）Then randomly acquired individual parameter combination from the global，And the formation of ethnic groups；
-3）For all individuals within communities to assess（That run backtesting），Excluding individual and poor performance；
-4）The remaining individuals will cross or mutation，The formation of new communities through the assessment and screening；（So far the population is complete once the iterative process）；
-5）After several iterations，Reduce differences within populations，Improve the overall adaptability，The final output suggested results。The result is a set of Pareto solution，It can be1Combination of one or more parameters。
+-  genetic algorithms run ： transfer deap library algorithm engine to run on genetic algorithms ， the specific process is as follows . 
+1） define the direction of optimization ， such as to maximize the sharpe ratio ；
+2） then randomly acquired individual parameter combination from the global ， and the formation of ethnic groups ；
+3） for all individuals within communities to assess （ that run backtesting ）， excluding individual and poor performance ；
+4） the remaining individuals will cross or mutation ， the formation of new communities through the assessment and screening ；（ so far is a complete population iterative process ）；
+5） after several iterations ， reduce differences within populations ， improve the overall adaptability ， the final output suggested results .  the result is a set of pareto solution ， it can be 1 combination of one or more parameters . 
 
-note：As the use of@lru_cache, Iteration speed back to the late increase very much，Because many are avoiding duplicate input again backtesting，Direct access to the memory and returns the results。
+ note ： as the use of @lru_cache,  iteration speed back to the late increase very much ， because many are avoiding duplicate input again backtesting ， direct access to the memory and returns the results . 
 ```
 from deap import creator, base, tools, algorithms
 creator.create("FitnessMax", base.Fitness, weights=(1.0,))

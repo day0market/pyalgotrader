@@ -1,108 +1,108 @@
-# Features
+#  features 
 
-As a basisPythonThe quantitative trading development framework，vn.pyWe are committed to providing the transactionAPIFor a complete solution to the automated trading strategies。
+ as a basis Python the quantitative trading development framework ，vn.py we are committed to providing the transaction API for a complete solution to the automated trading strategies . 
 
-## Target users
+##  target users 
 
-If there is less demand，Give it a tryvn.py：
+ if there is less demand ， give it a try vn.py：
 
-* based onPythonLanguage to develop their own quantitative trading program，Take advantage ofPythonCommunities powerful data and machine learning research ecology
-* Through a set of standardized trading platform system，Butt of many different types of domestic financial markets：Securities、futures、Options、Exchange、Digital currency
-* After full use of quantitative testing firm policy engine，To complete the data maintenance、Strategy Development、Backtesting study to the entire business process automated trading firm
-* Platform for a variety of custom extensions，To meet the needs of individual transactions：Increase transaction interface，modifyGUIgraphic interface，Development of complex application-based event-driven engine strategy
-* Control of all source code program trading details，The complete elimination of all kinds of backdoors，Avoid stolen Policy、Intercepted trading signals、Steal account passwords and other risks
-* To save money to pay the cost of quantitative trading platform，You do not have to spend tens of thousands of annual software license fees or extra point of each transaction
-
-
-## Scenarios
-
-From a professional individual investors、Entrepreneurial Private，The brokerage and information management department、Currency ringToken Fund，Can be foundvn.pyApplication scenarios。
-
-* Professional individual investors：useVN TraderDirect Futures CompanyCTPFutures counter，From strategy to achieve the full development of automated trading firm offer completeCTABusiness Process
-* Entrepreneurial Private：based onRpcServiceBuild server-side unified offer channel，It allows traders to develop their own local PC application of various types of trading strategies
-* Brokerage and information management department：Docking securities company's unified deploymentO32Information management system，Custom development of complex systems-based multi-strategy event-driven engine
-* Currency ringToken Fund：useVN TraderConnecting multiple currency exchange rings，byAlgoTradingAlgorithmic trading module to automate entrusted to the Executive，Reduce the cost impact
+*  based on Python language to develop their own quantitative trading program ， take advantage of Python communities powerful data and machine learning research ecology 
+*  through a set of standardized trading platform system ， butt of many different types of domestic financial markets ： securities ,  futures ,  options ,  exchange ,  digital currency 
+*  after full use of quantitative testing firm policy engine ， to complete the data maintenance ,  strategy development ,  backtesting study to the entire business process automated trading firm 
+*  platform for a variety of custom extensions ， to meet the needs of individual transactions ： increase transaction interface ， modify GUI graphic interface ， development of complex application-based event-driven engine strategy 
+*  control of all source code program trading details ， the complete elimination of all kinds of backdoors ， avoid stolen policy ,  intercepted trading signals ,  steal account passwords and other risks 
+*  to save money to pay the cost of quantitative trading platform ， you do not have to spend tens of thousands of annual software license fees or extra point of each transaction 
 
 
-## Supported Interface
+##  scenarios 
 
-**vnpy.gateway**，Cover domestic and foreign varieties of all transactions transaction interface：
+ from a professional individual investors ,  entrepreneurial private ， the brokerage and information management department ,  currency ring Token Fund， can be found vn.py application scenarios . 
 
-* Domestic market
+*  professional individual investors ： use VN Trader direct futures company CTP futures counter ， from strategy to achieve the full development of automated trading firm offer complete CTA business process 
+*  entrepreneurial private ： based on RpcService build server-side unified offer channel ， it allows traders to develop their own local pc application of various types of trading strategies 
+*  brokerage and information management department ： docking securities company's unified deployment O32 information management system ， custom development of complex systems-based multi-strategy event-driven engine 
+*  currency ring Token Fund： use VN Trader connecting multiple currency exchange rings ， by AlgoTrading algorithmic trading module to automate entrusted to the executive ， reduce the cost impact 
 
-  * CTP(ctp)：Domestic futures、Options
 
-  * CTP Mini(mini)：Domestic futures、Options
+##  supported interface 
 
-  * Pegasus(femas)：Domestic futures
+**vnpy.gateway**， cover domestic and foreign varieties of all transactions transaction interface ：
 
-  * Core Width(oes)：Domestic securities（Ashare）
+*  domestic market 
 
-  * NakaYasushiXTP(xtp)：Domestic securities（Ashare）
+  * CTP(ctp)： domestic futures ,  options 
 
-  * 华鑫奇 point(tora)：Domestic securities（Ashare）
+  * CTP Mini(mini)： domestic futures ,  options 
 
-* overseas market
+  *  pegasus (femas)： domestic futures 
+
+  *  core width (oes)： domestic securities （A share ）
+
+  *  nakayasushi XTP(xtp)： domestic securities （A share ）
+
+  *  华鑫奇 point (tora)： domestic securities （A share ）
+
+*  overseas market 
     
-  * Fu passers securities(futu)：Hong Kong stocks、US stocks
+  *  fu passers securities (futu)： hong kong stocks ,  us stocks 
 
-  * Tiger Securities(tiger)：Global Securities、futures、Options、Foreign exchange
+  *  tiger securities (tiger)： global securities ,  futures ,  options ,  foreign exchange 
 
-  * Interactive Brokers(ib)：Global Securities、futures、Options、Foreign exchange
+  * Interactive Brokers(ib)： global securities ,  futures ,  options ,  foreign exchange 
 
-  * Yi Sheng9.0External disk(tap)：Global Futures
+  *  yi sheng 9.0 external disk (tap)： global futures 
 
-* Digital Currency
+*  digital currency 
 
-  * BitMEX(bitmex)：Digital currency futures、Options、Sustainable contracts
+  * BitMEX(bitmex)： digital currency futures ,  options ,  sustainable contracts 
 
-  * OKEXcontract(okexf)：Digital currency futures
+  * OKEX contract (okexf)： digital currency futures 
 
-  * Fire currency contracts(hbdm)：Digital currency futures
+  *  fire currency contracts (hbdm)： digital currency futures 
 
-  * An coins(binance)：Digital currency spot
+  *  an coins (binance)： digital currency spot 
 
-  * OKEX(okex)：Digital currency spot
+  * OKEX(okex)： digital currency spot 
 
-  * Fire currency(huobi)：Digital currency spot
+  *  fire currency (huobi)： digital currency spot 
 
-  * Bitfinex(bitfinex)：Digital currency spot
+  * Bitfinex(bitfinex)： digital currency spot 
 
-  * 1Token(onetoken)：Digital currency broker（Stock、futures）
+  * 1Token(onetoken)： digital currency broker （ stock ,  futures ）
 
-* Special Applications
+*  special applications 
 
-  * RPCservice(rpc)：Cross-process communication interface，For distributed architecture
-
-
-## Supported applications
-
-**vnpy.app**，All kinds of quantitative strategies trading applications out of the box：
-
-* cta_strategy：CTAPolicy engine module，While maintaining the ease of use，To allow for usersCTAProcess class policy to run in the report commissioned by the withdrawal behavior of fine-grained control（Reduce transaction Slippage、High frequency strategies）
-
-* cta_backtester：CTAStrategy Backtesting module，Without the use ofJupyter Notebook，Direct use graphical interface directly strategy backtesting analysis、Parameter optimization and other related work
-
-* algo_trading：Algorithmic trading module，It offers a variety of commonly used smart trading algorithms：TWAP、Sniper、Iceberg、BestLimitand many more，Support for common algorithm configuration is saved
-
-* script_trader：Scripts policy module，For multi-target combination class trading strategy design，At the same time can also be implemented directly on the command lineREPLInstruction in the form of transaction，Backtesting feature is not supported
-
-* rpc_service：RPCService Module，Allows aVN TraderProcess starts for the server，As a unified market and transaction routing channel，It allows multiple simultaneous client connections，Multi-process distributed systems
-
-* csv_loader：CSVHistorical Data Loader，For loadingCSVHistorical data format file into the database platform，Backtesting for strategy and research firm initialization function，Support for custom data format header
-
-* data_recorder：Quotes recording module，Be configured based graphical interface，According to the needs of real-time recordingTickorKQuotes line into the database，Backtesting for strategy or firm initialization
-
-* risk_manager：Risk Management Module，Including transaction provides flow control、Under a single number、Principal activities、Statistics and limit the total number of regular withdrawals，Effective to achieve the control function of the front end of the wind
+  * RPC service (rpc)： cross-process communication interface ， for distributed architecture 
 
 
+##  supported applications 
 
-## General class components
+**vnpy.app**， all kinds of quantitative strategies trading applications out of the box ：
 
-**vnpy.api**，PythontransactionAPIInterface Package，The deal provides an interface to achieve the underlying docking。
+* cta_strategy：CTA policy engine module ， while maintaining the ease of use ， to allow for users CTA process class policy to run in the report commissioned by the withdrawal behavior of fine-grained control （ reduce transaction slippage ,  high frequency strategies ）
 
-**vnpy.event**，Simple and easy to use event-driven engine，As the core of event-driven trading programs。
+* cta_backtester：CTA strategy backtesting module ， without the use of Jupyter Notebook， direct use graphical interface directly strategy backtesting analysis ,  parameter optimization and other related work 
 
-**vnpy.rpc**，Inter-process communication standard components，System implementation for complex transactions distributed deployment。
+* algo_trading： algorithmic trading module ， it offers a variety of commonly used smart trading algorithms ：TWAP, Sniper, Iceberg, BestLimit and many more ， support for common algorithm configuration is saved 
 
-**vnpy.chart**，Pythonhigh performanceKLine chart，Support large amount of data in the chart display and real-time data updates。
+* script_trader： scripts policy module ， for multi-target combination class trading strategy design ， at the same time can also be implemented directly on the command line REPL instruction in the form of transaction ， backtesting feature is not supported 
+
+* rpc_service：RPC service module ， allows a VN Trader process starts for the server ， as a unified market and transaction routing channel ， it allows multiple simultaneous client connections ， multi-process distributed systems 
+
+* csv_loader：CSV historical data loader ， for loading CSV historical data format file into the database platform ， backtesting for strategy and research firm initialization function ， support for custom data format header 
+
+* data_recorder： quotes recording module ， be configured based graphical interface ， according to the needs of real-time recording Tick or K quotes line into the database ， backtesting for strategy or firm initialization 
+
+* risk_manager： risk management module ， including transaction provides flow control ,  under a single number ,  principal activities ,  statistics and limit the total number of regular withdrawals ， effective to achieve the control function of the front end of the wind 
+
+
+
+##  general class components 
+
+**vnpy.api**，Python transaction API interface package ， the deal provides an interface to achieve the underlying docking . 
+
+**vnpy.event**， simple and easy to use event-driven engine ， as the core of event-driven trading programs . 
+
+**vnpy.rpc**， inter-process communication standard components ， system implementation for complex transactions distributed deployment . 
+
+**vnpy.chart**，Python high performance K line chart ， support large amount of data in the chart display and real-time data updates . 

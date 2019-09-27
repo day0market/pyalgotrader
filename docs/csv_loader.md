@@ -1,13 +1,13 @@
-# CSVLoad module
+# CSV load module 
 
-CSVLoad modulevnpyThe root directoryvnpy\app\csv_loaderFolder，engine.pyinsideCsvLoaderEngineClass responsible for loading functions to achieve。
+CSV load module vnpy the root directory vnpy\app\csv_loader folder ，engine.py inside CsvLoaderEngine class responsible for loading functions to achieve . 
 
-## Initial Configuration
-Initialization data loading information，It can be divided3class：
+##  initial configuration 
+ initialization data loading information ， it can be divided 3 class ：
 
-- CSVfile path
-- Contract Information：Contracts Code、Exchange、KLine cycle
-- CSVHeader information：Date Time、Opening price、Highest Price、Lowest、Closing price、Volume
+- CSV file path 
+-  contract information ： contracts code ,  exchange , K line cycle 
+- CSV header information ： date time ,  opening price ,  highest price ,  lowest ,  closing price ,  volume 
 
 ```
         self.file_path: str = ""
@@ -23,13 +23,13 @@ Initialization data loading information，It can be divided3class：
         self.high_head: str = ""
         self.volume_head: str = ""
 ```
-WithSQLDatabase as an example：The last issue of theIF1909Historical data into the database，Then the contract should fill in the coderb1909，Fill in exchangeSHFE，There will be a local databasesymbolwithexchangeTwo key values ​​for the index。
+ with SQL database as an example ： the last issue of the IF1909 historical data into the database ， then the contract should fill in the code rb1909， fill in exchange SHFE， there will be a local database symbol with exchange two key values ​​for the index . 
 
 &nbsp;
 
-## Loading data
+##  loading data 
 
-Read from the file pathCSVfile，Then load the data in each iteration to the database。
+ read from the file path CSV file ， then load the data in each iteration to the database . 
 ```
         with open(file_path, "rt") as f:
             reader = csv.DictReader(f)
@@ -39,11 +39,11 @@ Read from the file pathCSVfile，Then load the data in each iteration to the dat
 
 &nbsp;
 
-The method of loading data may be divided into2class：
-- Directly into：Contracts Code、Exchange、KLine cycle、Volume、Opening price、Highest Price、Lowest、Closing price、Interface name
-- Need to be addressed：Date Time（According to their respective time format，bystrptime()Transforming into a time-tuple）、vt_symbol(Contracts Code.Exchange format，Such asrb1909.SHFE)
+ the method of loading data may be divided into 2 class ：
+-  directly into ： contracts code ,  exchange , K line cycle ,  volume ,  opening price ,  highest price ,  lowest ,  closing price ,  interface name 
+-  need to be addressed ： date time （ according to their respective time format ， by strptime() transforming into a time-tuple ）, vt_symbol( contracts code . exchange format ， such as rb1909.SHFE)
 
-note：db_bar.replace()For data update，That is replacing the old data into the new。
+ note ：db_bar.replace() for data update ， that is replacing the old data into the new . 
 ```
                 db_bar.symbol = symbol
                 db_bar.exchange = exchange.value

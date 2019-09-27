@@ -1,39 +1,39 @@
-# Transaction risk control
+#  transaction risk control 
 
-Transaction risk control module belonging to ex ante risk control，That is commissioned in transactionsAPIInterface sent out before，Check the status need not exceed the limit wind control，These include：
-- It must be greater than the number of commission0
-- The maximum number of single delegate
-- The maximum number of total turnover of the day
-- Commissioned by the maximum number of streams
-- The maximum number of currently active delegate
-- Day maximum number of withdrawals
+ transaction risk control module belonging to ex ante risk control ， that is commissioned in transactions API interface sent out before ， check the status need not exceed the limit wind control ， these include ：
+-  it must be greater than the number of commission 0
+-  the maximum number of single delegate 
+-  the maximum number of total turnover of the day 
+-  commissioned by the maximum number of streams 
+-  the maximum number of currently active delegate 
+-  day maximum number of withdrawals 
 
 &nbsp;
 
-## Load Startup
+##  load startup 
 
-enterVN TraderRear，First landing Interface，The connectionCTP；Then click on the menu bar“Features”->"Transaction risk control“Rear，Transaction risk control window will pop up，Figure。
+ enter VN Trader rear ， first landing interface ， the connection CTP； then click on the menu bar “ features ”->" transaction risk control “ rear ， transaction risk control window will pop up ， figure . 
 ![](https://vnpy-community.oss-cn-shanghai.aliyuncs.com/forum_experience/yazhang/risk_manager/risk_manager.png)
 
-Parameter display window，It corresponds toC:\Users\Administrator\.vntraderinsiderisk_manager_setting.jsonThe parameters dictionary，Figure。
+ parameter display window ， it corresponds to C:\Users\Administrator\.vntrader inside risk_manager_setting.json the parameters dictionary ， figure . 
 ![](https://vnpy-community.oss-cn-shanghai.aliyuncs.com/forum_experience/yazhang/risk_manager/data_setting.png)
 
-in“Wind control operating status”Click the selection box“start up”Rear
-- Immediately callRiskManagerEngineCategoryupdate_setting()Function readsrisk_manager_setting.jsonThe parameters dictionary and the binding properties of the class。
-- Output in the log"Transaction risk control function is activated"。
-- runcheck_risk()function，To examine every issue to a sum of commission meets the requirements of a variety of risk control，If after all meet，Flow control count+1，Commissioned by realAPIInterface to send out。
+ in “ wind control operating status ” click the selection box “ start up ” rear 
+-  immediately call RiskManagerEngine category update_setting() function reads risk_manager_setting.json the parameters dictionary and the binding properties of the class . 
+-  output in the log " transaction risk control function is activated ". 
+-  run check_risk() function ， to examine every issue to a sum of commission meets the requirements of a variety of risk control ， if after all meet ， flow control count +1， commissioned by real API interface to send out . 
 
 &nbsp;
 
-## Change parameters
+##  change parameters 
 
-Transaction risk control component allows users to modify risk control parameters。due toGUIEach interface is based on the parameter fieldPyQt5ofQSpinBox，Users can click with the mouse up and down arrows to modify，You can also directly modify keyboard input。
+ transaction risk control component allows users to modify risk control parameters .  due to GUI each interface is based on the parameter field PyQt5 of QSpinBox， users can click with the mouse up and down arrows to modify ， you can also directly modify keyboard input . 
 
-Finally, click on the bottom of the window“Storage”Push button，To callRiskManagerEngineCategorysave_setting()Function to update torisk_manager_setting.jsonThe parameters dictionary，Finally,update_setting()The function is bound to the dictionary parameter attribute class。
+ finally, click on the bottom of the window “ storage ” push button ， to call RiskManagerEngine category save_setting() function to update to risk_manager_setting.json the parameters dictionary ， finally, update_setting() the function is bound to the dictionary parameter attribute class . 
 
 &nbsp;
 
-## Stop wind control
+##  stop wind control 
 
-in“Wind control operating status”Click the selection box“Stopped”Rear，RiskManagerEngineCategoryactivebecomeFalse，check_risk()Check function no longer control the wind flow control status commissioned，While the output in the log"Transaction risk control function stop"。
+ in “ wind control operating status ” click the selection box “ stopped ” rear ，RiskManagerEngine category active become False，check_risk() check function no longer control the wind flow control status commissioned ， while the output in the log " transaction risk control function stop ". 
 

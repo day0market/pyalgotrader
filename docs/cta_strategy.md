@@ -1,32 +1,32 @@
-# CTAPolicy Module
+# CTA policy module 
 
 
-## Modules
+##  modules 
 
-CTAMainly by the policy module7Constitute part，As shown below：
+CTA mainly by the policy module 7 constitute part ， as shown below ：
 
-- base：DefinedCTAModule used in some of the basic settings，Such as engine type（Backtesting/Firm）、Back to the measurement mode（Kline/Tick）、Local single stop and a stop order status definitions（Waiting/Revoked/Triggered）。
+- base： defined CTA module used in some of the basic settings ， such as engine type （ backtesting / firm ）,  back to the measurement mode （K line /Tick）,  local single stop and a stop order status definitions （ waiting / revoked / triggered ）. 
   
-- template：DefinedCTAPolicy Template（It includes signal generation and delegate management）、CTAsignal（It is only responsible for signal generation）、Target position algorithm（Only responsible for delegated administration，It applies to split the giant commission，Reduce the cost impact）。
-- strategies: The official providedctaPolicy Example，It contains double the average from the most basic strategy，To channel breakout type of strategy Bollinger Bands，To cross time cycle policy，Then the signal generation and delegated administration open to independent multi-signal strategy。(User-defined strategy can be placedstrategiesFolder run)
-- backesting：It includes backtesting engine and parameter optimization。Backtesting engine which defines the data load、Commissioned matching mechanism、Calculation and statistical indicators related to profitability、Results plotting other functions。
-- converter：It defines this level for the period of the species/Flat commission mode conversion module yesterday；For users of other species can also optional parameterslockLock mode switch to。
-- engine：DefinedCTAStrategy firm engine，These include：RQDataThe client initialization and loading data、Strategies and start initialization、PushTickSubscribe to the policy market、Hanging cancellation operation、Strategies such as stop and remove。
-- ui：based onPyQt5ofGUIGraphics applications。
+- template： defined CTA policy template （ it includes signal generation and delegate management ）, CTA signal （ it is only responsible for signal generation ）,  target position algorithm （ only responsible for delegated administration ， it applies to split the giant commission ， reduce the cost impact ）. 
+- strategies:  the official provided cta policy example ， it contains double the average from the most basic strategy ， to channel breakout type of strategy bollinger bands ， the strategy across time periods ， then the signal generation and delegated administration open to independent multi-signal strategy . ( user-defined strategy can be placed strategies folder run )
+- backesting： it includes backtesting engine and parameter optimization .  backtesting engine which defines the data load ,  commissioned matching mechanism ,  calculation and statistical indicators related to profitability ,  results plotting other functions . 
+- converter： it defines this level for the period of the species / flat commission mode conversion module yesterday ； for users of other species can also optional parameters lock lock mode switch to . 
+- engine： defined CTA strategy firm engine ， these include ：RQData the client initialization and loading data ,  strategies and start initialization ,  push Tick subscribe to the policy market ,  hanging cancellation operation ,  strategies such as stop and remove . 
+- ui： based on PyQt5 of GUI graphics applications . 
 
 ![](https://vnpy-community.oss-cn-shanghai.aliyuncs.com/forum_experience/yazhang/cta_strategy/seix_elementos.png "enter image title here")
 
 &nbsp;
 
-## Loading
+##  loading 
 
-In the real dish，RQDataInitialized strategy through real-time load data。The main function inCTAFirm engineengine.pyIn the realization。
-Here are the specific process：
-- In the menu bar click“Configuration”，Enter the global configuration page inputRQDataaccount password；Or direct configurationjsonfile，That is under the user's directory.vntraderFolders foundvt_setting.json，Figure。
+ in the real dish ，RQData initialized strategy through real-time load data .  the main function in CTA firm engine engine.py in the realization . 
+ here are the specific process ：
+-  in the menu bar click “ configuration ”， enter the global configuration page input RQData account password ； or direct configuration json file ， that is under the user's directory .vntrader folders found vt_setting.json， figure . 
   
 ![](https://vnpy-community.oss-cn-shanghai.aliyuncs.com/forum_experience/yazhang/cta_strategy/RQData_setting.png "enter image title here")
 
-- initializationRQDataClient：Fromvt_setting.jsonReadRQDataAccount、Password torq_client.init()Function initializes
+-  initialization RQData client ： from vt_setting.json read RQData account ,  password to rq_client.init() function initializes 
 
 ```
     def init_rqdata(self):
@@ -46,7 +46,7 @@ Here are the specific process：
 ```
 
 
-- RQDataLoading data firm：Entryvt_symbolRear，First in line will be converted toRQDataFormatsrq_symbol，byget_price()Download data function，And inserted into the database。
+- RQData loading data firm ： entry vt_symbol rear ， first in line will be converted to RQData formats rq_symbol， by get_price() download data function ， and inserted into the database . 
   
 ```
     def query_bar_from_rq(
@@ -89,19 +89,19 @@ Here are the specific process：
 
 &nbsp;
 
-## Strategy Development
-CTAPolicy templates provide a complete signal generation and delegate management functions，Users can develop their own strategies based on the template。The new strategy can be placed in the user runs the file（recommend），As inc:\users\administrator.vntraderCreate a directorystrategiesfolder；It can be placed in the root directoryvnpy\app\cta_strategy\strategiesFolder。
-note：Policy file is named underline mode，Such asboll_channel_strategy.py；The policy class name is used in camel，Such asBollChannelStrategy。
+##  strategy development 
+CTA policy templates provide a complete signal generation and delegate management functions ， users can develop their own strategies based on the template .  the new strategy can be placed in the user runs the file （ recommend ）， as in c:\users\administrator.vntrader create a directory strategies folder ； it can be placed in the root directory vnpy\app\cta_strategy\strategies folder . 
+ note ： policy file is named underline mode ， such as boll_channel_strategy.py； the policy class name is used in camel ， such as BollChannelStrategy. 
 
-By the followingBollChannelStrategyPolicy Example，Concrete steps to demonstrate the development strategy：
+ by the following BollChannelStrategy policy example ， concrete steps to demonstrate the development strategy ：
 
-### parameter settings
+###  parameter settings 
 
-Define policy parameters and policy variables initialized。Policy parameters for the class policy of public property，Users can call or change policy parameters by creating a new instance。
+ define policy parameters and policy variables initialized .  policy parameters for the class policy of public property ， users can call or change policy parameters by creating a new instance . 
 
-As forrb1905Variety，Users can create based onBollChannelStrategyExamples of strategies，Such asRB_BollChannelStrategy，boll_windowIt can be made18Change30。
+ as for rb1905 variety ， users can create based on BollChannelStrategy examples of strategies ， such as RB_BollChannelStrategy，boll_window it can be made 18 change 30. 
 
-Examples of ways to create strategies to effectively implement a strategy to run a number of varieties，Policy parameters and which can be adjusted by the features of species。
+ examples of ways to create strategies to effectively implement a strategy to run a number of varieties ， policy parameters and which can be adjusted by the features of species . 
 ```
     boll_window = 18
     boll_dev = 3.4
@@ -121,11 +121,11 @@ Examples of ways to create strategies to effectively implement a strategy to run
     short_stop = 0
 ```
 
-### Initialization class
-Initialization points3step：
-- bysuper( )The methods are inheritedCTAPolicy Template，in__init__( )Incoming functionCTAengine、Policy Name、vt_symbol、parameter settings。
-- transferKLine generation module:By the time slicesTickData synthesis1minuteKLine data，Then a larger time period data，Such as15minuteKline。
-- transferKLine time sequence manager module：based onKLine data，Such as1minute、15minute，To form the corresponding technical specifications。
+###  initialization class 
+ initialization points 3 step ：
+-  by super( ) the methods are inherited CTA policy template ， in __init__( ) incoming function CTA engine ,  policy name , vt_symbol,  parameter settings . 
+-  transfer K line generation module : by the time slices Tick data synthesis 1 minute K line data ， then a larger time period data ， such as 15 minute K line . 
+-  transfer K line time sequence manager module ： based on K line data ， such as 1 minute , 15 minute ， to form the corresponding technical specifications . 
   
 ```
     def __init__(self, cta_engine, strategy_name, vt_symbol, setting):
@@ -138,35 +138,35 @@ Initialization points3step：
         self.am = ArrayManager()
 ```
 
-### Initialization Policy、start up、stop
-by“CTATactics”Button component-related functions to achieve。
+###  initialization policy ,  start up ,  stop 
+ by “CTA tactics ” button component-related functions to achieve . 
 
-note：functionload_bar(10)，On behalf of the policy needs to load initialization10Trading historical data。The historical data can beTickdata，can also beKLine data。In the initialization time strategy，Will callKCalculating line time sequence manager and cache related calculation index，But the transaction does not trigger。
+ note ： function load_bar(10)， on behalf of the policy needs to load initialization 10 trading historical data .  the historical data can be Tick data ， can also be K line data .  in the initialization time strategy ， will call K calculating line time sequence manager and cache related calculation index ， but the transaction does not trigger . 
 
 ```
     def on_init(self):
         """
         Callback when strategy is inited.
         """
-        self.write_log("Strategy initialization")
+        self.write_log(" strategy initialization ")
         self.load_bar(10)
 
     def on_start(self):
         """
         Callback when strategy is started.
         """
-        self.write_log("Policy startup")
+        self.write_log(" policy startup ")
 
     def on_stop(self):
         """
         Callback when strategy is stopped.
         """
-        self.write_log("Stop strategy")
+        self.write_log(" stop strategy ")
 ```
-### TickData Return
-Subscribe to a variety of tactics contract market，Exchange will pushTickThe data on policy。
+### Tick data return 
+ subscribe to a variety of tactics contract market ， exchange will push Tick the data on policy . 
 
-due toBollChannelStrategyis based on15minuteKGenerating a signal line transactions，It is receivedTickAfter data，Need to useKLine generation module insideupdate_tickfunction，By a method of time-slicing，Polymerized into1minuteKLine data，And pushon_barfunction。
+ due to BollChannelStrategy is based on 15 minute K generating a signal line transactions ， it is received Tick after data ， need to use K line generation module inside update_tick function ， by a method of time-slicing ， polymerized into 1 minute K line data ， and push on_bar function . 
 
 ```
     def on_tick(self, tick: TickData):
@@ -176,9 +176,9 @@ due toBollChannelStrategyis based on15minuteKGenerating a signal line transactio
         self.bg.update_tick(tick)
 ```
 
-### KLine data return
+### K line data return 
 
-Receive push over1minuteKAfter the data line，byKLine generation module insideupdate_barfunction，The method of minutes to slice，synthesis15minuteKLine data，And pushon_15min_barfunction。
+ receive push over 1 minute K after the data line ， by K line generation module inside update_bar function ， the method of minutes to slice ， synthesis 15 minute K line data ， and push on_15min_bar function . 
 ```
     def on_bar(self, bar: BarData):
         """
@@ -187,14 +187,14 @@ Receive push over1minuteKAfter the data line，byKLine generation module insideu
         self.bg.update_bar(bar)
 ```
 
-### 15minuteKLine data return
+### 15 minute K line data return 
 
-Be responsible forCTAGenerating a signal，by3Parts：
-- Clear Unsold commissioned：In order to prevent under the list before a15Minutes no deal，But next15Minutes may have adjusted the price，then applycancel_all()Unsold method previously withdrawn all at once commissioned，This is to ensure that the current strategy15The entire state of minutes and only began to be clear。
-- transferKLine time sequence manager module：Based on the latest15minuteKCalculating respective line data calculation index，The vertical rail Bollinger band channel、CCIindex、ATRindex
-- Signal calculation：And by determining the binding positionsCCIindex、Bollinger band channel、ATRIndicators point to hang out in the channel breakout single delegate stop（buy/sell)，At the same time set the departure point(short/cover)。
+ be responsible for CTA generating a signal ， by 3 parts ：
+-  clear unsold commissioned ： in order to prevent under the list before a 15 minutes no deal ， but next 15 minutes may have adjusted the price ， then apply cancel_all() unsold method previously withdrawn all at once commissioned ， this is to ensure that the current strategy 15 the entire state of minutes and only began to be clear . 
+-  transfer K line time sequence manager module ： based on the latest 15 minute K calculating respective line data calculation index ， the vertical rail bollinger band channel , CCI index , ATR index 
+-  signal calculation ： and by determining the binding positions CCI index ,  bollinger band channel , ATR indicators point to hang out in the channel breakout single delegate stop （buy/sell)， at the same time set the departure point (short/cover). 
 
-note：CTAStrategy with specific low and high winning percentage than the profit and loss：In the case of difficult to improve the odds of，Research strategies to enhance profit and loss ratio in favor of increased profitability strategy。
+ note ：CTA strategy with specific low and high winning percentage than the profit and loss ： in the case of difficult to improve the odds of ， research strategies to enhance profit and loss ratio in favor of increased profitability strategy . 
 
 ```
     def on_15min_bar(self, bar: BarData):
@@ -236,9 +236,9 @@ note：CTAStrategy with specific low and high winning percentage than the profit
         self.put_event()
 ```
 
-### Return commission、Return on turnover、One-stop return
+###  return commission ,  return on turnover ,  one-stop return 
 
-In the policy can be directlypass，The specific application logic to back-test/Firm responsible for engine。
+ in the policy can be directly pass， the specific application logic to back-test / firm responsible for engine . 
 ```
     def on_order(self, order: OrderData):
         """
@@ -264,12 +264,12 @@ In the policy can be directlypass，The specific application logic to back-test/
 
 &nbsp;
 
-## Research measured back
-backtesting.pyIt defines the backtesting engine，The following describes the functions related functions，Backtesting engine and application examples：
+##  research measured back 
+backtesting.py it defines the backtesting engine ， the following describes the functions related functions ， backtesting engine and application examples ：
 
-### Loading strategy
+###  loading strategy 
 
-TheCTAPolicy logic，The corresponding contract Variety，And parameter settings（Can be modified outside the policy file）Loaded into the back-tested engine。
+ the CTA policy logic ， the corresponding contract variety ， and parameter settings （ can be modified outside the policy file ） loaded into the back-tested engine . 
 ```
     def add_strategy(self, strategy_class: type, setting: dict):
         """"""
@@ -280,18 +280,18 @@ TheCTAPolicy logic，The corresponding contract Variety，And parameter settings
 ```
 &nbsp;
 
-### Loading Historical Data
+###  loading historical data 
 
-Responsible for loading historical data corresponding to species，roughly has4Steps：
-- The different data types，DividedKWire mode andTickmode；
-- byselect().where()method，Conditionally select data from the database，Which includes screening criteria：vt_symbol、 Backtesting Start Date、Backtesting end date、KLine cycle（KOffline Mode）；
-- order_by(DbBarData.datetime)It represents the data to be loaded chronologically；
-- Loading data is carried out in an iterative manner，The final data is storedself.history_data。
+ responsible for loading historical data corresponding to species ， roughly has 4 steps ：
+-  the different data types ， divided K wire mode and Tick mode ；
+-  by select().where() method ， conditionally select data from the database ， which includes screening criteria ：vt_symbol,   backtesting start date ,  backtesting end date , K line cycle （K offline mode ）；
+- order_by(DbBarData.datetime) it represents the data to be loaded chronologically ；
+-  loading data is carried out in an iterative manner ， the final data is stored self.history_data. 
 
 ```
     def load_data(self):
         """"""
-        self.output("Begins loading historical data")
+        self.output(" begins loading historical data ")
 
         if self.mode == BacktestingMode.BAR:
             s = (
@@ -317,27 +317,27 @@ Responsible for loading historical data corresponding to species，roughly has4S
             )
             self.history_data = [db_tick.to_tick() for db_tick in s]
 
-        self.output(f"Historical data loaded，The amount of data：{len(self.history_data)}")
+        self.output(f" historical data loaded ， the amount of data ：{len(self.history_data)}")
 ```
 &nbsp;
 
-### Brokered transactions
+###  brokered transactions 
 
-LoadingCTAAfter strategies and relevant historical data，Strategy related indicators will be calculated according to the latest data。If they meet the conditions will generate trading signals，Issued a specific commission（buy/sell/short/cover），And the next oneKLine auction。
+ loading CTA after strategies and relevant historical data ， strategy related indicators will be calculated according to the latest data .  if they meet the conditions will generate trading signals ， issued a specific commission （buy/sell/short/cover）， and the next one K line auction . 
 
-Depending on the type of delegate，Backtesting engine provides2Brokered transactions kinds of mechanisms to try to imitate the real trade links：
+ depending on the type of delegate ， backtesting engine provides 2 brokered transactions kinds of mechanisms to try to imitate the real trade links ：
 
-- Limit orders brokered transactions：（Direction, for example to buy）First determine whether the transaction occurred，Standard price for the transaction commission>= Under aKThe lowest line；Then determine the transaction price，Price and the transaction price was commissioned at aKMinimum line opening price。
+-  limit orders brokered transactions ：（ direction, for example to buy ） first determine whether the transaction occurred ， standard price for the transaction commission >=  under a K the lowest line ； then determine the transaction price ， price and the transaction price was commissioned at a K minimum line opening price . 
 
-- Stop single brokered transactions：（Direction, for example to buy）First determine whether the transaction occurred，Standard price for the transaction commission<= Under aKThe highest price line；Then determine the transaction price，Price and the transaction price was commissioned at aKMaximum line opening price。
+-  stop single brokered transactions ：（ direction, for example to buy ） first determine whether the transaction occurred ， standard price for the transaction commission <=  under a K the highest price line ； then determine the transaction price ， price and the transaction price was commissioned at a K maximum line opening price . 
 
 &nbsp;
 
-The following shows the engine limit orders brokered transactions process：
-- Brokered transactions will determine the price；
-- All limit order limit order traversal dictionary，Push commissioned into the transaction queue status is not updated；
-- Analyzing Transaction Status，If there is turnover，Push transaction data and commission data；
-- Delete turnover limit orders from the dictionary。
+ the following shows the engine limit orders brokered transactions process ：
+-  brokered transactions will determine the price ；
+-  all limit order limit order traversal dictionary ， push commissioned into the transaction queue status is not updated ；
+-  analyzing transaction status ， if there is turnover ， push transaction data and commission data ；
+-  delete turnover limit orders from the dictionary . 
 
 ```
     def cross_limit_order(self):
@@ -416,16 +416,16 @@ The following shows the engine limit orders brokered transactions process：
 
 &nbsp;
 
-### Profit and loss calculation method
+###  profit and loss calculation method 
 
-Based on the closing price、Day positions、Contract size、Slippage、Calculate the total commission rate gains and losses and net gains and losses，And the calculation resultDataFrameOutput format，Complete statistics based on mark-to-market gains and losses。
+ based on the closing price ,  day positions ,  contract size ,  slippage ,  calculate the total commission rate gains and losses and net gains and losses ， and the calculation result DataFrame output format ， complete statistics based on mark-to-market gains and losses . 
 
-The following shows the calculation of profit and loss
+ the following shows the calculation of profit and loss 
 
-- Floating profit and loss = Positions \*（Closing price - Yesterday's closing price）\*  Contract size
-- The actual profit and loss = The amount of change positions  \* （At that time the closing price - Open price）\* Contract size
-- Total profit and loss = Floating profit and loss + The actual profit and loss
-- Net profit and loss = Total profit and loss - Total fee - The total slippage
+-  floating profit and loss  =  positions  \*（ closing price  -  yesterday's closing price ）\*   contract size 
+-  the actual profit and loss  =  the amount of change positions   \* （ at that time the closing price  -  open price ）\*  contract size 
+-  total profit and loss  =  floating profit and loss  +  the actual profit and loss 
+-  net profit and loss  =  total profit and loss  -  total fee  -  the total slippage 
 
 ```
     def calculate_pnl(
@@ -471,8 +471,8 @@ The following shows the calculation of profit and loss
 
 
 
-### Statistical indicators calculated strategy
-calculate_statisticsFunction is based on mark-to-market profits and losses（DateFrameformat）To calculate the derivative index，Such as maximum retracement、Annualized earnings、Profit and loss ratio、Sharpe ratio, etc.。
+###  statistical indicators calculated strategy 
+calculate_statistics function is based on mark-to-market profits and losses （DateFrame format ） to calculate the derivative index ， such as maximum retracement ,  annualized earnings ,  profit and loss ratio ,  sharpe ratio, etc. . 
 
 ```
             df["balance"] = df["net_pnl"].cumsum() + self.capital
@@ -523,12 +523,12 @@ calculate_statisticsFunction is based on mark-to-market profits and losses（Dat
 ```
 &nbsp;
 
-### Statistical Indicators Mapping
-bymatplotlibdraw4Figures：
-- Funding plot
-- Drawdown map
-- Daily profit and loss chart
-- Daily profit and loss distribution
+###  statistical indicators mapping 
+ by matplotlib draw 4 figures ：
+-  funding plot 
+-  drawdown map 
+-  daily profit and loss chart 
+-  daily profit and loss distribution 
 
 ```
     def show_chart(self, df: DataFrame = None):
@@ -562,12 +562,12 @@ bymatplotlibdraw4Figures：
 
 &nbsp;
 
-### Single Strategy Backtesting example
+###  single strategy backtesting example 
 
-- Import and backtesting engineCTATactics
-- Back to measured parameters，Such as：Variety、KLine cycle、Start and end dates backtesting、Fees、Slippage、Contract size、Seed money
-- Loading policies and data to the engine，Running back-tested。
-- Calculated based on the daily statistics profitability，Calculation of statistical indicators，Statistical Indicators Mapping。
+-  import and backtesting engine CTA tactics 
+-  back to measured parameters ， such as ： variety , K line cycle ,  start and end dates backtesting ,  fees ,  slippage ,  contract size ,  seed money 
+-  loading policies and data to the engine ， running back-tested . 
+-  calculated based on the daily statistics profitability ， calculation of statistical indicators ， statistical indicators mapping . 
 
 
 ```
@@ -600,11 +600,11 @@ engine.show_chart()
 
 &nbsp;
 
-### Portfolio backtesting example
+###  portfolio backtesting example 
 
-Portfolio Backtesting Backtesting is based on a single strategy，The key is that each strategy corresponds with theirBacktestingEngineObjects，Here are the specific process：
+ portfolio backtesting backtesting is based on a single strategy ， the key is that each strategy corresponds with their BacktestingEngine objects ， here are the specific process ：
 
-- Create a back-test functionrun_backtesting()，Such a policy is created for each add theirBacktestingEngineObjects。
+-  create a back-test function run_backtesting()， such a policy is created for each add their BacktestingEngine objects . 
 ```
 from vnpy.app.cta_strategy.backtesting import BacktestingEngine, OptimizationSetting
 from vnpy.app.cta_strategy.strategies.atr_rsi_strategy import AtrRsiStrategy
@@ -633,7 +633,7 @@ def run_backtesting(strategy_class, setting, vt_symbol, interval, start, end, ra
 
 &nbsp;
 
-- They were single strategy backtesting，Get theirDataFrame，(ThatDataFrameIt includes trading hours、This warehouse、Yesterday warehouse、Fees、Slippage、Day net profit and loss、Basic information such as the amount of net profit and loss，But does not include the largest retracement，Sharpe ratio and other statistical information),ThenDataFrameAdded and removed after the null value obtained portfolioDataFrame。
+-  they were single strategy backtesting ， get their DataFrame，( that DataFrame it includes trading hours ,  this warehouse ,  yesterday warehouse ,  fees ,  slippage ,  day net profit and loss ,  basic information such as the amount of net profit and loss ， but does not include the largest retracement ， sharpe ratio and other statistical information ), then DataFrame added and removed after the null value obtained portfolio DataFrame. 
 
 ```
 df1 = run_backtesting(
@@ -671,7 +671,7 @@ dfp =dfp.dropna()
 &nbsp;
 
 
-- createshow_portafolio()function，It is also creating a newBacktestingEngineObjects，IncomingDataFrameCalculation of statistical indicators such as the Sharpe ratio, etc.，And drawing。So the function can not only display a single strategy backtesting results，Also can show portfolio backtesting results。
+-  create show_portafolio() function ， it is also creating a new BacktestingEngine objects ， incoming DataFrame calculation of statistical indicators such as the sharpe ratio, etc. ， and drawing .  so the function can not only display a single strategy backtesting results ， also can show portfolio backtesting results . 
 ```
 def show_portafolio(df):
     engine = BacktestingEngine()
@@ -683,14 +683,14 @@ show_portafolio(dfp)
 
 &nbsp;
 
-## Parameter optimization
-Parameter optimization module consists3Constitute part：
+##  parameter optimization 
+ parameter optimization module consists 3 constitute part ：
 
-### parameter settings
+###  parameter settings 
 
-- Set the interval parameter optimization：Such asboll_windowSet to start value18，Termination value24，Stepping into2，This has been[18, 20, 22, 24] This4The two parameters to be optimized。
-- Set the optimization target field：The Sharpe ratio、Profit and loss ratio、The total rate of return, etc.。
-- Combination of randomly generated parameter：Using an iterative tool to generate parameter combinations，The composition is then packed into a parameter list consisting of a dictionaries
+-  set the interval parameter optimization ： such as boll_window set to start value 18， termination value 24， stepping into 2， this has been [18, 20, 22, 24]  this 4 the two parameters to be optimized . 
+-  setting the target field optimization ： the sharpe ratio ,  profit and loss ratio ,  the total rate of return, etc. . 
+-  combination of randomly generated parameter ： using an iterative tool to generate parameter combinations ， the composition is then packed into a parameter list consisting of a dictionaries 
 
 ```
 class OptimizationSetting:
@@ -712,11 +712,11 @@ class OptimizationSetting:
             return
 
         if start >= end:
-            print("Parameter optimization must be less than the starting point of the end point")
+            print(" parameter optimization must be less than the starting point of the end point ")
             return
 
         if step <= 0:
-            print("Parameter optimization step must be greater than0")
+            print(" parameter optimization step must be greater than 0")
             return
 
         value = start
@@ -748,14 +748,14 @@ class OptimizationSetting:
 
 &nbsp;
 
-### Parameter combination backtesting
+###  parameter combination backtesting 
 
-When multi-process optimization，Each process runsoptimizefunction，The results of the composition and the output parameter optimization target field。It comprises the following steps：
-- Call backtesting engine
-- Backtesting input settings
-- Input parameters for the combination to the policy
-- Running back-tested
-- Return back test results，include：Parameter combination、Objective optimization field values、Strategy statistical indicators
+ when multi-process optimization ， each process runs optimize function ， the results of the composition and the output parameter optimization target field .  it comprises the following steps ：
+-  call backtesting engine 
+-  backtesting input settings 
+-  input parameters for the combination to the policy 
+-  running back-tested 
+-  return back test results ， include ： parameter combination ,  objective optimization field values ,  strategy statistical indicators 
 
 ```
 def optimize(
@@ -802,12 +802,12 @@ def optimize(
 
 &nbsp;
 
-### Multi-process optimization
+###  multi-process optimization 
 
-- according toCPUThe audit process to create：If theCPUfor4nuclear，Create4A process
-- We are called in each processapply_async( )The method combination of operating parameters for backtesting，Adding to its backtesting resultsresultsin （apply_asyncAsynchronous non-blocking，That is, without waiting for the current process is finished，At any time to carry out the process of switching system according to schedule。）
-- pool.close()versuspool.join()After finish the task for process，Close to process。
-- CorrectresultsThe contents are sorted by optimizing field goal standard，Output。
+-  according to CPU the audit process to create ： if the CPU for 4 nuclear ， create 4 a process 
+-  we are called in each process apply_async( ) the method combination of operating parameters for backtesting ， adding to its backtesting results results in  （apply_async asynchronous non-blocking ， that is, without waiting for the current process is finished ， at any time to carry out the process of switching system according to schedule . ）
+- pool.close() versus pool.join() after finish the task for process ， close to process . 
+-  correct results the contents are sorted by optimizing field goal standard ， output . 
 
 ```
         pool = multiprocessing.Pool(multiprocessing.cpu_count())
@@ -839,7 +839,7 @@ def optimize(
         result_values.sort(reverse=True, key=lambda result: result[1])
 
         for value in result_values:
-            msg = f"parameter：{value[0]}, aims：{value[1]}"
+            msg = f" parameter ：{value[0]},  aims ：{value[1]}"
             self.output(msg)
 
         return result_values
@@ -847,22 +847,22 @@ def optimize(
 
 &nbsp;
 
-## Firm run
-In the firm environment，Users can write good basisCTAStrategy to create a new instance，A key to initialize、start up、Stop Strategy。
+##  firm run 
+ in the firm environment ， users can write good basis CTA strategy to create a new instance ， a key to initialize ,  start up ,  stop strategy . 
 
 
-### Create a policy instance
-Users can write good basisCTAStrategy to create a new instance，Examples of the benefits of the policy is that the same strategy can go to contract simultaneously run multiple varieties，And the parameters may be different for each instance of。
-When creating an instance of the need to fill the instance name Figure、Variety contract、parameter settings。note：The instance name must be unique；Contract name isvt_symbolThe format，Such asIF1905.CFFEX。
+###  create a policy instance 
+ users can write good basis CTA strategy to create a new instance ， examples of the benefits of the policy is that the same strategy can go to contract simultaneously run multiple varieties ， and the parameters may be different for each instance of . 
+ when creating an instance of the need to fill the instance name figure ,  variety contract ,  parameter settings .  note ： the instance name must be unique ； contract name is vt_symbol the format ， such as IF1905.CFFEX. 
 
 ![](https://vnpy-community.oss-cn-shanghai.aliyuncs.com/forum_experience/yazhang/cta_strategy/add_strategy.png)
 
-Create a policy process is as follows：
-- Examples of the same name Check policy
-- Adding policy configuration information(strategy_name, vt_symbol, setting)TostrategiesDictionary
-- To subscribe to add the policy to contract information Quotessymbol_strategy_mapDictionary；
-- Save the policy configuration information tojsonThe paper；
-- In the graphical interface to update status information。
+ create a policy process is as follows ：
+-  examples of the same name check policy 
+-  adding policy configuration information (strategy_name, vt_symbol, setting) to strategies dictionary 
+-  to subscribe to add the policy to contract information quotes symbol_strategy_map dictionary ；
+-  save the policy configuration information to json the paper ；
+-  in the graphical interface to update status information . 
 
 ```
     def add_strategy(
@@ -872,7 +872,7 @@ Create a policy process is as follows：
         Add a new strategy.
         """
         if strategy_name in self.strategies:
-            self.write_log(f"Create a policy failure，The presence of the same name{strategy_name}")
+            self.write_log(f" create a policy failure ， the presence of the same name {strategy_name}")
             return
 
         strategy_class = self.classes[class_name]
@@ -892,12 +892,12 @@ Create a policy process is as follows：
 
 &nbsp;
 
-### Initialization Policy
-- Call the strategy of classon_init()Callback,And load historical data；
-- Recovery strategy state before the last exit；
-- From.vntrader/cta_strategy_data.jsonRead within policy parameters，The latest technology indicators，And the number of positions；
-- Call interfacesubcribe()Subscribe function specified market information；
-- Strategy becomes initialized stateTrue，And updates to the log。
+###  initialization policy 
+-  call the strategy of class on_init() callback , and load historical data ；
+-  recovery strategy state before the last exit ；
+-  from .vntrader/cta_strategy_data.json read within policy parameters ， the latest technology indicators ， and the number of positions ；
+-  call interface subcribe() subscribe function specified market information ；
+-  strategy becomes initialized state True， and updates to the log . 
   
 ```
     def _init_strategy(self):
@@ -909,10 +909,10 @@ Create a policy process is as follows：
             strategy = self.strategies[strategy_name]
 
             if strategy.inited:
-                self.write_log(f"{strategy_name}Initialization has been completed，Repeat ban")
+                self.write_log(f"{strategy_name} initialization has been completed ， repeat ban ")
                 continue
 
-            self.write_log(f"{strategy_name}Begin initialization")
+            self.write_log(f"{strategy_name} begin initialization ")
 
             # Call on_init function of strategy
             self.call_strategy_func(strategy, strategy.on_init)
@@ -932,23 +932,23 @@ Create a policy process is as follows：
                     symbol=contract.symbol, exchange=contract.exchange)
                 self.main_engine.subscribe(req, contract.gateway_name)
             else:
-                self.write_log(f"Subscribe to market failure，Can not find contract{strategy.vt_symbol}", strategy)
+                self.write_log(f" subscribe to market failure ， can not find contract {strategy.vt_symbol}", strategy)
 
             # Put event to update init completed status.
             strategy.inited = True
             self.put_strategy_event(strategy)
-            self.write_log(f"{strategy_name}loading finished")
+            self.write_log(f"{strategy_name} loading finished ")
         
         self.init_thread = None
 ```
 
 &nbsp;
 
-### Start Policy
-- Check the initialization state policy；
-- Check the startup state strategy，Avoid duplication start；
-- Call the strategy of classon_start()Function to start policies；
-- Policy startup status changesTrue，And updates to the graphical interface。
+###  start policy 
+-  check the initialization state policy ；
+-  check the startup state strategy ， avoid duplication start ；
+-  call the strategy of class on_start() function to start policies ；
+-  policy startup status changes True， and updates to the graphical interface . 
 
 ```
     def start_strategy(self, strategy_name: str):
@@ -957,11 +957,11 @@ Create a policy process is as follows：
         """
         strategy = self.strategies[strategy_name]
         if not strategy.inited:
-            self.write_log(f"Tactics{strategy.strategy_name}Startup failed，Please initialization")
+            self.write_log(f" tactics {strategy.strategy_name} startup failed ， please initialization ")
             return
 
         if strategy.trading:
-            self.write_log(f"{strategy_name}Has been launched，Do not Repeat")
+            self.write_log(f"{strategy_name} has been launched ， do not repeat ")
             return
 
         self.call_strategy_func(strategy, strategy.on_start)
@@ -972,13 +972,13 @@ Create a policy process is as follows：
 
 &nbsp;
 
-### Stop Strategy
-- Check the startup state strategy；
-- Call the strategy of classon_stop()Function stops Policy；
-- Update Policy startup stateFalse；
-- All transactions for the commission（Market Order/Limit Order/Local stop single）Operation carried out withdrawals；
-- The policy parameters，The latest technology indicators，And the number of positions to save.vntrader/cta_strategy_data.jsonInside；
-- In the graphical interface status update policy。
+###  stop strategy 
+-  check the startup state strategy ；
+-  call the strategy of class on_stop() function stops policy ；
+-  update policy startup state False；
+-  all transactions for the commission （ market order / limit order / local stop single ） operation carried out withdrawals ；
+-  the policy parameters ， the latest technology indicators ， and the number of positions to save .vntrader/cta_strategy_data.json inside ；
+-  in the graphical interface status update policy . 
 
 ```
     def stop_strategy(self, strategy_name: str):
@@ -1007,10 +1007,10 @@ Create a policy process is as follows：
 
 &nbsp;
 
-### Edit Policy
-- Reconfigure policy parameters dictionarysetting；
-- Updates to the policy parameters dictionary；
-- In the graphical interface status update policy。
+###  edit policy 
+-  reconfigure policy parameters dictionary setting；
+-  updates to the policy parameters dictionary ；
+-  in the graphical interface status update policy . 
 
 ```
     def edit_strategy(self, strategy_name: str, setting: dict):
@@ -1026,12 +1026,12 @@ Create a policy process is as follows：
 
 &nbsp;
 
-### Removal policy
-- Check the policy status，Only stop strategy can be removed from the policy；
-- FromjsonRemoval policy configuration file(strategy_name, vt_symbol, setting)；
-- Fromsymbol_strategy_mapDictionary to remove the policy subscription contract information；
-- Fromstrategy_orderid_mapDictionary removing activity delegates Record；
-- FromstrategiesDictionary remove the configuration information for the policy。
+###  removal policy 
+-  check the policy status ， only stop strategy can be removed from the policy ；
+-  from json removal policy configuration file (strategy_name, vt_symbol, setting)；
+-  from symbol_strategy_map dictionary to remove the policy contract subscription information ；
+-  from strategy_orderid_map dictionary removing activity delegates record ；
+-  from strategies dictionary remove the configuration information for the policy . 
 
 ```
     def remove_strategy(self, strategy_name: str):
@@ -1040,7 +1040,7 @@ Create a policy process is as follows：
         """
         strategy = self.strategies[strategy_name]
         if strategy.trading:
-            self.write_log(f"Tactics{strategy.strategy_name}Removal failed，Please stop")
+            self.write_log(f" tactics {strategy.strategy_name} removal failed ， please stop ")
             return
 
         # Remove setting
@@ -1067,11 +1067,11 @@ Create a policy process is as follows：
 
 &nbsp;
 
-### Lock operation
+###  lock operation 
 
-Users in the preparation of policy，You can filllockFields to make the policy complete Lock operation，That is now prohibited flat，Instead reverse Open。
+ users in the preparation of policy ， you can fill lock fields to make the policy complete lock operation ， that is now prohibited flat ， instead reverse open . 
 
-- inctaPolicy Templatetemplatein，We can see the following specific functions have commissionedlockField，And defaultsFalse。
+-  in cta policy template template in ， we can see the following specific functions have commissioned lock field ， and defaults False. 
 
 ```
     def buy(self, price: float, volume: float, stop: bool = False, lock: bool = False):
@@ -1121,7 +1121,7 @@ Users in the preparation of policy，You can filllockFields to make the policy c
 
 &nbsp;
 
-- Set uplock=TrueRear，ctaFirm enginesend_order()Function generator response，And it calls its most fundamental functions entrustedsend_server_order()Lock commission to deal with the conversion。The first is to create the original commissionoriginal_req，Then callconverterFile insideOffsetConverterCategoryconvert_order_requestRelated to conversion。
+-  set up lock=True rear ，cta firm engine send_order() function generator response ， and it calls its most fundamental functions entrusted send_server_order() lock commission to deal with the conversion .  the first is to create the original commission original_req， then call converter file inside OffsetConverter category convert_order_request related to conversion . 
 
 ```
     def send_order(
@@ -1138,7 +1138,7 @@ Users in the preparation of policy，You can filllockFields to make the policy c
         """
         contract = self.main_engine.get_contract(strategy.vt_symbol)
         if not contract:
-            self.write_log(f"Commissioned failure，Can not find contract：{strategy.vt_symbol}", strategy)
+            self.write_log(f" commissioned failure ， can not find contract ：{strategy.vt_symbol}", strategy)
             return ""
 
         if stop:
@@ -1220,7 +1220,7 @@ Users in the preparation of policy，You can filllockFields to make the policy c
 
 &nbsp;
 
-- inconvert_order_request_lock()Function，Calculating an amount of the first cartridge and this amount may be yesterday；Then Analyzing：If this warehouse，Open only（Lock）；No this position when，If the amount is smaller than yesterday closing available，All flat yesterday，on the contrary，First flat yesterday，The remaining reverse Open。
+-  in convert_order_request_lock() function ， calculating an amount of the first cartridge and this amount may be yesterday ； then analyzing ： if this warehouse ， open only （ lock ）； no this position when ， if the amount is smaller than yesterday closing available ， all flat yesterday ， on the contrary ， first flat yesterday ， the remaining reverse open . 
 
 ```
     def convert_order_request_lock(self, req: OrderRequest):

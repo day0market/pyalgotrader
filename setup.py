@@ -1,55 +1,13 @@
-"""
-vn.py - By Traders, For Traders.
-
-The vn.py project is an open-source quantitative trading framework
-that is developed by traders, for traders.
-
-The project is mainly written in Python and uses C++ for low-layer
-and performance sensitive infrastructure.
-
-Using the vn.py project, institutional investors and professional
-traders, such as hedge funds, prop trading firms and investment banks,
-can easily develop complex trading strategies with the Event Engine
-Strategy Module, and automatically route their orders to the most
-desired destinations, including equity, commodity, forex and many
-other financial markets.
-"""
-
 import ast
-import os
-import platform
 import re
 import sys
 
-from setuptools import Extension, find_packages, setup
-
-
-def gather_autocxxpy_generated_files(root: str):
-    fs = [os.path.join(root, "module.cpp")]
-    for root, dirs, filenames in os.walk(root):
-        for filename in filenames:
-            filebase, ext = os.path.splitext(filename)
-            if ext == ".cpp" and filebase.startswith("generated_functions_"):
-                path = os.path.join(root, filename)
-                fs.append(path)
-    return fs
-
-
-def check_extension_build_flag(ext_modules, key: str, module: Extension):
-    value = os.environ.get(key, None)
-    if value is not None:
-        if value == '1':
-            ext_modules = list(set(ext_modules) | {module})
-        elif value == '0':
-            ext_modules = list(set(ext_modules) - {module})
-        else:
-            raise ValueError(f"Flag {key} should be '0' or '1', but {repr(value)} got.")
-    return ext_modules
+from setuptools import find_packages, setup
 
 
 def is_psycopg2_exists():
     try:
-        import psycopg2  # noqa
+        import psycopg2
         return True
     except ImportError:
         return False
@@ -68,7 +26,6 @@ def get_install_requires():
         "pandas",
         "matplotlib",
         "seaborn",
-        "futu-api",
         "tigeropen",
         "rqdatac",
         "ta-lib",
@@ -92,113 +49,18 @@ def get_version_string():
         return str(ast.literal_eval(version_line))
 
 
-def get_ext_modules():
-    if platform.uname().system == "Windows":
-        compiler_flags = [
-            "/MP", "/std:c++17",  # standard
-            "/O2", "/Ob2", "/Oi", "/Ot", "/Oy", "/GL",  # Optimization
-            "/bigobj",  # Better compatibility
-            "/wd4819",  # 936 code page
-            "/D_CRT_SECURE_NO_WARNINGS",
-            # suppress warning of unsafe functions like fopen, strcpy, etc
-        ]
-        extra_link_args = []
-        runtime_library_dirs = None
-    else:
-        compiler_flags = [
-            "-std=c++17",  # standard
-            "-O3",  # Optimization
-            "-Wno-delete-incomplete", "-Wno-sign-compare",
-        ]
-        extra_link_args = ["-lstdc++"]
-        runtime_library_dirs = ["$ORIGIN"]
-    vnctpmd = Extension(
-        "vnpy.api.ctp.vnctpmd",
-        [
-            "vnpy/api/ctp/vnctp/vnctpmd/vnctpmd.cpp",
-        ],
-        include_dirs=["vnpy/api/ctp/include",
-                      "vnpy/api/ctp/vnctp", ],
-        define_macros=[],
-        undef_macros=[],
-        library_dirs=["vnpy/api/ctp/libs", "vnpy/api/ctp"],
-        libraries=["thostmduserapi_se", "thosttraderapi_se", ],
-        extra_compile_args=compiler_flags,
-        extra_link_args=extra_link_args,
-        runtime_library_dirs=runtime_library_dirs,
-        depends=[],
-        language="cpp",
-    )
-    vnctptd = Extension(
-        "vnpy.api.ctp.vnctptd",
-        [
-            "vnpy/api/ctp/vnctp/vnctptd/vnctptd.cpp",
-        ],
-        include_dirs=["vnpy/api/ctp/include",
-                      "vnpy/api/ctp/vnctp", ],
-        define_macros=[],
-        undef_macros=[],
-        library_dirs=["vnpy/api/ctp/libs", "vnpy/api/ctp"],
-        libraries=["thostmduserapi_se", "thosttraderapi_se", ],
-        extra_compile_args=compiler_flags,
-        extra_link_args=extra_link_args,
-        runtime_library_dirs=runtime_library_dirs,
-        depends=[],
-        language="cpp",
-    )
-    vnoes = Extension(
-        name="vnpy.api.oes.vnoes",
-        sources=gather_autocxxpy_generated_files(
-            "vnpy/api/oes/vnoes/generated_files/",
-        ),
-        include_dirs=["vnpy/api/oes/vnoes/include",
-                      "vnpy/api/oes/vnoes/include/oes", ],
-        define_macros=[("BRIGAND_NO_BOOST_SUPPORT", "1")],
-        undef_macros=[],
-        library_dirs=["vnpy/api/oes/vnoes/libs"],
-        libraries=["oes_api"],
-        extra_compile_args=compiler_flags,
-        extra_link_args=extra_link_args,
-        runtime_library_dirs=runtime_library_dirs,
-        depends=[],
-        language="cpp",
-    )
-    if platform.system() == "Windows":
-        # use pre-built pyd for windows ( support python 3.7 only )
-        ext_modules = []
-    elif platform.system() == "Darwin":
-        ext_modules = []
-    else:
-        ext_modules = [vnctptd, vnctpmd, vnoes]
-
-    ext_modules = check_extension_build_flag(ext_modules, "VNPY_BUILD_OES", vnoes)
-    ext_modules = check_extension_build_flag(ext_modules, "VNPY_BUILD_CTP", vnctptd)
-    ext_modules = check_extension_build_flag(ext_modules, "VNPY_BUILD_CTP", vnctpmd)
-
-    return ext_modules
-
-
-parallel = os.environ.get('VNPY_BUILD_PARALLEL', None)
-if parallel:
-    if parallel == 'auto':
-        parallel = os.cpu_count()
-    if parallel != 'no':
-        from ci.parallel_build_distutils import patch_distutils
-
-        patch_distutils(int(parallel))
-
 setup(
-    name="vnpy",
+    name="pyalgotrader",
     version=get_version_string(),
-    author="vn.py team",
-    author_email="vn.py@foxmail.com",
+    author="Alex Hurko (forked and modified original repository https://github.com/vnpy/vnpy)",
+    author_email="alex1hurko@gmail.com",
     license="MIT",
-    url="https://www.vnpy.com",
-    description="A framework for developing quant trading systems.",
+    url="",
+    description="Python algorithmic trading framework",
     long_description=__doc__,
     keywords='quant quantitative investment trading algotrading',
     include_package_data=True,
-    packages=find_packages(exclude=["tests", "ci", "tests.*"]),
+    packages=find_packages(exclude=["tests", "tests.*"]),
     package_data={"": [
         "*.ico",
         "*.ini",
@@ -221,8 +83,7 @@ setup(
         "Topic :: Office/Business :: Financial :: Investment",
         "Programming Language :: Python :: Implementation :: CPython",
         "License :: OSI Approved :: MIT License",
-        "Natural Language :: Chinese (Simplified)",
-        "Natural Language :: Chinese (Simplified)"
+        "Natural Language :: English",
     ],
-    ext_modules=get_ext_modules(),
+
 )
