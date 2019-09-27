@@ -2,7 +2,7 @@ from datetime import datetime
 
 from vnpy.app.cta_strategy.strategies.xbt_strategy import XbtStrategy
 from vnpy.trader.constant import Interval
-from backtest_runner import BacktestRunner, StrategyConfig
+from vnpy.runners.backtest_runner import BacktestRunner, StrategyConfig
 
 if __name__ == '__main__':
     b = BacktestRunner(
