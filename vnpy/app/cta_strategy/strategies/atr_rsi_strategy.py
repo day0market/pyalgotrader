@@ -108,7 +108,7 @@ class AtrRsiStrategy(CtaTemplate):
             self.intra_trade_low = bar.low_price
 
             long_stop = self.intra_trade_high * \
-                (1 - self.trailing_percent / 100)
+                        (1 - self.trailing_percent / 100)
             try:
                 self.sell(long_stop, abs(self.pos), stop=True)
             except:
@@ -119,13 +119,11 @@ class AtrRsiStrategy(CtaTemplate):
             self.intra_trade_high = bar.high_price
 
             short_stop = self.intra_trade_low * \
-                (1 + self.trailing_percent / 100)
+                         (1 + self.trailing_percent / 100)
             try:
                 self.cover(short_stop, abs(self.pos), stop=True)
             except:
                 pass
-
-        self.put_event()
 
     def on_order(self, order: OrderData):
         """
