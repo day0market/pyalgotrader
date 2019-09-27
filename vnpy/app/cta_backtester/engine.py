@@ -49,13 +49,13 @@ class BacktesterEngine(BaseEngine):
 
     def init_engine(self):
         """"""
-        self.write_log(" initialization CTA backtesting engine ")
+        self.write_log("initialization CTA backtesting engine")
 
         self.backtesting_engine = BacktestingEngine()
         # Redirect log from backtesting engine outside.
         self.backtesting_engine.output = self.write_log
 
-        self.write_log(" policy file loaded ")
+        self.write_log("strategy file loaded")
 
         self.init_rqdata()
 
@@ -65,7 +65,7 @@ class BacktesterEngine(BaseEngine):
         """
         result = rqdata_client.init()
         if result:
-            self.write_log("RQData successful initialization data interface ")
+            self.write_log("RQData successful initialization data interface")
 
     def write_log(self, msg: str):
         """"""
