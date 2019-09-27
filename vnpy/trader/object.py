@@ -142,6 +142,10 @@ class OrderData(BaseData):
         )
         return req
 
+    def __str__(self):
+        return f'[Order {self.orderid} {self.time}] {self.symbol}.{self.exchange} ' \
+               f'{self.direction} {self.price} {self.volume} [{self.status} Traded: {self.traded}]'
+
 
 @dataclass
 class TradeData(BaseData):
@@ -166,6 +170,11 @@ class TradeData(BaseData):
         self.vt_symbol = f"{self.symbol}.{self.exchange.value}"
         self.vt_orderid = f"{self.gateway_name}.{self.orderid}"
         self.vt_tradeid = f"{self.gateway_name}.{self.tradeid}"
+
+    def __str__(self):
+        return f'[Position {self.tradeid} Order {self.orderid} {self.time}] {self.symbol}.{self.exchange} ' \
+               f'{self.direction} {self.price} {self.volume}'
+
 
 
 @dataclass

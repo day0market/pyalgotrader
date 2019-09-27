@@ -718,7 +718,7 @@ class CtpTdApi(TdApi):
         self.order_ref += 1
 
         if req.offset not in OFFSET_VT2CTP:
-            self.gateway.write_log(" please select kaiping direction ")
+            self.gateway.write_log(" please select offset direction ")
             return ""
 
         ctp_req = {

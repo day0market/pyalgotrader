@@ -57,28 +57,28 @@ class MainWindow(QtWidgets.QMainWindow):
     def init_dock(self):
         """"""
         self.trading_widget, trading_dock = self.create_dock(
-            TradingWidget, " transaction ", QtCore.Qt.LeftDockWidgetArea
+            TradingWidget, "Transactions", QtCore.Qt.LeftDockWidgetArea
         )
         tick_widget, tick_dock = self.create_dock(
-            TickMonitor, " price ", QtCore.Qt.RightDockWidgetArea
+            TickMonitor, "Quotes", QtCore.Qt.RightDockWidgetArea
         )
         order_widget, order_dock = self.create_dock(
-            OrderMonitor, " entrust ", QtCore.Qt.RightDockWidgetArea
+            OrderMonitor, "Orders", QtCore.Qt.RightDockWidgetArea
         )
         active_widget, active_dock = self.create_dock(
-            ActiveOrderMonitor, " activity ", QtCore.Qt.RightDockWidgetArea
+            ActiveOrderMonitor, "Active Orders", QtCore.Qt.RightDockWidgetArea
         )
         trade_widget, trade_dock = self.create_dock(
-            TradeMonitor, " deal ", QtCore.Qt.RightDockWidgetArea
+            TradeMonitor, "Trades", QtCore.Qt.RightDockWidgetArea
         )
         log_widget, log_dock = self.create_dock(
-            LogMonitor, " journal ", QtCore.Qt.BottomDockWidgetArea
+            LogMonitor, "Journal", QtCore.Qt.BottomDockWidgetArea
         )
         account_widget, account_dock = self.create_dock(
-            AccountMonitor, " funds ", QtCore.Qt.BottomDockWidgetArea
+            AccountMonitor, "Funds", QtCore.Qt.BottomDockWidgetArea
         )
         position_widget, position_dock = self.create_dock(
-            PositionMonitor, " positions ", QtCore.Qt.BottomDockWidgetArea
+            PositionMonitor, "Positions", QtCore.Qt.BottomDockWidgetArea
         )
 
         self.tabifyDockWidget(active_dock, order_dock)

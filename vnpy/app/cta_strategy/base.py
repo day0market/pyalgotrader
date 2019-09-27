@@ -40,6 +40,10 @@ class StopOrder:
     vt_orderids: list = field(default_factory=list)
     status: StopOrderStatus = StopOrderStatus.WAITING
 
+    def __str__(self):
+        return f'[Stop Order {self.stop_orderid}] {self.vt_symbol} ' \
+               f'{self.direction} {self.price} {self.volume} [{self.status}]'
+
 
 EVENT_CTA_LOG = "eCtaLog"
 EVENT_CTA_STRATEGY = "eCtaStrategy"

@@ -93,27 +93,37 @@ class AtrRsiStrategy(CtaTemplate):
 
             if self.atr_value > self.atr_ma:
                 if self.rsi_value > self.rsi_buy:
-                    self.buy(bar.close_price + 5, self.fixed_size)
+                    try:
+                        self.buy(bar.close_price + 5, self.fixed_size)
+                    except:
+                        pass
                 elif self.rsi_value < self.rsi_sell:
-                    self.short(bar.close_price - 5, self.fixed_size)
+                    try:
+                        self.short(bar.close_price - 5, self.fixed_size)
+                    except:
+                        pass
 
         elif self.pos > 0:
             self.intra_trade_high = max(self.intra_trade_high, bar.high_price)
             self.intra_trade_low = bar.low_price
 
             long_stop = self.intra_trade_high * \
-                (1 - self.trailing_percent / 100)
-            self.sell(long_stop, abs(self.pos), stop=True)
+                        (1 - self.trailing_percent / 100)
+            try:
+                self.sell(long_stop, abs(self.pos), stop=True)
+            except:
+                pass
 
         elif self.pos < 0:
             self.intra_trade_low = min(self.intra_trade_low, bar.low_price)
             self.intra_trade_high = bar.high_price
 
             short_stop = self.intra_trade_low * \
-                (1 + self.trailing_percent / 100)
-            self.cover(short_stop, abs(self.pos), stop=True)
-
-        self.put_event()
+                         (1 + self.trailing_percent / 100)
+            try:
+                self.cover(short_stop, abs(self.pos), stop=True)
+            except:
+                pass
 
     def on_order(self, order: OrderData):
         """

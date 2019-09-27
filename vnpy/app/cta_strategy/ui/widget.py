@@ -327,7 +327,7 @@ class StopOrderMonitor(BaseMonitor):
         "vt_orderids": {"display": " limit order no. ", "cell": BaseCell, "update": True},
         "vt_symbol": {"display": " native code ", "cell": BaseCell, "update": False},
         "direction": {"display": " direction ", "cell": EnumCell, "update": False},
-        "offset": {"display": " kaiping ", "cell": EnumCell, "update": False},
+        "offset": {"display": " offset ", "cell": EnumCell, "update": False},
         "price": {"display": " price ", "cell": BaseCell, "update": False},
         "volume": {"display": " quantity ", "cell": BaseCell, "update": False},
         "status": {"display": " status ", "cell": EnumCell, "update": True},

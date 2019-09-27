@@ -76,7 +76,7 @@ class StopAlgo(AlgoTemplate):
                     offset=self.offset
                 )
                 self.write_log(
-                    f" stop order has been triggered ， code ：{self.vt_symbol}， direction ：{self.direction},  price ：{self.stop_price}， quantity ：{self.volume}， kaiping ：{self.offset}")
+                    f" stop order has been triggered ， code ：{self.vt_symbol}， direction ：{self.direction},  price ：{self.stop_price}， quantity ：{self.volume}， offset ：{self.offset}")
 
         else:
             if tick.last_price <= self.stop_price:
@@ -92,7 +92,7 @@ class StopAlgo(AlgoTemplate):
                     offset=self.offset
                 )
                 self.write_log(
-                    f" stop order has been triggered ， code ：{self.vt_symbol}， direction ：{self.direction},  price ：{self.stop_price}， quantity ：{self.volume}， kaiping ：{self.offset}")
+                    f" stop order has been triggered ， code ：{self.vt_symbol}， direction ：{self.direction},  price ：{self.stop_price}， quantity ：{self.volume}， offset ：{self.offset}")
 
         self.put_variables_event()
 

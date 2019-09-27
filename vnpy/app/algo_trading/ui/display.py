@@ -5,7 +5,7 @@ NAME_DISPLAY_MAP = {
     "volume": " quantity ",
     "time": " execution time （ second ）",
     "interval": " each round interval （ second ）",
-    "offset": " kaiping ",
+    "offset": " offset ",
     "active": " algorithmic state ",
     "traded": " the number of transactions ",
     "order_volume": " single delegate ",
