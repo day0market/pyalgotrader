@@ -39,12 +39,12 @@ class CtaManager(QtWidgets.QWidget):
 
     def init_ui(self):
         """"""
-        self.setWindowTitle("CTA tactics ")
+        self.setWindowTitle("CTA live trading")
 
         # Create widgets
         self.class_combo = QtWidgets.QComboBox()
 
-        add_button = QtWidgets.QPushButton(" add policy ")
+        add_button = QtWidgets.QPushButton(" add strategy ")
         add_button.clicked.connect(self.add_strategy)
 
         init_button = QtWidgets.QPushButton(" all initialization ")
@@ -332,7 +332,7 @@ class StopOrderMonitor(BaseMonitor):
         "volume": {"display": " quantity ", "cell": BaseCell, "update": False},
         "status": {"display": " status ", "cell": EnumCell, "update": True},
         "lock": {"display": " lock ", "cell": BaseCell, "update": False},
-        "strategy_name": {"display": " policy name ", "cell": BaseCell, "update": False},
+        "strategy_name": {"display": " strategy name ", "cell": BaseCell, "update": False},
     }
 
 
@@ -393,7 +393,7 @@ class SettingEditor(QtWidgets.QDialog):
 
         # Add vt_symbol and name edit if add new strategy
         if self.class_name:
-            self.setWindowTitle(f" add policy ：{self.class_name}")
+            self.setWindowTitle(f" add strategy ：{self.class_name}")
             button_text = " add to "
             parameters = {"strategy_name": "", "vt_symbol": ""}
             parameters.update(self.parameters)

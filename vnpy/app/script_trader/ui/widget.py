@@ -28,7 +28,7 @@ class ScriptManager(QtWidgets.QWidget):
 
     def init_ui(self):
         """"""
-        self.setWindowTitle(" scripts policy ")
+        self.setWindowTitle(" scripts strategy ")
 
         start_button = QtWidgets.QPushButton(" start up ")
         start_button.clicked.connect(self.start_script)
@@ -92,7 +92,7 @@ class ScriptManager(QtWidgets.QWidget):
 
         path, type_ = QtWidgets.QFileDialog.getOpenFileName(
             self,
-            u" loading policy script ",
+            u" loading strategy script ",
             cwd,
             "Python File(*.py)"
         )

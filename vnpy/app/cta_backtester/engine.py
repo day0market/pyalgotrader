@@ -112,7 +112,7 @@ class BacktesterEngine(BaseEngine):
                 if (isinstance(value, type) and issubclass(value, CtaTemplate) and value is not CtaTemplate):
                     self.classes[value.__name__] = value
         except:  # noqa
-            msg = f" policy file {module_name} failed to load ， trigger abnormal ：\n{traceback.format_exc()}"
+            msg = f" strategy file {module_name} failed to load ， trigger abnormal ：\n{traceback.format_exc()}"
             self.write_log(msg)
 
     def get_strategy_class_names(self):

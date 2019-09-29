@@ -267,7 +267,7 @@ class ScriptEngine(BaseEngine):
 
     def send_email(self, msg: str) -> None:
         """"""
-        subject = " scripts policy engine notification "
+        subject = " scripts strategy engine notification "
         self.main_engine.send_email(subject, msg)
 
 

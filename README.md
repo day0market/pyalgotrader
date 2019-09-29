@@ -9,6 +9,14 @@ was forked, translated (with this tool) and modified from famous Chinese trading
 
 1.  Quantitative trading platform with UI
 
+![Main window](imgs/1.png?raw=true "Main window")
+
+![Live trading](imgs/2.png?raw=true "Live trading")
+
+![UI backtesing](imgs/3.png?raw=true "Backtesting")
+
+![Candlestick chart](imgs/4.png?raw=true "Candlestick chart")
+
 2.  Integrations with broker and exchanges:
     * Interactive brokers
     * Alpaca

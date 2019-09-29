@@ -52,7 +52,7 @@ class KingKeltnerStrategy(CtaTemplate):
         """
         Callback when strategy is started.
         """
-        self.write_log(" policy startup ")
+        self.write_log(" strategy startup ")
 
     def on_stop(self):
         """

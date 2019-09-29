@@ -108,7 +108,7 @@ class CtaEngine(BaseEngine):
         self.load_strategy_setting()
         self.load_strategy_data()
         self.register_event()
-        self.write_log("CTA initialization successful policy engine ")
+        self.write_log("CTA initialization successful strategy engine ")
 
     def close(self):
         """"""
@@ -596,12 +596,12 @@ class CtaEngine(BaseEngine):
         Add a new strategy.
         """
         if strategy_name in self.strategies:
-            self.write_log(f" create a policy failure ， the presence of the same name {strategy_name}")
+            self.write_log(f" create a strategy failure ， the presence of the same name {strategy_name}")
             return
 
         strategy_class = self.classes.get(class_name, None)
         if not strategy_class:
-            self.write_log(f" create a policy failure ， can not find strategy {class_name}")
+            self.write_log(f" create a strategy failure ， can not find strategy {class_name}")
             return
 
         strategy = strategy_class(self, strategy_name, vt_symbol, setting)
@@ -780,7 +780,7 @@ class CtaEngine(BaseEngine):
                 if (isinstance(value, type) and issubclass(value, CtaTemplate) and value is not CtaTemplate):
                     self.classes[value.__name__] = value
         except:  # noqa
-            msg = f" policy file {module_name} failed to load ， trigger abnormal ：\n{traceback.format_exc()}"
+            msg = f" strategy file {module_name} failed to load ， trigger abnormal ：\n{traceback.format_exc()}"
             self.write_log(msg)
 
     def load_strategy_data(self):
@@ -913,6 +913,6 @@ class CtaEngine(BaseEngine):
         if strategy:
             subject = f"{strategy.strategy_name}"
         else:
-            subject = "CTA policy engine "
+            subject = "CTA strategy engine "
 
         self.main_engine.send_email(subject, msg)

@@ -754,8 +754,8 @@ class BacktestingEngine:
                     and short_cross_price > 0
             )
 
-            print(
-                f'[{order.datetime: %Y-%d-%m %H:%M:%S} {order.price}] {self.bar.datetime: %Y-%d-%m %H:%M:%S}  {long_cross_price} {self.bar.low_price}')
+            # print(
+            #    f'[{order.datetime: %Y-%d-%m %H:%M:%S} {order.price}] {self.bar.datetime: %Y-%d-%m %H:%M:%S}  {long_cross_price} {self.bar.low_price}')
 
             if not long_cross and not short_cross:
                 continue

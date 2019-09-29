@@ -582,7 +582,7 @@ class SpreadStrategyEngine:
         self.load_strategy_setting()
         self.register_event()
 
-        self.write_log(" spread successful policy engine start ")
+        self.write_log(" spread successful strategy engine start ")
 
     def close(self):
         """"""
@@ -626,7 +626,7 @@ class SpreadStrategyEngine:
                 if (isinstance(value, type) and issubclass(value, SpreadStrategyTemplate) and value is not SpreadStrategyTemplate):
                     self.classes[value.__name__] = value
         except:  # noqa
-            msg = f" policy file {module_name} failed to load ， trigger abnormal ：\n{traceback.format_exc()}"
+            msg = f" strategy file {module_name} failed to load ， trigger abnormal ：\n{traceback.format_exc()}"
             self.write_log(msg)
 
     def get_all_strategy_class_names(self):
@@ -746,17 +746,17 @@ class SpreadStrategyEngine:
         Add a new strategy.
         """
         if strategy_name in self.strategies:
-            self.write_log(f" create a policy failure ， the presence of the same name {strategy_name}")
+            self.write_log(f" create a strategy failure ， the presence of the same name {strategy_name}")
             return
 
         strategy_class = self.classes.get(class_name, None)
         if not strategy_class:
-            self.write_log(f" create a policy failure ， can not find strategy {class_name}")
+            self.write_log(f" create a strategy failure ， can not find strategy {class_name}")
             return
 
         spread = self.spread_engine.get_spread(spread_name)
         if not spread:
-            self.write_log(f" create a policy failure ， can not find spread {spread_name}")
+            self.write_log(f" create a strategy failure ， can not find spread {spread_name}")
             return
 
         strategy = strategy_class(self, strategy_name, spread, setting)
@@ -992,6 +992,6 @@ class SpreadStrategyEngine:
         if strategy:
             subject = f"{strategy.strategy_name}"
         else:
-            subject = " spread policy engine "
+            subject = " spread strategy engine "
 
         self.main_engine.send_email(subject, msg)

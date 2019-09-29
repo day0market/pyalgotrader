@@ -252,7 +252,7 @@ class SpreadAlgoWidget(QtWidgets.QFrame):
 
         self.class_combo = QtWidgets.QComboBox()
 
-        add_button = QtWidgets.QPushButton(" add policy ")
+        add_button = QtWidgets.QPushButton(" add strategy ")
         add_button.clicked.connect(self.add_strategy)
 
         init_button = QtWidgets.QPushButton(" all initialization ")
@@ -756,7 +756,7 @@ class SettingEditor(QtWidgets.QDialog):
 
         # Add spread_name and name edit if add new strategy
         if self.class_name:
-            self.setWindowTitle(f" add policy ：{self.class_name}")
+            self.setWindowTitle(f" add strategy ：{self.class_name}")
             button_text = " add to "
             parameters = {"strategy_name": "", "spread_name": ""}
             parameters.update(self.parameters)

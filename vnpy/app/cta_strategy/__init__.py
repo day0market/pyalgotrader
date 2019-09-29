@@ -17,7 +17,7 @@ class CtaStrategyApp(BaseApp):
     app_name = APP_NAME
     app_module = __module__
     app_path = Path(__file__).parent
-    display_name = "CTA tactics "
+    display_name = "CTA live"
     engine_class = CtaEngine
     widget_name = "CtaManager"
     icon_name = "cta.ico"

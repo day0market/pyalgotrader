@@ -46,7 +46,7 @@ class XbtStrategy(CtaTemplate):
         """
         Callback when strategy is started.
         """
-        self.write_log(" policy startup ")
+        self.write_log(" strategy startup ")
         self.put_event()
 
     def on_stop(self):
@@ -57,6 +57,7 @@ class XbtStrategy(CtaTemplate):
         self.put_event()
 
     def on_tick(self, tick: TickData):
+        print(f"Tick. Ask: {tick.ask_price_1}. Bid: {tick.bid_price_1}")
         """
         Callback of new tick data update.
         """
@@ -73,12 +74,12 @@ class XbtStrategy(CtaTemplate):
             return
 
         try:
-            prev_high = am.high[-2]
+            prev_high = am.close[-2]
         except IndexError:
             self.put_event()
             return
 
-        if bar.close_price > prev_high * 1.002 and self.pos == 0:
+        if bar.close_price > prev_high and self.pos == 0:
             self.buy(bar.close_price, 1)
 
         if self.pos != 0:

@@ -505,7 +505,7 @@ class BacktestingSettingEditor(QtWidgets.QDialog):
         form = QtWidgets.QFormLayout()
 
         # Add vt_symbol and name edit if add new strategy
-        self.setWindowTitle(f" policy configuration parameters ：{self.class_name}")
+        self.setWindowTitle(f" strategy configuration parameters ：{self.class_name}")
         button_text = " determine "
         parameters = self.parameters
 
