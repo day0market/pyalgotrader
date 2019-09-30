@@ -61,7 +61,7 @@ It always good to start with examples.
 
 * [Start full featured UI]()
 
-`pyton examplese/vn_trader/run.py`
+`python examplese/vn_trader/run.py`
   
 * [Run strategy backtest without UI](https://github.com/day0market/pyalgotrader/tree/master/examples/cta_backtesting)
   
