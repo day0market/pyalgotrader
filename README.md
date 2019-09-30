@@ -2,7 +2,7 @@
 
 
 This is framework for alogrithmic trading. It allows you backtest you strategies and put them in live trading. This repo
-was forked, translated (with this tool) and modified from famous Chinese trading framework. 
+was forked, translated (with this [tool](https://github.com/day0market/pychinesecodetoenglish)) and modified from famous Chinese trading framework. 
 
 
 ##  features 
