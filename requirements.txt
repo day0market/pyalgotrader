@@ -14,9 +14,9 @@ matplotlib
 seaborn
 futu-api
 tigeropen
-rqdatac
-ta-lib
 ibapi
 deap
 pyzmq
 wmi
+rqdatac
+ta-lib

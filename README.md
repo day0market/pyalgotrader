@@ -47,13 +47,23 @@ was forked, translated (with this [tool](https://github.com/day0market/pychinese
 
 Supported python versions: 3.6+ (3.7 is a best option)
 
-`git clone https://github.com/day0market/pyalgotrader.git`
+```
+git clone https://github.com/day0market/pyalgotrader.git
+cd vnpy
+python setup.py install
+```
 
-* If you want to install it as python lib in your virtualenv
-    `python setup.py install`
+You will probably face issues with TA-lib. Try to use one of versions listed [here](https://www.lfd.uci.edu/~gohlke/pythonlibs/). Download wheel package,
+go to folder and run pip install.
+For example: 
 
-* If you want just play with a code or run platform (better option)
-    `pip install -r requirements.txt`
+`pip install TA_Lib-0.4.17-cp36-cp36m-win_amd64.whl`
+
+Another known issue is installation of `rqdatac`
+
+You can install it manually with pip:
+
+`python -m pip install https://pip.vnpy.com/colletion/rqdatac-2.1.0.tar.gz`
 
 ## run
 
@@ -61,7 +71,7 @@ It always good to start with examples.
 
 * [Start full featured UI]()
 
-`python examplese/vn_trader/run.py`
+`python examples/vn_trader/run.py`
   
 * [Run strategy backtest without UI](https://github.com/day0market/pyalgotrader/tree/master/examples/cta_backtesting)
   
