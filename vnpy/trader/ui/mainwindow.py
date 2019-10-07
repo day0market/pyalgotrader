@@ -55,7 +55,7 @@ class MainWindow(QtWidgets.QMainWindow):
     def init_dock(self):
         """"""
         self.trading_widget, trading_dock = self.create_dock(
-            TradingWidget, "Transactions", QtCore.Qt.LeftDockWidgetArea
+            TradingWidget, "Manual Trade", QtCore.Qt.LeftDockWidgetArea
         )
         tick_widget, tick_dock = self.create_dock(
             TickMonitor, "Quotes", QtCore.Qt.RightDockWidgetArea
@@ -88,19 +88,19 @@ class MainWindow(QtWidgets.QMainWindow):
         bar = self.menuBar()
 
         # System menu
-        sys_menu = bar.addMenu("connection")
+        sys_menu = bar.addMenu("Connection")
 
         gateway_names = self.main_engine.get_all_gateway_names()
         for name in gateway_names:
             func = partial(self.connect, name)
-            self.add_menu_action(sys_menu, f"connection {name}", "connect.ico", func)
+            self.add_menu_action(sys_menu, f"Connection {name}", "connect.ico", func)
 
         sys_menu.addSeparator()
 
-        self.add_menu_action(sys_menu, "exit", "exit.ico", self.close)
+        self.add_menu_action(sys_menu, "Exit", "exit.ico", self.close)
 
         # App menu
-        app_menu = bar.addMenu("apps")
+        app_menu = bar.addMenu("Apps")
 
         all_apps = self.main_engine.get_all_apps()
         for app in all_apps:
@@ -117,12 +117,12 @@ class MainWindow(QtWidgets.QMainWindow):
             )
 
         # Global setting editor
-        action = QtWidgets.QAction("settings", self)
+        action = QtWidgets.QAction("Settings", self)
         action.triggered.connect(self.edit_global_setting)
         bar.addAction(action)
 
         # Help menu
-        help_menu = bar.addMenu("help")
+        help_menu = bar.addMenu("Help")
 
         self.add_menu_action(
             help_menu,
@@ -223,8 +223,8 @@ class MainWindow(QtWidgets.QMainWindow):
         """
         reply = QtWidgets.QMessageBox.question(
             self,
-            "exit",
-            "close platform?",
+            "Exit",
+            "Close platform?",
             QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No,
             QtWidgets.QMessageBox.No,
         )

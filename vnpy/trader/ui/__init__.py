@@ -2,7 +2,6 @@ import ctypes
 import platform
 import sys
 import traceback
-import webbrowser
 
 import qdarkstyle
 from PyQt5 import QtGui, QtWidgets, QtCore
@@ -24,7 +23,7 @@ def excepthook(exctype, value, tb):
     dialog.exec_()
 
 
-def create_qapp(app_name: str = "VN Trader"):
+def create_qapp(app_name: str = "Algo Trader"):
     """
     Create Qt Application.
     """
@@ -60,25 +59,23 @@ class ExceptionDialog(QtWidgets.QDialog):
 
     def init_ui(self):
         """"""
-        self.setWindowTitle(" trigger abnormal ")
+        self.setWindowTitle("Error")
+        # todo NOTIFY BY EMAIL
         self.setFixedSize(600, 600)
 
         self.msg_edit = QtWidgets.QTextEdit()
         self.msg_edit.setText(self.msg)
         self.msg_edit.setReadOnly(True)
 
-        copy_button = QtWidgets.QPushButton(" copy ")
+        copy_button = QtWidgets.QPushButton("Copy")
         copy_button.clicked.connect(self._copy_text)
 
-        community_button = QtWidgets.QPushButton(" recourse ")
-        community_button.clicked.connect(self._open_community)
-
-        close_button = QtWidgets.QPushButton(" shut down ")
+        close_button = QtWidgets.QPushButton("Shut down")
         close_button.clicked.connect(self.close)
 
         hbox = QtWidgets.QHBoxLayout()
         hbox.addWidget(copy_button)
-        hbox.addWidget(community_button)
+
         hbox.addWidget(close_button)
 
         vbox = QtWidgets.QVBoxLayout()
@@ -91,7 +88,3 @@ class ExceptionDialog(QtWidgets.QDialog):
         """"""
         self.msg_edit.selectAll()
         self.msg_edit.copy()
-
-    def _open_community(self):
-        """"""
-        webbrowser.open("https://www.vnpy.com/forum/forum/2-ti-wen-qiu-zhu")
