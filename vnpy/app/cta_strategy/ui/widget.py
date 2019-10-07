@@ -44,19 +44,19 @@ class CtaManager(QtWidgets.QWidget):
         # Create widgets
         self.class_combo = QtWidgets.QComboBox()
 
-        add_button = QtWidgets.QPushButton(" add strategy ")
+        add_button = QtWidgets.QPushButton("Add strategy")
         add_button.clicked.connect(self.add_strategy)
 
-        init_button = QtWidgets.QPushButton(" all initialization ")
+        init_button = QtWidgets.QPushButton("Prepare All")
         init_button.clicked.connect(self.cta_engine.init_all_strategies)
 
-        start_button = QtWidgets.QPushButton(" all start ")
+        start_button = QtWidgets.QPushButton("Start All")
         start_button.clicked.connect(self.cta_engine.start_all_strategies)
 
-        stop_button = QtWidgets.QPushButton(" full stop ")
+        stop_button = QtWidgets.QPushButton("Stop All")
         stop_button.clicked.connect(self.cta_engine.stop_all_strategies)
 
-        clear_button = QtWidgets.QPushButton(" clear log ")
+        clear_button = QtWidgets.QPushButton("Clear log")
         clear_button.clicked.connect(self.clear_log)
 
         self.scroll_layout = QtWidgets.QVBoxLayout()
@@ -164,7 +164,7 @@ class StrategyManager(QtWidgets.QFrame):
     """
 
     def __init__(
-        self, cta_manager: CtaManager, cta_engine: CtaEngine, data: dict
+            self, cta_manager: CtaManager, cta_engine: CtaEngine, data: dict
     ):
         """"""
         super(StrategyManager, self).__init__()
@@ -183,19 +183,19 @@ class StrategyManager(QtWidgets.QFrame):
         self.setFrameShape(self.Box)
         self.setLineWidth(1)
 
-        init_button = QtWidgets.QPushButton(" initialization ")
+        init_button = QtWidgets.QPushButton("Prepare")
         init_button.clicked.connect(self.init_strategy)
 
-        start_button = QtWidgets.QPushButton(" start up ")
+        start_button = QtWidgets.QPushButton("Start")
         start_button.clicked.connect(self.start_strategy)
 
-        stop_button = QtWidgets.QPushButton(" stop ")
+        stop_button = QtWidgets.QPushButton("Stop")
         stop_button.clicked.connect(self.stop_strategy)
 
-        edit_button = QtWidgets.QPushButton(" edit ")
+        edit_button = QtWidgets.QPushButton("Edit")
         edit_button.clicked.connect(self.edit_strategy)
 
-        remove_button = QtWidgets.QPushButton(" remove ")
+        remove_button = QtWidgets.QPushButton("Remove")
         remove_button.clicked.connect(self.remove_strategy)
 
         strategy_name = self._data["strategy_name"]
@@ -374,7 +374,7 @@ class SettingEditor(QtWidgets.QDialog):
     """
 
     def __init__(
-        self, parameters: dict, strategy_name: str = "", class_name: str = ""
+            self, parameters: dict, strategy_name: str = "", class_name: str = ""
     ):
         """"""
         super(SettingEditor, self).__init__()
@@ -393,13 +393,13 @@ class SettingEditor(QtWidgets.QDialog):
 
         # Add vt_symbol and name edit if add new strategy
         if self.class_name:
-            self.setWindowTitle(f" add strategy ：{self.class_name}")
-            button_text = " add to "
+            self.setWindowTitle(f"Add strategy ：{self.class_name}")
+            button_text = "Add to"
             parameters = {"strategy_name": "", "vt_symbol": ""}
             parameters.update(self.parameters)
         else:
-            self.setWindowTitle(f" parameter editing ：{self.strategy_name}")
-            button_text = " determine "
+            self.setWindowTitle(f"Edit parameters：{self.strategy_name}")
+            button_text = "Save"
             parameters = self.parameters
 
         for name, value in parameters.items():

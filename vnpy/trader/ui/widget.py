@@ -3,9 +3,9 @@ Basic widgets for VN Trader.
 """
 
 import csv
+from copy import copy
 from enum import Enum
 from typing import Any
-from copy import copy
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
@@ -21,14 +21,13 @@ from ..event import (
     EVENT_LOG
 )
 from ..object import OrderRequest, SubscribeRequest
-from ..utility import load_json, save_json
 from ..setting import SETTING_FILENAME, SETTINGS
+from ..utility import load_json, save_json
 
-
-COLOR_LONG = QtGui.QColor("red")
-COLOR_SHORT = QtGui.QColor("green")
-COLOR_BID = QtGui.QColor(255, 174, 201)
-COLOR_ASK = QtGui.QColor(160, 255, 160)
+COLOR_LONG = QtGui.QColor("green")
+COLOR_SHORT = QtGui.QColor("red")
+COLOR_BID = QtGui.QColor(62, 183, 44)
+COLOR_ASK = QtGui.QColor(183, 44, 62)
 COLOR_BLACK = QtGui.QColor("black")
 
 
@@ -228,11 +227,11 @@ class BaseMonitor(QtWidgets.QTableWidget):
         """
         self.menu = QtWidgets.QMenu(self)
 
-        resize_action = QtWidgets.QAction(" column width ", self)
+        resize_action = QtWidgets.QAction("Column width", self)
         resize_action.triggered.connect(self.resize_columns)
         self.menu.addAction(resize_action)
 
-        save_action = QtWidgets.QAction(" save data ", self)
+        save_action = QtWidgets.QAction("Save...", self)
         save_action.triggered.connect(self.save_csv)
         self.menu.addAction(save_action)
 
@@ -506,7 +505,7 @@ class ConnectDialog(QtWidgets.QDialog):
 
     def init_ui(self):
         """"""
-        self.setWindowTitle(f" connection {self.gateway_name}")
+        self.setWindowTitle(f"Connect {self.gateway_name}")
 
         # Default setting provides field name, field data type and field default value.
         default_setting = self.main_engine.get_default_setting(
@@ -539,7 +538,7 @@ class ConnectDialog(QtWidgets.QDialog):
             form.addRow(f"{field_name} <{field_type.__name__}>", widget)
             self.widgets[field_name] = (widget, field_type)
 
-        button = QtWidgets.QPushButton(" connection ")
+        button = QtWidgets.QPushButton("Connect")
         button.clicked.connect(self.connect)
         form.addRow(button)
 
@@ -622,28 +621,28 @@ class TradingWidget(QtWidgets.QWidget):
         self.gateway_combo = QtWidgets.QComboBox()
         self.gateway_combo.addItems(self.main_engine.get_all_gateway_names())
 
-        send_button = QtWidgets.QPushButton(" entrust ")
+        send_button = QtWidgets.QPushButton("Send")
         send_button.clicked.connect(self.send_order)
 
-        cancel_button = QtWidgets.QPushButton(" full withdrawal ")
+        cancel_button = QtWidgets.QPushButton("Cancel All Orders")
         cancel_button.clicked.connect(self.cancel_all)
 
         form1 = QtWidgets.QFormLayout()
-        form1.addRow(" exchange ", self.exchange_combo)
-        form1.addRow(" code ", self.symbol_line)
-        form1.addRow(" name ", self.name_line)
-        form1.addRow(" direction ", self.direction_combo)
-        form1.addRow(" offset ", self.offset_combo)
-        form1.addRow(" types of ", self.order_type_combo)
-        form1.addRow(" price ", self.price_line)
-        form1.addRow(" quantity ", self.volume_line)
-        form1.addRow(" interface ", self.gateway_combo)
+        form1.addRow("Exchange", self.exchange_combo)
+        form1.addRow("Symbol", self.symbol_line)
+        form1.addRow("Name", self.name_line)
+        form1.addRow("Side", self.direction_combo)
+        form1.addRow("Offset", self.offset_combo)
+        form1.addRow("Order type", self.order_type_combo)
+        form1.addRow("Price", self.price_line)
+        form1.addRow("Quantity", self.volume_line)
+        form1.addRow("Gateway", self.gateway_combo)
         form1.addRow(send_button)
         form1.addRow(cancel_button)
 
         # Market depth display area
-        bid_color = "rgb(255,174,201)"
-        ask_color = "rgb(160,255,160)"
+        bid_color = "rgb(62, 183, 44)"
+        ask_color = "rgb(183, 44, 62)"
 
         self.bp1_label = self.create_label(bid_color)
         self.bp2_label = self.create_label(bid_color)
@@ -828,12 +827,12 @@ class TradingWidget(QtWidgets.QWidget):
         """
         symbol = str(self.symbol_line.text())
         if not symbol:
-            QtWidgets.QMessageBox.critical(self, " commissioned failure ", " please enter the code contract ")
+            QtWidgets.QMessageBox.critical(self, "Can't send order", "Plese enter symbol")
             return
 
         volume_text = str(self.volume_line.text())
         if not volume_text:
-            QtWidgets.QMessageBox.critical(self, " commissioned failure ", " please enter the number of commission ")
+            QtWidgets.QMessageBox.critical(self, "Can't send order", "Please enter size")
             return
         volume = float(volume_text)
 
@@ -915,13 +914,13 @@ class ContractManager(QtWidgets.QWidget):
 
     def init_ui(self):
         """"""
-        self.setWindowTitle(" contract inquiry ")
+        self.setWindowTitle("Search instrument")
         self.resize(1000, 600)
 
         self.filter_line = QtWidgets.QLineEdit()
-        self.filter_line.setPlaceholderText(" enter the code or exchange contract ， leave blank to query all contracts ")
+        self.filter_line.setPlaceholderText("Enter instrument code or exchange. Leave blank to find all")
 
-        self.button_show = QtWidgets.QPushButton(" inquire ")
+        self.button_show = QtWidgets.QPushButton("Search")
         self.button_show.clicked.connect(self.show_contracts)
 
         labels = []
@@ -975,42 +974,6 @@ class ContractManager(QtWidgets.QWidget):
         self.contract_table.resizeColumnsToContents()
 
 
-class AboutDialog(QtWidgets.QDialog):
-    """
-    About VN Trader.
-    """
-
-    def __init__(self, main_engine: MainEngine, event_engine: EventEngine):
-        """"""
-        super(AboutDialog, self).__init__()
-
-        self.main_engine = main_engine
-        self.event_engine = event_engine
-
-        self.init_ui()
-
-    def init_ui(self):
-        """"""
-        self.setWindowTitle(f" on VN Trader")
-
-        text = """
-            Developed by Traders, for Traders.
-            License：MIT
-
-            Website：www.vnpy.com
-            Github：www.github.com/vnpy/vnpy
-
-            """
-
-        label = QtWidgets.QLabel()
-        label.setText(text)
-        label.setMinimumWidth(500)
-
-        vbox = QtWidgets.QVBoxLayout()
-        vbox.addWidget(label)
-        self.setLayout(vbox)
-
-
 class GlobalDialog(QtWidgets.QDialog):
     """
     Start connection of a certain gateway.
@@ -1026,7 +989,7 @@ class GlobalDialog(QtWidgets.QDialog):
 
     def init_ui(self):
         """"""
-        self.setWindowTitle(" global configuration ")
+        self.setWindowTitle("Global settings")
         self.setMinimumWidth(800)
 
         settings = copy(SETTINGS)
@@ -1042,7 +1005,7 @@ class GlobalDialog(QtWidgets.QDialog):
             form.addRow(f"{field_name} <{field_type.__name__}>", widget)
             self.widgets[field_name] = (widget, field_type)
 
-        button = QtWidgets.QPushButton(" determine ")
+        button = QtWidgets.QPushButton("Save")
         button.clicked.connect(self.update_setting)
         form.addRow(button)
 
@@ -1069,8 +1032,8 @@ class GlobalDialog(QtWidgets.QDialog):
 
         QtWidgets.QMessageBox.information(
             self,
-            " note ",
-            " modify global configuration need to restart VN Trader after take effect ！",
+            "Note",
+            "You are modifying global configuration need to restart platform after take effect",
             QtWidgets.QMessageBox.Ok
         )
 

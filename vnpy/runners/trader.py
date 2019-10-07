@@ -30,21 +30,7 @@ def run_ui():
     event_engine = EventEngine()
 
     main_engine = MainEngine(event_engine)
-
-    main_engine.add_gateway(BinanceGateway)
-    main_engine.add_gateway(IbGateway)
-
     main_engine.add_gateway(BitmexGateway)
-
-    main_engine.add_gateway(OkexGateway)
-    main_engine.add_gateway(HuobiGateway)
-    main_engine.add_gateway(BitfinexGateway)
-    main_engine.add_gateway(OnetokenGateway)
-    main_engine.add_gateway(OkexfGateway)
-    main_engine.add_gateway(AlpacaGateway)
-    main_engine.add_gateway(OkexsGateway)
-
-    main_engine.add_gateway(CoinbaseGateway)
 
     main_engine.add_app(CtaStrategyApp)
     main_engine.add_app(CtaBacktesterApp)

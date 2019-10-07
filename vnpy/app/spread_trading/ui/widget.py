@@ -215,7 +215,7 @@ class SpreadAlgoWidget(QtWidgets.QFrame):
 
     def init_ui(self):
         """"""
-        self.setWindowTitle(" start algorithm ")
+        self.setWindowTitle("Start algo")
         self.setFrameShape(self.Box)
         self.setLineWidth(1)
 
@@ -242,7 +242,7 @@ class SpreadAlgoWidget(QtWidgets.QFrame):
         self.interval_line = QtWidgets.QLineEdit()
         self.interval_line.setValidator(int_validator)
 
-        button_start = QtWidgets.QPushButton(" start up ")
+        button_start = QtWidgets.QPushButton("Start")
         button_start.clicked.connect(self.start_algo)
 
         self.lock_combo = QtWidgets.QComboBox()
@@ -252,32 +252,32 @@ class SpreadAlgoWidget(QtWidgets.QFrame):
 
         self.class_combo = QtWidgets.QComboBox()
 
-        add_button = QtWidgets.QPushButton(" add strategy ")
+        add_button = QtWidgets.QPushButton("Add strategy")
         add_button.clicked.connect(self.add_strategy)
 
-        init_button = QtWidgets.QPushButton(" all initialization ")
+        init_button = QtWidgets.QPushButton("Prepare all")
         init_button.clicked.connect(self.strategy_engine.init_all_strategies)
 
-        start_button = QtWidgets.QPushButton(" all start ")
+        start_button = QtWidgets.QPushButton("Start all")
         start_button.clicked.connect(self.strategy_engine.start_all_strategies)
 
-        stop_button = QtWidgets.QPushButton(" full stop ")
+        stop_button = QtWidgets.QPushButton("Stop all")
         stop_button.clicked.connect(self.strategy_engine.stop_all_strategies)
 
-        add_spread_button = QtWidgets.QPushButton(" creating spread ")
+        add_spread_button = QtWidgets.QPushButton("Create spread")
         add_spread_button.clicked.connect(self.add_spread)
 
-        remove_spread_button = QtWidgets.QPushButton(" spread removed ")
+        remove_spread_button = QtWidgets.QPushButton("Remove spread")
         remove_spread_button.clicked.connect(self.remove_spread)
 
         form = QtWidgets.QFormLayout()
-        form.addRow(" spread ", self.name_line)
-        form.addRow(" direction ", self.direction_combo)
-        form.addRow(" price ", self.price_line)
-        form.addRow(" quantity ", self.volume_line)
-        form.addRow(" overvalued ", self.payup_line)
-        form.addRow(" interval ", self.interval_line)
-        form.addRow(" lock ", self.lock_combo)
+        form.addRow("spread", self.name_line)
+        form.addRow("direction", self.direction_combo)
+        form.addRow("price", self.price_line)
+        form.addRow("quantity", self.volume_line)
+        form.addRow("overvalued", self.payup_line)
+        form.addRow("interval", self.interval_line)
+        form.addRow("lock", self.lock_combo)
         form.addRow(button_start)
 
         vbox = QtWidgets.QVBoxLayout()
@@ -304,7 +304,7 @@ class SpreadAlgoWidget(QtWidgets.QFrame):
         interval = int(self.interval_line.text())
 
         lock_str = self.lock_combo.currentText()
-        if lock_str == " yes ":
+        if lock_str == "yes":
             lock = True
         else:
             lock = False
@@ -370,28 +370,28 @@ class SpreadDataDialog(QtWidgets.QDialog):
 
     def init_ui(self):
         """"""
-        self.setWindowTitle(" creating spread ")
+        self.setWindowTitle("Create spread")
 
         self.name_line = QtWidgets.QLineEdit()
         self.active_line = QtWidgets.QLineEdit()
 
         self.grid = QtWidgets.QGridLayout()
 
-        button_add = QtWidgets.QPushButton(" creating spread ")
+        button_add = QtWidgets.QPushButton("Create spread")
         button_add.clicked.connect(self.add_spread)
 
         Label = QtWidgets.QLabel
 
         grid = QtWidgets.QGridLayout()
-        grid.addWidget(Label(" spread name "), 0, 0)
+        grid.addWidget(Label("Spread name"), 0, 0)
         grid.addWidget(self.name_line, 0, 1, 1, 3)
-        grid.addWidget(Label(" code active leg "), 1, 0)
+        grid.addWidget(Label("code active leg "), 1, 0)
         grid.addWidget(self.active_line, 1, 1, 1, 3)
 
         grid.addWidget(Label(""), 2, 0)
-        grid.addWidget(Label(" native code "), 3, 1)
-        grid.addWidget(Label(" price multiplier "), 3, 2)
-        grid.addWidget(Label(" trading multiplier "), 3, 3)
+        grid.addWidget(Label("native code"), 3, 1)
+        grid.addWidget(Label("price multiplier"), 3, 2)
+        grid.addWidget(Label("trading multiplier"), 3, 3)
 
         int_validator = QtGui.QIntValidator()
 
@@ -405,7 +405,7 @@ class SpreadDataDialog(QtWidgets.QDialog):
             trading_line = QtWidgets.QLineEdit()
             trading_line.setValidator(int_validator)
 
-            grid.addWidget(Label(" leg {}".format(i + 1)), 4 + i, 0)
+            grid.addWidget(Label("leg {}".format(i + 1)), 4 + i, 0)
             grid.addWidget(symbol_line, 4 + i, 1)
             grid.addWidget(price_line, 4 + i, 2)
             grid.addWidget(trading_line, 4 + i, 3)
@@ -756,13 +756,13 @@ class SettingEditor(QtWidgets.QDialog):
 
         # Add spread_name and name edit if add new strategy
         if self.class_name:
-            self.setWindowTitle(f" add strategy ：{self.class_name}")
-            button_text = " add to "
+            self.setWindowTitle(f"Add strategy ：{self.class_name}")
+            button_text = "Add to"
             parameters = {"strategy_name": "", "spread_name": ""}
             parameters.update(self.parameters)
         else:
-            self.setWindowTitle(f" parameter editing ：{self.strategy_name}")
-            button_text = " determine "
+            self.setWindowTitle(f"New parameters：{self.strategy_name}")
+            button_text = "Save"
             parameters = self.parameters
 
         for name, value in parameters.items():

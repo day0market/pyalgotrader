@@ -52,13 +52,13 @@ class BacktesterManager(QtWidgets.QWidget):
 
     def init_ui(self):
         """"""
-        self.setWindowTitle("CTA backtesting ")
+        self.setWindowTitle("Strategy Backtesting")
 
         # Setting Part
         self.class_combo = QtWidgets.QComboBox()
         self.class_combo.addItems(self.class_names)
 
-        self.symbol_line = QtWidgets.QLineEdit("IF88.CFFEX")
+        self.symbol_line = QtWidgets.QLineEdit("XBTUSD.BITMEX")
 
         self.interval_combo = QtWidgets.QComboBox()
         for inteval in Interval:
@@ -78,34 +78,34 @@ class BacktesterManager(QtWidgets.QWidget):
             QtCore.QDate.currentDate()
         )
 
-        self.rate_line = QtWidgets.QLineEdit("0.000025")
-        self.slippage_line = QtWidgets.QLineEdit("0.2")
-        self.size_line = QtWidgets.QLineEdit("300")
-        self.pricetick_line = QtWidgets.QLineEdit("0.2")
+        self.rate_line = QtWidgets.QLineEdit("0.0")
+        self.slippage_line = QtWidgets.QLineEdit("0")
+        self.size_line = QtWidgets.QLineEdit("1")
+        self.pricetick_line = QtWidgets.QLineEdit("0.001")
         self.capital_line = QtWidgets.QLineEdit("1000000")
 
-        backtesting_button = QtWidgets.QPushButton("start backtest")
+        backtesting_button = QtWidgets.QPushButton("Start backtest")
         backtesting_button.clicked.connect(self.start_backtesting)
 
-        optimization_button = QtWidgets.QPushButton(" parameter optimization ")
+        optimization_button = QtWidgets.QPushButton("Optimization")
         optimization_button.clicked.connect(self.start_optimization)
 
-        self.result_button = QtWidgets.QPushButton(" optimization results ")
+        self.result_button = QtWidgets.QPushButton("Optimization results")
         self.result_button.clicked.connect(self.show_optimization_result)
         self.result_button.setEnabled(False)
 
-        downloading_button = QtWidgets.QPushButton(" download data ")
+        downloading_button = QtWidgets.QPushButton("Download data")
         downloading_button.clicked.connect(self.start_downloading)
 
-        self.order_button = QtWidgets.QPushButton(" commissioned record ")
+        self.order_button = QtWidgets.QPushButton("Orders")
         self.order_button.clicked.connect(self.show_backtesting_orders)
         self.order_button.setEnabled(False)
 
-        self.trade_button = QtWidgets.QPushButton(" transaction record ")
+        self.trade_button = QtWidgets.QPushButton("Trades")
         self.trade_button.clicked.connect(self.show_backtesting_trades)
         self.trade_button.setEnabled(False)
 
-        self.daily_button = QtWidgets.QPushButton(" daily profit and loss ")
+        self.daily_button = QtWidgets.QPushButton("Daily P&L")
         self.daily_button.clicked.connect(self.show_daily_results)
         self.daily_button.setEnabled(False)
 
@@ -126,16 +126,16 @@ class BacktesterManager(QtWidgets.QWidget):
             button.setFixedHeight(button.sizeHint().height() * 2)
 
         form = QtWidgets.QFormLayout()
-        form.addRow("strategy", self.class_combo)
-        form.addRow("symbol", self.symbol_line)
-        form.addRow("K line cycle", self.interval_combo)
-        form.addRow("start date", self.start_date_edit)
-        form.addRow("end date", self.end_date_edit)
-        form.addRow("fee", self.rate_line)
-        form.addRow("slippage", self.slippage_line)
-        form.addRow("contract multiplier", self.size_line)
-        form.addRow("min price tick", self.pricetick_line)
-        form.addRow("capital", self.capital_line)
+        form.addRow("Strategy", self.class_combo)
+        form.addRow("Symbol", self.symbol_line)
+        form.addRow("Candlestick", self.interval_combo)
+        form.addRow("Start date", self.start_date_edit)
+        form.addRow("End date", self.end_date_edit)
+        form.addRow("Fee", self.rate_line)
+        form.addRow("Slippage", self.slippage_line)
+        form.addRow("Size", self.size_line)
+        form.addRow("Min price tick", self.pricetick_line)
+        form.addRow("Capital", self.capital_line)
 
         left_vbox = QtWidgets.QVBoxLayout()
         left_vbox.addLayout(form)
@@ -232,7 +232,7 @@ class BacktesterManager(QtWidgets.QWidget):
 
     def process_optimization_finished_event(self, event: Event):
         """"""
-        self.write_log(" please click [ optimization results ] button view ")
+        self.write_log("Please click [ optimization results ] button")
         self.result_button.setEnabled(True)
 
     def start_backtesting(self):
@@ -394,37 +394,37 @@ class BacktesterManager(QtWidgets.QWidget):
 class StatisticsMonitor(QtWidgets.QTableWidget):
     """"""
     KEY_NAME_MAP = {
-        "start_date": " the first trading day ",
-        "end_date": " last trading day ",
+        "start_date": "first trading day",
+        "end_date": "last trading day",
 
-        "total_days": " total trading day ",
-        "profit_days": " profit trading day ",
-        "loss_days": " loss trading day ",
+        "total_days": "total trading day",
+        "profit_days": "profit trading day",
+        "loss_days": "loss trading day",
 
-        "capital": " seed money ",
-        "end_balance": " end funds ",
+        "capital": "start cash",
+        "end_balance": "end cash",
 
-        "total_return": " the total rate of return ",
-        "annual_return": " annualized earnings ",
-        "max_drawdown": " the maximum retracement ",
-        "max_ddpercent": " the maximum percentage retracement ",
+        "total_return": "total return",
+        "annual_return": "annual return",
+        "max_drawdown": "max drawdown",
+        "max_ddpercent": "max drawdown percent",
 
-        "total_net_pnl": " total profit and loss ",
-        "total_commission": " total fee ",
-        "total_slippage": " the total slippage ",
-        "total_turnover": " the total turnover ",
-        "total_trade_count": " the total transaction amount ",
+        "total_net_pnl": "total net P&L",
+        "total_commission": "total fees",
+        "total_slippage": "slippage",
+        "total_turnover": "turnover",
+        "total_trade_count": "trades count",
 
-        "daily_net_pnl": " average daily profit and loss ",
-        "daily_commission": " average daily fee ",
-        "daily_slippage": " average daily slippage ",
-        "daily_turnover": " average daily turnover ",
-        "daily_trade_count": " average daily transaction amount ",
+        "daily_net_pnl": "daily net pnl",
+        "daily_commission": "daily commission",
+        "daily_slippage": "daily slippage",
+        "daily_turnover": "average daily turnover",
+        "daily_trade_count": "daily trade count",
 
-        "daily_return": " average daily rate of return ",
-        "return_std": " return standard deviation ",
-        "sharpe_ratio": " sharpe ratio ",
-        "return_drawdown_ratio": " earnings ratio retracement "
+        "daily_return": "daily return",
+        "return_std": "return standard deviation",
+        "sharpe_ratio": "sharpe ratio",
+        "return_drawdown_ratio": "earnings to drawdown"
     }
 
     def __init__(self):
@@ -505,8 +505,8 @@ class BacktestingSettingEditor(QtWidgets.QDialog):
         form = QtWidgets.QFormLayout()
 
         # Add vt_symbol and name edit if add new strategy
-        self.setWindowTitle(f" strategy configuration parameters ：{self.class_name}")
-        button_text = " determine "
+        self.setWindowTitle(f"Strategy parameters：{self.class_name}")
+        button_text = "Save"
         parameters = self.parameters
 
         for name, value in parameters.items():
@@ -556,7 +556,7 @@ class BacktesterChart(pg.GraphicsWindow):
 
     def __init__(self):
         """"""
-        super().__init__(title="Backtester Chart")
+        super().__init__(title="Backtest Chart")
 
         self.dates = {}
 
@@ -568,24 +568,24 @@ class BacktesterChart(pg.GraphicsWindow):
 
         # Create plot widgets
         self.balance_plot = self.addPlot(
-            title=" account equity ",
+            title="Equity",
             axisItems={"bottom": DateAxis(self.dates, orientation="bottom")}
         )
         self.nextRow()
 
         self.drawdown_plot = self.addPlot(
-            title=" net retracement ",
+            title="Drawdown",
             axisItems={"bottom": DateAxis(self.dates, orientation="bottom")}
         )
         self.nextRow()
 
         self.pnl_plot = self.addPlot(
-            title=" daily profit and loss ",
+            title="Daily P&L",
             axisItems={"bottom": DateAxis(self.dates, orientation="bottom")}
         )
         self.nextRow()
 
-        self.distribution_plot = self.addPlot(title=" profit and loss distribution ")
+        self.distribution_plot = self.addPlot(title="P&L distribution")
 
         # Add curves and bars on plot widgets
         self.balance_curve = self.balance_plot.plot(
@@ -681,10 +681,10 @@ class OptimizationSettingEditor(QtWidgets.QDialog):
     For setting up parameters for optimization.
     """
     DISPLAY_NAME_MAP = {
-        " the total rate of return ": "total_return",
-        " sharpe ratio ": "sharpe_ratio",
-        " earnings ratio retracement ": "return_drawdown_ratio",
-        " average daily profit and loss ": "daily_net_pnl"
+        "the total rate of return": "total_return",
+        "sharpe ratio": "sharpe_ratio",
+        "return to drawdown ratio": "return_drawdown_ratio",
+        "average daily P&L": "daily_net_pnl"
     }
 
     def __init__(
@@ -710,15 +710,15 @@ class OptimizationSettingEditor(QtWidgets.QDialog):
         self.target_combo.addItems(list(self.DISPLAY_NAME_MAP.keys()))
 
         grid = QtWidgets.QGridLayout()
-        grid.addWidget(QLabel(" aims "), 0, 0)
+        grid.addWidget(QLabel("aims"), 0, 0)
         grid.addWidget(self.target_combo, 0, 1, 1, 3)
-        grid.addWidget(QLabel(" parameter "), 1, 0)
-        grid.addWidget(QLabel(" start "), 1, 1)
-        grid.addWidget(QLabel(" stepping "), 1, 2)
-        grid.addWidget(QLabel(" end "), 1, 3)
+        grid.addWidget(QLabel("parameter"), 1, 0)
+        grid.addWidget(QLabel("start"), 1, 1)
+        grid.addWidget(QLabel("stepping"), 1, 2)
+        grid.addWidget(QLabel("end"), 1, 3)
 
         # Add vt_symbol and name edit if add new strategy
-        self.setWindowTitle(f" optimization parameters ：{self.class_name}")
+        self.setWindowTitle(f"Optimization parameters ：{self.class_name}")
 
         validator = QtGui.QDoubleValidator()
         row = 2
@@ -749,12 +749,12 @@ class OptimizationSettingEditor(QtWidgets.QDialog):
 
             row += 1
 
-        parallel_button = QtWidgets.QPushButton(" multi-process optimization ")
+        parallel_button = QtWidgets.QPushButton("Multipocessing optimization")
         parallel_button.clicked.connect(self.generate_parallel_setting)
         grid.addWidget(parallel_button, row, 0, 1, 4)
 
         row += 1
-        ga_button = QtWidgets.QPushButton(" genetic algorithm ")
+        ga_button = QtWidgets.QPushButton("Genetic Optimization")
         ga_button.clicked.connect(self.generate_ga_setting)
         grid.addWidget(ga_button, row, 0, 1, 4)
 
@@ -819,14 +819,14 @@ class OptimizationResultMonitor(QtWidgets.QDialog):
 
     def init_ui(self):
         """"""
-        self.setWindowTitle(" parameter optimization results ")
+        self.setWindowTitle("Optimization results")
         self.resize(1100, 500)
 
         table = QtWidgets.QTableWidget()
 
         table.setColumnCount(2)
         table.setRowCount(len(self.result_values))
-        table.setHorizontalHeaderLabels([" parameter ", self.target_display])
+        table.setHorizontalHeaderLabels(["parameter", self.target_display])
         table.setEditTriggers(table.NoEditTriggers)
         table.verticalHeader().setVisible(False)
 
